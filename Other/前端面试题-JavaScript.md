@@ -252,7 +252,45 @@ var person = new Person('hello')
 
 <h5 id='j7'>7. 什么是闭包，为什么要用它</h5>
 
+> 简单来说，闭包就是能够读取其他函数内部变量的函数
+```js
+function Person() {
+    var name = 'hello'
+    function say () {
+        console.log(name)
+    }
+    return say()
+}
+Person() // hello
+```
+> 由于 JavaScript 特殊的作用域，函数外部无法直接读取内部的变量，内部可以直接读取外部的变量，从而就产生了闭包的概念
+
+用途：
+> 最大用处有两个，一个是前面提到的可以读取函数内部的变量，另一个就是让这些变量的值始终保持在内存中
+
+注意点：
+> 由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，在IE中可能导致内存泄露
+
 <h5 id='j8'>8. 介绍一下 JavaScript 原型，原型链，它们有何特点</h5>
+
+首先明确一点，**JavaScript是基于原型的**
+
+> 每个构造函数(constructor)都有一个原型对象(prototype),原型对象都包含一个指向构造函数的指针,而实例(instance)都包含一个指向原型对象的内部指针.
+
+![image](C:/Users/Administrator/Desktop/%E5%8E%9F%E5%9E%8B%E5%9B%BE%E7%A4%BA.jpg)
+
+图解：
+- 每一个构造函数都拥有一个`prototype`属性，这个属性指向一个对象，也就是原型对象
+- 原型对象默认拥有一个`constructor`属性，指向指向它的那个构造函数
+- 每个对象都拥有一个隐藏的属性`[[prototype]]`，指向它的原型对象
+
+那么什么是原型链：
+
+> `JavaScript`中所有的对象都是由它的原型对象继承而来。而原型对象自身也是一个对象，它也有自己的原型对象，这样层层上溯，就形成了一个类似链表的结构，这就是原型链
+
+> 所有原型链的终点都是`Object`函数的`prototype`属性。`Objec.prototype`指向的原型对象同样拥有原型，不过它的原型是`null`，而`null`则没有原型
+
+![image](C:/Users/Administrator/Desktop/原型链.png)
 
 <h5 id='j9'>9. JavaScript 如何实现继承</h5>
 
