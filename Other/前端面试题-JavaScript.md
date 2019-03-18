@@ -379,7 +379,7 @@ class Cat extends Animal {
 
 > 异步模式
 
-异步加载又叫非阻塞模式，浏览器在下载执行 `js` 同时，还会继续进行后续页面的处理
+异步加载又叫非阻塞，浏览器在下载执行 `js` 同时，还会继续进行后续页面的处理
 
 > 异步加载 JavaScript
 
@@ -397,7 +397,7 @@ class Cat extends Animal {
 
 - `jsonp` 跨域：动态创建`script`，再请求一个带参网址实现跨域通信.缺点就是只能实现 `get` 一种请求
 - `document.domain + iframe`跨域：两个页面都通过js强制设置`document.domain`为基础主域，就实现了同域.但是仅限主域相同，子域不同的跨域应用场景
-- 跨域资源共享 `CORS`：只服务端设置`Access-Control-Allow-Origin`即可，前端无须设置，若要带`cookie`请求：前后端都需要设置
+- 跨域资源共享（CORS）：只服务端设置`Access-Control-Allow-Origin`即可，前端无须设置，若要带`cookie`请求：前后端都需要设置
 - `nginx`反向代理接口跨域：同源策略是浏览器的安全策略，不是`HTTP`协议的一部分。服务器端调用`HTTP`接口只是使用`HTTP`协议，不会执行JS脚本，不需要同源策略，也就不存在跨越问题
 - `WebSocket`协议跨域
 
