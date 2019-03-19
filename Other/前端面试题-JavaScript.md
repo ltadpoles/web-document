@@ -46,11 +46,9 @@
 
 &emsp;[22. export 与 export default有什么区别](#j22)
 
-&emsp;[23. 怎么编写高性能的 JavaScript](#j23)
+&emsp;[23. 前端性能优化](#j23)
 
 &emsp;[24. 对JS引擎执行机制的理解](#j24)
-
-&emsp;[25. 对JS事件机制的理解](#j25)
 
 
 <h5 id='j1'>1. JavaScript 有哪些数据类型</h5>
@@ -564,14 +562,166 @@ var f = function (v) {
 
 <h5 id='j20'>20. Promise 对象的了解</h5>
 
+> Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大.所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果 --ES6入门-阮一峰
 
+> `Promise` 对象代表一个异步操作，有三种状态：`pending`（进行中）、`fulfilled`（已成功）和 `rejected`（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态
+
+特点： 
+
+- 对象的状态不受外界影响
+- 一旦状态改变，就不会再变，任何时候都可以得到这个结果
+- `Promise` 新建后就会立即执行
+
+```js
+const promise = new Promise(function(resolve, reject) {
+  // ... some code
+
+  if (/* 异步操作成功 */){
+    resolve(value);
+  } else {
+    reject(error);
+  }
+})
+```
+
+> Promise实例生成以后，可以用then方法分别指定resolved状态和rejected状态的回调函数
+
+```js
+promise.then(function(value) {
+  // success
+}, function(error) {
+  // failure
+})
+```
+
+> `then` 方法返回的是一个新的Promise实例
+
+> `Promise.prototype.catch` 用于指定发生错误时的回调函数,具有“冒泡”性质，会一直向后传递，直到被捕获为止。也就是说，错误总是会被下一个`catch`语句捕获
+
+```js
+getJSON('/post/1.json').then(function(post) {
+  return getJSON(post.commentURL);
+}).then(function(comments) {
+  // some code
+}).catch(function(error) {
+  // 处理前面三个Promise产生的错误
+});
+```
+
+> `catch` 方法返回的还是一个 `Promise` 对象，因此后面还可以接着调用 `then` 方法
+
+出去上述方法，Promise还有其他用法，小伙伴们可以在这里查看大佬写的文章 [ES6入门-阮一峰](http://es6.ruanyifeng.com/#README)
 
 <h5 id='j21'>21. async 函数以及 awit 命令</h5>
 
+> `async` 函数是什么？一句话，它就是 `Generator` 函数的语法糖
+
+了解Generator函数的小伙伴，这里 [传送门](http://es6.ruanyifeng.com/#docs/generator)
+
+`async` 特点：
+
+> `async` 函数返回一个 `Promise` 对象，可以使用 `then ` 方法添加回调函数。当函数执行的时候，一旦遇到 `await` 就会先返回，等到异步操作完成，再接着执行函数体内后面的语句
+
+> `async` 函数内部 `return` 语句返回的值，会成为 `then` 方法回调函数的参数
+
+> `async` 函数返回的 `Promise` 对象，必须等到内部所有 `await` 命令后面的 `Promise` 对象执行完，才会发生状态改变，除非遇到 `return` 语句或者抛出错误
+
+> `async` 函数内部抛出错误，会导致返回的 `Promise` 对象变为 `reject` 状态。抛出的错误对象会被 `catch` 方法回调函数接收到
+
+```js
+function timeout(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
+async function asyncPrint(value, ms) {
+  await timeout(ms);
+  console.log(value);
+}
+
+asyncPrint('hello world', 50);
+```
+
+> `await` 命令: `await` 命令后面是一个 `Promise` 对象，返回该对象的结果。如果不是 `Promise` 对象，就直接返回对应的值
+
+```js
+async function f() {
+  // 等同于
+  // return 123;
+  return await 123;
+}
+
+f().then(v => console.log(v))
+// 123
+```
+
+> `await` 命令后面是一个`thenable`对象（即定义then方法的对象），那么`await`会将其等同于 `Promise` 对象.也就是说就算一个对象不是`Promise`对象，但是只要它有`then`这个方法， `await` 也会将它等同于`Promise`对象
+
+使用注意点：
+
+- `await` 命令后面的 `Promise` 对象，运行结果可能是 `rejected`，所以最好把 `await` 命令放在 `try...catch` 代码块中
+- 多个 `await` 命令后面的异步操作，如果不存在继发关系，最好让它们同时触发
+- `await` 命令只能用在 `async` 函数之中，如果用在普通函数，就会报错
+
+了解更多，请点击 [这里](http://es6.ruanyifeng.com/#docs/async)
+
 <h5 id='j22'>22. export 与 export default有什么区别</h5>
 
-<h5 id='j23'>23. 怎么编写高性能的 JavaScript</h5>
+> `export` 与 `export default` 均可用于导出常量、函数、文件、模块等
+
+> 在一个文件或模块中，`export`、`import` 可以有多个，`export default` 仅有一个
+
+> 通过 `export` 方式导出，在导入时要加 `{ }`，`export default` 则不需要
+
+> 使用 `export default`命令，为模块指定默认输出，这样就不需要知道所要加载模块的变量名; `export` 加载的时候需要知道加载模块的变量名
+
+> `export default` 命令的本质是将后面的值，赋给 `default` 变量，所以可以直接将一个值写在 `export default` 之后
+
+<h5 id='j23'>23. 前端性能优化</h5>
+
+参见 [雅虎14条前端性能优化](https://blog.csdn.net/qfkfw/article/details/7272961)
 
 <h5 id='j24'>24. 对JS引擎执行机制的理解</h5>
 
-<h5 id='j25'>25. 对JS事件机制的理解</h5>
+首选明确两点：
+
+> `JavaScript` 是单线程语言
+
+> `JavaScript` 的 `Event Loop` 是 `JS` 的执行机制, 也就是事件循环
+
+```js
+console.log(1)
+    
+setTimeout(function(){
+    console.log(2)
+},0)
+
+console.log(3)
+
+// 1 3 2
+```
+> `JavaScript` 将任务分为同步任务和异步任务，执行机制就是先执行同步任务，将同步任务加入到主线程，遇到异步任务就先加入到 `event table` ，当所有的同步任务执行完毕，如果有可执行的异步任务，再将其加入到主线程中执行
+
+视频详解，移步 [这里](https://vimeo.com/96425312)
+
+```js
+setTimeout(function(){console.log(1);},0);
+new Promise(function(resolve){
+     console.log(2);
+     for(var i = 0; i < 10000; i++){
+         i == 99 && resolve();
+     }
+ }).then(function(){
+     console.log(3)
+ });
+ 
+ console.log(4);
+ 
+ // 2 4 3 1
+```
+
+在异步任务中，定时器也属于特殊的存在。有人将其称之为 宏任务、微任务，定时器就属于宏任务的范畴。
+
+参考 [JS引擎的执行机制](https://segmentfault.com/a/1190000012806637)
+
