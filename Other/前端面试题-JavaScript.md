@@ -403,19 +403,168 @@ class Cat extends Animal {
 
 <h5 id='j13'>13. 对 this 的理解</h5>
 
+在 `JavaScript` 中，研究 `this` 一般都是 `this` 的指向问题，核心就是 **`this` 永远指向最终调用它的那个对象**，除非改变 `this` 指向或者箭头函数那种特殊情况
+
+```js
+function test() {
+    console.log(this);
+}
+
+test() // window
+
+var obj = {
+  foo: function () { console.log(this.bar) },
+  bar: 1
+};
+
+var foo = obj.foo;
+var bar = 2;
+
+obj.foo() // 1
+foo() // 2
+
+// 函数调用的环境不同，所得到的结果也是不一样的
+```
+
 <h5 id='j14'>14. apply()、call()和 bind() 是做什么的，它们有什么区别</h5>
+
+相同点：三者都可以**改变 this 的指向**
+
+不同点： 
+
+- apply 方法传入两个参数：一个是作为函数上下文的对象，另外一个是作为函数参数所组成的数组
+
+```js
+
+var obj = {
+    name : 'sss'
+}
+
+function func(firstName, lastName){
+    console.log(firstName + ' ' + this.name + ' ' + lastName);
+}
+
+func.apply(obj, ['A', 'B']);    // A sss B
+
+```
+- `call` 方法第一个参数也是作为函数上下文的对象，但是后面传入的是一个参数列表，而不是单个数组
+
+```js
+var obj = {
+    name: 'sss'
+}
+
+function func(firstName, lastName) {
+    console.log(firstName + ' ' + this.name + ' ' + lastName);
+}
+
+func.call(obj, 'C', 'D');       // C sss D
+```
+
+- `bind` 接受的参数有两部分，第一个参数是是作为函数上下文的对象，第二部分参数是个列表，可以接受多个参数
+
+```js
+var obj = {
+    name: 'sss'
+}
+
+function func() {
+    console.log(this.name);
+}
+
+var func1 = func.bind(null, 'xixi');
+func1();
+```
+
+> `apply`、`call` 方法都会使函数立即执行，因此它们也可以用来调用函数
+
+> `bind` 方法不会立即执行，而是返回一个改变了上下文 `this` 后的函数。而原函数 `func` 中的 `this` 并没有被改变，依旧指向全局对象 `window`
+
+> `bind` 在传递参数的时候会将自己带过去的参数排在原函数参数之前
+
+```js
+function func(a, b, c) {
+    console.log(a, b, c);
+}
+var func1 = func.bind(this, 'xixi');
+func1(1,2) // xixi 1 2
+```
 
 <h5 id='j15'>15. 什么是内存泄漏，哪些操作会造成内存泄漏</h5>
 
+> 内存泄漏：是指一块被分配的内存既不能使用，又不能回收，直到浏览器进程结束
+
+可能造成内存泄漏的操作：
+- 意外的全局变量
+- 闭包
+- 循环引用
+- 被遗忘的定时器或者回调函数
+
+你可能还需要知道 [垃圾回收机制](http://www.ruanyifeng.com/blog/2017/04/memory-leak.html) 此外，高程上面对垃圾回收机制的介绍也很全面，有兴趣的小伙伴可以看看
+
 <h5 id='j16'>16. 什么是事件代理，它的原理是什么</h5>
+
+> 事件代理：通俗来说就是将元素的事件委托给它的父级或者更外级元素处理
+
+> 原理：利用事件冒泡机制实现的
+
+> 优点：只需要将同类元素的事件委托给父级或者更外级的元素，不需要给所有元素都绑定事件，减少内存空间占用，提升性能; 动态新增的元素无需重新绑定事件
 
 <h5 id='j17'>17. 对AMD和CMD的理解，它们有什么区别</h5>
 
+> `AMD`和`CMD`都是为了解决浏览器端模块化问题而产生的，`AMD`规范对应的库函数有 `Require.js`，`CMD`规范是在国内发展起来的，对应的库函数有`Sea.js`
+
+**AMD和CMD最大的区别是对依赖模块的执行时机处理不同**
+
+> 1、AMD推崇依赖前置，在定义模块的时候就要声明其依赖的模块 
+
+> 2、CMD推崇就近依赖，只有在用到某个模块的时候再去require
+
+参考：[AMD-中文版](https://github.com/amdjs/amdjs-api/wiki/AMD-%28%E4%B8%AD%E6%96%87%E7%89%88%29)   [CMD-规范](https://github.com/seajs/seajs/issues/242)
+
 <h5 id='j18'>18. 对ES6的了解</h5>
+
+> ECMAScript 6.0 是 JavaScript 语言的下一代标准
+
+新增的特性：
+
+- 声明变量的方式 `let`  `const`
+- 变量解构赋值
+- 字符串新增方法 `includes()`  `startsWith()`  `endsWith()` 等
+- 数组新增方法 `Array.from()`  `Array.of()`  `entries()`  `keys()`      `values()` 等
+- 对象简洁写法以及新增方法 `Object.is()`  `Object.assign()` `entries()` `keys()`  `values()`等
+- 箭头函数、`rest` 参数、函数参数默认值等
+- 新的数据结构： `Set` 和 `Map`
+- `Proxy`
+- `Promise`对象
+- `async`函数 `await`命令
+- `Class`类
+- `Module` 体系 模块的加载和输出方式
+
+了解更多，参考 [ES6入门-阮一峰](http://es6.ruanyifeng.com/#README)
 
 <h5 id='j19'>19. 箭头函数有什么特点</h5>
 
+> ES6 允许使用“箭头”（=>）定义函数
+
+```js
+var f = v => v;
+
+// 等同于
+var f = function (v) {
+  return v;
+}
+```
+
+注意点：
+
+- 函数体内的 `this` 对象，就是定义时所在的对象，而不是使用时所在的对象
+- 不可以当作构造函数，也就是说，不可以使用 `new` 命令，否则会抛出一个错误
+- 不可以使用 `arguments` 对象，该对象在函数体内不存在。如果要用，可以用 `rest` 参数代替
+
 <h5 id='j20'>20. Promise 对象的了解</h5>
+
+
 
 <h5 id='j21'>21. async 函数以及 awit 命令</h5>
 
