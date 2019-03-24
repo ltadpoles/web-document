@@ -67,6 +67,8 @@ new Router({
 
 > MVC
 
+![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/Other/images/mvc.png)
+
 特点：
 1. `View` 传送指令到 `Controller`
 2. `Controller` 完成业务逻辑后，要求 `Model` 改变状态
@@ -75,6 +77,8 @@ new Router({
 **所有通信都是单向的**
 
 > MVVM
+
+![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/Other/images/mvvm.png)
 
 特点： 
 1. 各部分之间的通信，都是双向的
