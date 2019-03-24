@@ -2,8 +2,6 @@
 <h2>目录</h2>
 </html>
 
-[前言](#start)
-
 &emsp;[1. JavaScript 有哪些数据类型](#j1)
 
 &emsp;[2. 怎么判断不同的JS数据类型](#j2)
@@ -53,9 +51,6 @@
 &emsp;[24. 对JS引擎执行机制的理解](#j24)
 
 &emsp;[25. 对JS事件机制的理解](#j25)
-
-
-<h4 id='start'>前言</h4>
 
 
 <h5 id='j1'>1. JavaScript 有哪些数据类型</h5>
@@ -277,7 +272,7 @@ Person() // hello
 
 > 每个构造函数(constructor)都有一个原型对象(prototype),原型对象都包含一个指向构造函数的指针,而实例(instance)都包含一个指向原型对象的内部指针.
 
-![image](C:/Users/Administrator/Desktop/%E5%8E%9F%E5%9E%8B%E5%9B%BE%E7%A4%BA.jpg)
+![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/Other/images/%E5%8E%9F%E5%9E%8B%E5%9B%BE%E7%A4%BA.jpg)
 
 图解：
 - 每一个构造函数都拥有一个`prototype`属性，这个属性指向一个对象，也就是原型对象
@@ -290,11 +285,91 @@ Person() // hello
 
 > 所有原型链的终点都是`Object`函数的`prototype`属性。`Objec.prototype`指向的原型对象同样拥有原型，不过它的原型是`null`，而`null`则没有原型
 
-![image](C:/Users/Administrator/Desktop/原型链.png)
+![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/Other/images/%E5%8E%9F%E5%9E%8B%E9%93%BE.png)
 
 <h5 id='j9'>9. JavaScript 如何实现继承</h5>
 
+- 原型链继承
+
+```js
+function Animal() {}
+Animal.prototype.name = 'cat'
+Animal.prototype.age = 1
+Animal.prototype.say = function() {console.log('hello')}
+
+var cat = new Animal()
+
+cat.name  // cat
+cat.age  // 1
+cat.say() // hello
+```
+> 最简单的继承实现方式，但是也有其缺点
+1. 来自原型对象的所有属性被所有实例共享
+2. 创建子类实例时，无法向父类构造函数传参
+3. 要想为子类新增属性和方法，必须要在`new`语句之后执行，不能放到构造器中
+
+- 构造继承
+
+```js
+function Animal() {
+    this.species = "动物"
+}
+function Cat(name, age) {
+    Animal.call(this)
+    this.name = name 
+    this.age = age
+}
+
+var cat = new Cat('豆豆', 2)
+
+cat.name  // 豆豆
+cat.age // 2
+cat.species // 动物
+```
+> 使用call或apply方法，将父对象的构造函数绑定在子对象上.
+
+- 组合继承
+
+```js
+function Animal() {
+    this.species = "动物"
+}
+
+function Cat(name){
+  Animal.call(this)
+  this.name = name
+}
+
+Cat.prototype = new Animal() // 重写原型
+Cat.prototype.constructor = Cat
+
+```
+> 如果没有`Cat.prototype = new Animal()`这一行，`Cat.prototype.constructor`是指向`Cat`的；加了这一行以后，`Cat.prototype.constructor`指向`Animal`.这显然会导致继承链的紊乱（cat1明明是用构造函数Cat生成的），因此我们必须手动纠正，将`Cat.prototype`对象的`constructor`值改为`Cat`
+
+- `extends` 继承
+ES6新增继承方式，Class 可以通过extends关键字实现继承
+
+```js
+class Animal {
+    
+}
+
+class Cat extends Animal {
+    constructor() {
+        super();
+  }
+}
+```
+
+> 使用 `extends` 实现继承，必须添加 `super` 关键字定义子类的 `constructor`，这里的`super()` 就相当于 `Animal.prototype.constructor.call(this)`
+
+当然，还有很多种实现继承的方式，这里就不多说了。然后，再推荐一波 **红宝书**
+
 <h5 id='j10'>10. new 操作符具体干了什么</h5>
+
+- 创建一个空对象，并且 this 变量引用该对象，同时还继承了该函数的原型
+- 属性和方法被加入到 this 引用的对象中
+- 新创建的对象由 this 所引用，并且最后隐式的返回 this
 
 <h5 id='j11'>11. 同步和异步的区别，怎么异步加载 JavaScript</h5>
 

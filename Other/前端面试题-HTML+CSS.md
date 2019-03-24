@@ -2,8 +2,6 @@
 <h2>目录</h2>
 </html>
 
-[前言](#start)
-
 [HTML部分](#html)
 
 &emsp;[1. Doctype作用，HTML5 为什么只需要写`<!DOCTYPE HTML>`](#l1)
