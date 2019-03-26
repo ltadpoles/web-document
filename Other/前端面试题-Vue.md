@@ -52,8 +52,7 @@
 
 <h5 id='k3'>3. Vue 如何去除url中的 #</h5>
 
-`vue-router` 默认使用 `hash` 模式，所以在路由加载的时候，项目中的 `url` 会自带 `#`。如果不想使用 `#`， 可以使用 `vue-router` 的另一种模式 `history`
-
+.
 ```js
 new Router({
   mode: 'history',
