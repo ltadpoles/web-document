@@ -233,7 +233,7 @@ typeof str // String
 str instanceof String // false
 ```
 
-这里的结果为 `false` 的原因就是 `str` 本质上是一个原始值，并不存在 `prototype` 属性的指向对象
+这里的结果为 `false` 的原因就是 `str` 本质上是一个原始值，并不存在 `prototype` 属性
 
 当然，这里也涉及到了数据类型的判断，有兴趣的小伙伴可以 [点击这里](https://segmentfault.com/a/1190000018536392#articleHeader2) 查看如何判断 `JavaScript` 中的数据类型
 
