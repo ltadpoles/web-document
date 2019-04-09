@@ -40,6 +40,8 @@
 
 &emsp;[20. vue 等单页面应用的优缺点](#k20)
 
+&emsp;[21. vue-router 使用params与query传参有什么区别](#k21)
+
 <h5 id='k1'>1. 说一下Vue的双向绑定数据的原理</h5>
 
 > `vue` 实现数据双向绑定主要是：采用数据劫持结合发布者-订阅者模式的方式，通过 `Object.defineProperty()` 来劫持各个属性的 `setter`，`getter`，在数据变动时发布消息给订阅者，触发相应监听回调
@@ -52,7 +54,8 @@
 
 <h5 id='k3'>3. Vue 如何去除url中的 #</h5>
 
-.
+`vue-router` 默认使用 `hash` 模式，所以在路由加载的时候，项目中的 `url` 会自带 `#`。如果不想使用 `#`， 可以使用 `vue-router` 的另一种模式 `history`
+
 ```js
 new Router({
   mode: 'history',
@@ -260,3 +263,22 @@ Vue.filter('reverse', function (value) {
 - SEO难度较高
 - 前进、后退管理 
 - 初次加载耗时多 
+
+<h5 id='k21'>21. vue-router 使用params与query传参有什么区别</h5>
+
+`vue-router` 可以通过 `params` 与 `query` 进行传参
+
+```js
+// 传递
+this.$router.push({path: './xxx', params: {xx:xxx}})
+this.$router.push({path: './xxx', query: {xx:xxx}})
+
+// 接收
+this.$route.params
+
+this.$route.query
+```
+
+- `params` 是路由的一部分,必须要有。`query` 是拼接在 `url` 后面的参数，没有也没关系
+- `params` 不设置的时候，刷新页面或者返回参数会丢，`query` 则不会有这个问题
+
