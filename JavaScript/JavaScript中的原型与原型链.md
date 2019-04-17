@@ -110,6 +110,11 @@ Person.prototype.constructor == Person // false
 
 person.name // undefined
 ```
+
+一图胜过千言万语
+
+![重写原型链](https://raw.githubusercontent.com/ltadpoles/web-document/master/images/%E9%87%8D%E5%86%99%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1.jpg)
+
 - 在已经创建了实例的情况下重写原型，会切断现有实例与新原型之间的联系
 - 重写原型对象，会导致原型对象的 `constructor` 属性指向 `Object` ，导致原型链关系混乱，所以我们应该在重写原型对象的时候指定 `constructor`( `instanceof` 仍然会返回正确的值)
 
