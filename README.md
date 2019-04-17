@@ -33,3 +33,5 @@
 
 [JavaScript中的那些语句](https://github.com/ltadpoles/web-document/issues/10)
 
+[JavaScript中的原型与原型链](https://github.com/ltadpoles/web-document/issues/11)
+
