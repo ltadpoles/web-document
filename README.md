@@ -6,8 +6,9 @@
 
 不定期更新中…
 
-- [segmentFault博客](https://segmentfault.com/u/youdangde_5c8b208a23f95/articles)
+### | 社区相关
 
+[segmentFault博客](https://segmentfault.com/u/youdangde_5c8b208a23f95/articles)
 
 
 ### | 面试相关
@@ -24,12 +25,11 @@
 
 [前端面试题 -- webpack](https://github.com/ltadpoles/web-document/issues/7)
 
-
 ### | JavaScript
 
 [JavaScript声明变量详解](https://github.com/ltadpoles/web-document/issues/8)
 
-[谈谈JavaScript中的数据类型](https://github.com/ltadpoles/web-document/issues/9)
+[JavaScript中的数据类型](https://github.com/ltadpoles/web-document/issues/9)
 
 [JavaScript中的那些语句](https://github.com/ltadpoles/web-document/issues/10)
 
