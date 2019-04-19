@@ -35,3 +35,5 @@
 
 [JavaScript中的原型与原型链](https://github.com/ltadpoles/web-document/issues/11)
 
+[JavaScript中的继承](https://github.com/ltadpoles/web-document/issues/12)
+
