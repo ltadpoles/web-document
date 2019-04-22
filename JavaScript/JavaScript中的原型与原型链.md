@@ -34,7 +34,7 @@
 
 <h3 id='prototype'>原型</h3>
 
-> JavaScript是基于原型的
+> `JavaScript` 是基于原型的
 
 > 我们创建的每个函数都有一个 `prototype(原型)` 属性，这个属性是一个指针，指向一个对象，而这个对象的用途是包含可以由特定类型的所有实例共享的属性和方法。
 
@@ -51,9 +51,9 @@
 ```js
 function Person(){}
 
-var person = new Person();
+var p = new Person();
 
-person.__proto__ === Person.prototype // true
+p.__proto__ === Person.prototype // true
 
 Person.prototype.constructor === Person // true
 ```
@@ -69,14 +69,14 @@ Person.prototype.age = 18;
 Person.prototype.sayHi = function() {
     alert('Hi');
 }
-var person = new Person();
 var person1 = new Person();
-person.name = 'oo';
-person.name // oo
-person.age // 18
-perosn.sayHi() // Hi
+var person2 = new Person();
+person1.name = 'oo';
+person1.name // oo
 person1.age // 18
-person1.sayHi() // Hi
+perosn1.sayHi() // Hi
+person2.age // 18
+person2.sayHi() // Hi
 ```
 从这段代码我们不难看出：
 - 实例可以共享原型上面的属性和方法
@@ -94,21 +94,21 @@ Person.prototype = {
     }
 }
 
-var person = new Person()
+var p = new Person()
 ```
 只是当我们在重写原型链的时候需要注意以下的问题:
 
 ```js
 function Person(){}
-var person = new Person();
+var p = new Person();
 Person.prototype = {
     name: 'tt',
     age: 18
 }
 
-Person.prototype.constructor == Person // false
+Person.prototype.constructor === Person // false
 
-person.name // undefined
+p.name // undefined
 ```
 
 一图胜过千言万语
@@ -183,10 +183,10 @@ Point.prototype.toString = function () {
 
 ```js
 function Person(){}
-var person = new Person();
+var p = new Person();
 
-person instanceof Person // true
-person instanceof Object // true
+p instanceof Person // true
+p instanceof Object // true
 ```
 > hasOwnProperty
 
@@ -197,11 +197,11 @@ function Person() {}
 Person.prototype = {
     name: 'tt'
 }
-var person = new Person();
-person.age = 15;
+var p = new Person();
+p.age = 15;
 
-person.hasOwnProperty('age') // true
-person.hasOwnProperty('name') // false
+p.hasOwnProperty('age') // true
+p.hasOwnProperty('name') // false
 ```
 
 <h3 id='question'>原型链的问题</h3>
@@ -220,7 +220,7 @@ person2.arr // [1, 2, 3, 4, 5]
 ```
 引用类型，变量保存的就是一个内存中的一个指针。所以，当原型上面的属性是一个引用类型的值时，我们通过其中某一个实例对原型属性的更改，结果会反映在所有实例上面，这也是原型 `共享` 属性造成的最大问题
 
-另一个问题就是我们在创建子类型（比如上面的 `person`）时，没有办法向超类型（ `Person` ）的构造函数中传递参数
+另一个问题就是我们在创建子类型（比如上面的 `p`）时，没有办法向超类型（ `Person` ）的构造函数中传递参数
 
 <h3 id='end'>后记</h3>
 
