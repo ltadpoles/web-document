@@ -37,3 +37,5 @@
 
 [JavaScript中的继承](https://github.com/ltadpoles/web-document/issues/12)
 
+[JavaScript中的浅拷贝与深拷贝](https://github.com/ltadpoles/web-document/issues/14)
+
