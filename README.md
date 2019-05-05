@@ -39,5 +39,7 @@
 
 [JavaScript中的浅拷贝与深拷贝](https://github.com/ltadpoles/web-document/issues/14)
 
-[代码校验规则]()
+### | 代码规范
+
+[代码校验规则](https://github.com/ltadpoles/web-document/tree/master/Other/eslint)
 
