@@ -9,7 +9,7 @@
 主要就是为了添加这个规则，本身的校验规则在 `rules` 中添加修改就好, 完整 `Eslint`规则 参考 [这里](https://eslint.org/docs/rules/)
 ![原型链](https://raw.githubusercontent.com/ltadpoles/web-document/master/images/lint.jpg)
 
-接下来将 `prettier` 添加到项目的根目录中,完整 `prettier`规则 参考 [这里](https://eslint.org/docs/rules/)
+接下来将 `prettier` 添加到项目的根目录中,完整 `prettier`规则 参考 [这里](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
 这个时候其实是已经可以进行代码规范的校验了，我们运行 `npm run lint` 就会提示有错误的地方，并且格式化
 
