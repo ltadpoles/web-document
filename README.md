@@ -39,3 +39,5 @@
 
 [JavaScript中的浅拷贝与深拷贝](https://github.com/ltadpoles/web-document/issues/14)
 
+[代码校验规则]()
+
