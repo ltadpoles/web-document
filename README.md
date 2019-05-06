@@ -39,6 +39,8 @@
 
 [JavaScript中的浅拷贝与深拷贝](https://github.com/ltadpoles/web-document/issues/14)
 
+[JavaScript中的闭包](https://github.com/ltadpoles/web-document/issues/15)
+
 ### | 代码规范
 
 [代码校验规则](https://github.com/ltadpoles/web-document/tree/master/Other/eslint)
