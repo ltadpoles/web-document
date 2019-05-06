@@ -63,7 +63,7 @@
 
 引用类型：`Object`
 
-详见 [JavaScript的数据类型-MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures)
+详见 [JavaScript中的数据类型](https://segmentfault.com/a/1190000018764693)
 
 <h5 id='j2'>2. 怎么判断不同的JS数据类型 </h5>
 
@@ -243,6 +243,8 @@ var person = new Person('hello')
 
 - 最常用的方式就是 `JSON.parse(JSON.stringify(目标对象)`，缺点就是只能拷贝符合`JSON`数据标准类型的对象
 
+更多参考 [JavaScript 中的浅拷贝与深拷贝](https://segmentfault.com/a/1190000018999209)
+
 <h5 id='j7'>7. 什么是闭包，为什么要用它</h5>
 
 > 简单来说，闭包就是能够读取其他函数内部变量的函数
@@ -264,6 +266,8 @@ Person() // hello
 注意点：
 > 由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，在IE中可能导致内存泄露
 
+更多参考 [JavaScript 中的闭包](https://github.com/ltadpoles/web-document/issues/15)
+
 <h5 id='j8'>8. 介绍一下 JavaScript 原型，原型链，它们有何特点</h5>
 
 首先明确一点，**JavaScript是基于原型的**
@@ -284,6 +288,8 @@ Person() // hello
 > 所有原型链的终点都是`Object`函数的`prototype`属性。`Objec.prototype`指向的原型对象同样拥有原型，不过它的原型是`null`，而`null`则没有原型
 
 ![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/images/%E5%8E%9F%E5%9E%8B%E9%93%BE.png)
+
+更多参考 [JavaScript 中的原型与原型链](https://segmentfault.com/a/1190000018895543)
 
 <h5 id='j9'>9. JavaScript 如何实现继承</h5>
 
@@ -362,6 +368,8 @@ class Cat extends Animal {
 > 使用 `extends` 实现继承，必须添加 `super` 关键字定义子类的 `constructor`，这里的`super()` 就相当于 `Animal.prototype.constructor.call(this)`
 
 当然，还有很多种实现继承的方式，这里就不多说了。然后，再推荐一波 **红宝书**
+
+更多参考 [JavaScript 中的继承](https://segmentfault.com/a/1190000018927068)
 
 <h5 id='j10'>10. new 操作符具体干了什么</h5>
 
