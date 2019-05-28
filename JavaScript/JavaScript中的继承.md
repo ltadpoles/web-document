@@ -41,7 +41,7 @@
 
 > 继承（inheritance）是面向对象软件技术当中的一个概念。如果一个类别 `B` `继承自` 另一个类别 `A` ，就把这个 `B` 称为 `A的子类` ，而把 `A` 称为 `B的父类别` 也可以称 `A是B的超类` 。继承可以使得子类具有父类别的各种属性和方法，而不需要再次编写相同的代码 ...[更多](https://zh.wikipedia.org/wiki/%E7%BB%A7%E6%89%BF_(%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6))
 
-![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/images/%E7%BB%A7%E6%89%BF%E6%A6%82%E5%BF%B5.jpg)
+![image](https://raw.githubusercontent.com/Roamen/web-document/master/images/%E7%BB%A7%E6%89%BF%E6%A6%82%E5%BF%B5.jpg)
 
 通过这些概念和图示我们不难知道继承可以在我们的开发中带来的便捷，那么在 `JavaScript` 中如何去实现继承呢？
 
@@ -81,7 +81,7 @@ SubType.prototype.constructor == SuperType // true
 
 用一张图表示：
 
-![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/images/%E5%8E%9F%E5%9E%8B%E7%BB%A7%E6%89%BF.jpg)
+![image](https://raw.githubusercontent.com/Roamen/web-document/master/images/%E5%8E%9F%E5%9E%8B%E7%BB%A7%E6%89%BF.jpg)
 
 - `SubType.prototype` 相当于 `SuperType` 的实例存在的，所以 `SubType.prototype.constructor` 就指向 `SuperType`
 
@@ -316,7 +316,7 @@ SubType.prototype.constructor == SubType // true
 
 周末愉快
 
-最后，推荐一波前端学习历程，不定期分享一些前端问题和有意思的东西欢迎 `star` 关注 [传送门](https://github.com/ltadpoles/web-document)
+最后，推荐一波前端学习历程，不定期分享一些前端问题和有意思的东西欢迎 `star` 关注 [传送门](https://github.com/Roamen/web-document)
 
 <h2 id='rep'>参考文档</h2>
 

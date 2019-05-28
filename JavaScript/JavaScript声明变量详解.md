@@ -282,7 +282,7 @@ console.log(a) // 1
 
 每天学习分享，不定期更新
 
-最后，推荐一波前端学习历程，这段时间总结的一些面试相关，分享给有需要的小伙伴，欢迎 `star` 关注 [传送门](https://github.com/ltadpoles/web-document)
+最后，推荐一波前端学习历程，这段时间总结的一些面试相关，分享给有需要的小伙伴，欢迎 `star` 关注 [传送门](https://github.com/Roamen/web-document)
 
 ### 参考文档
 

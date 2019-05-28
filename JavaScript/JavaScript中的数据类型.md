@@ -239,7 +239,7 @@ str instanceof String // false
 
 ## 后记
 
-不断总结温习前端方面的知识点以及有趣的东西，感兴趣的小伙伴可以 [点击这里](https://github.com/ltadpoles/web-document)，查看完整版前端总结知识点，欢迎 `star` 关注
+不断总结温习前端方面的知识点以及有趣的东西，感兴趣的小伙伴可以 [点击这里](https://github.com/Roamen/web-document)，查看完整版前端总结知识点，欢迎 `star` 关注
 
 期待同行
 
