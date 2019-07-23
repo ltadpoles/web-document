@@ -7,7 +7,7 @@
 找到 `package.json` 文件中的 `eslintConfig` 删掉它(当然也可以不删，我有强迫症),将 `.eslintrc.js` 文件添加到项目根目录(如果根目录有这个文件，将里面的内容覆盖掉就可以了)
 
 主要就是为了添加这个规则，本身的校验规则在 `rules` 中添加修改就好, 完整 `Eslint`规则 参考 [这里](https://eslint.org/docs/rules/)
-![原型链](https://raw.githubusercontent.com/ltadpoles/web-document/master/images/lint.jpg)
+![原型链](https://raw.githubusercontent.com/Roamen/web-document/master/images/lint.jpg)
 
 接下来将 `prettier` 添加到项目的根目录中,完整 `prettier`规则 参考 [这里](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 

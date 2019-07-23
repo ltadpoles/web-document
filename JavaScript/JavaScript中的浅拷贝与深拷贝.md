@@ -210,4 +210,4 @@ console.log(o2); // => {arr: [1,2,3], obj: {key: 'value'}}
 
 相信在不断使用的过程中，你一定会对它越来越熟悉
 
-最后，推荐一波前端学习历程，不定期分享一些前端问题和有意思的东西欢迎 `star` 关注 [传送门](https://github.com/ltadpoles/web-document)
+最后，推荐一波前端学习历程，不定期分享一些前端问题和有意思的东西欢迎 `star` 关注 [传送门](https://github.com/Roamen/web-document)

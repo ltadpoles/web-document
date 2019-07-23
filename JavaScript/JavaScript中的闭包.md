@@ -216,7 +216,7 @@ var Counter = (function() {
 
 所以，如何合理地使用这个有趣的东西，还需要我们多多钻研和摸索，相信你一定可以对它越来越熟悉
 
-最后，推荐一波前端学习历程，不定期分享一些前端问题和有意思的东西欢迎 `star` 关注 [传送门](https://github.com/ltadpoles)
+最后，推荐一波前端学习历程，不定期分享一些前端问题和有意思的东西欢迎 `star` 关注 [传送门](https://github.com/Roamen)
 
 <h3 id="reference">参考文档</h3>
 

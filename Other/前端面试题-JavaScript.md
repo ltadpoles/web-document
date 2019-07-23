@@ -266,7 +266,7 @@ Person() // hello
 注意点：
 > 由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，在IE中可能导致内存泄露
 
-更多参考 [JavaScript 中的闭包](https://github.com/ltadpoles/web-document/issues/15)
+更多参考 [JavaScript 中的闭包](https://github.com/Roamen/web-document/issues/15)
 
 <h5 id='j8'>8. 介绍一下 JavaScript 原型，原型链，它们有何特点</h5>
 
@@ -274,7 +274,7 @@ Person() // hello
 
 > 每个构造函数(constructor)都有一个原型对象(prototype),原型对象都包含一个指向构造函数的指针,而实例(instance)都包含一个指向原型对象的内部指针.
 
-![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/images/%E5%8E%9F%E5%9E%8B%E5%9B%BE%E7%A4%BA.jpg)
+![image](https://raw.githubusercontent.com/Roamen/web-document/master/images/%E5%8E%9F%E5%9E%8B%E5%9B%BE%E7%A4%BA.jpg)
 
 图解：
 - 每一个构造函数都拥有一个`prototype`属性，这个属性指向一个对象，也就是原型对象
@@ -287,7 +287,7 @@ Person() // hello
 
 > 所有原型链的终点都是`Object`函数的`prototype`属性。`Objec.prototype`指向的原型对象同样拥有原型，不过它的原型是`null`，而`null`则没有原型
 
-![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/images/%E5%8E%9F%E5%9E%8B%E9%93%BE.png)
+![image](https://raw.githubusercontent.com/Roamen/web-document/master/images/%E5%8E%9F%E5%9E%8B%E9%93%BE.png)
 
 更多参考 [JavaScript 中的原型与原型链](https://segmentfault.com/a/1190000018895543)
 
