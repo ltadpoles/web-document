@@ -12,4 +12,10 @@
 
 既然我们要使用 `Webpack` 进行项目打包，那么首先我们肯定需要有一个这样的项目。
 
-了解了 `Webpack` 的基本配置，我们就可以试着搭建一个简单的 `vue-cli`了，根据官网需要的 `loader` ，还是比较容易的， [点击这里](https://github.com/Roamen/webpack/tree/master/demo2) 查看 `Demo`
+了解了 `Webpack` 的基本配置，我们就可以试着搭建一个简单的 `vue-cli` 了，根据官网需要的 `loader` 还有一些简单的插件，以及对 `.babelrc` 文件的修改，还是比较容易的
+
+这里踩到的坑：
+- `babel-loader` 升级到 `8.x` 版本之后可能需要简单的配合，为了便捷，所以 `demo` 中直接使用的7.x版本
+- `vue-loader` 在升级到 `5.x` 之后 必须引入 `vue-loader/lib/plugin` 插件，否则会报错
+
+具体 `DOME` 请 [点击这里](https://github.com/Roamen/webpack/tree/master/demo2)，查看配置
