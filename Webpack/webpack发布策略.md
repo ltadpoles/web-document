@@ -19,3 +19,55 @@
 - `vue-loader` 在升级到 `5.x` 之后 必须引入 `vue-loader/lib/plugin` 插件，否则会报错
 
 具体 `DOME` 请 [点击这里](https://github.com/Roamen/webpack/tree/master/demo2)，查看配置
+
+
+### 分离第三方包
+
+项目基本配置完成，接下来我们先打包一次看看效果：
+
+![image](https://note.youdao.com/favicon.ico)
+
+如果先前配置没有问题，基本就是上图的样子
+
+从打包好的文件中我们可以看到有 `html` 页面，字体文件以及 `bundle.js` 文件( `Webapck4` 之后，会有默认分包策略，所以会出现好几个 `bundle.js` 文件)
+
+不难看出，其中 `bundle.js` 文件的体积还是比较大的，现在，我们首先将之前项目引入的第三方包分离出来
+
+分离第三方包在 `Webapck4.x` 版本之前，我们都是使用 `CommonsChunkPlugin` 去做分离，进入 `webpack4.x` 版本，这种方式被移除，至于两者之间有怎样的区别，小伙伴们可以在官网查看详细信息
+
+现在进行第三方包的分离工作：
+
+在 `webpack4.x` 之前的时代，我们需要指定需要分离的第三方包、指定出口、添加插件这三个步骤
+
+现在我们需要做的：
+
+- 指定出口
+```js
+output: {
+    path: path.resolve(__dirname, './dist'),
+    // 指定分离出来包的名称
+    filename: 'js/[name].js'
+},
+```
+- 引入配置
+```js
+optimization:{   
+    splitChunks:{
+        cacheGroups:{//缓存组，一个对象。它的作用在于，可以对不同的文件做不同的处理
+            commonjs:{
+                name:'vender',        //输出的名字（提出来的第三方库）
+                test: /\.js/,        //通过条件找到要提取的文件
+                chunks:'initial'    //只对入口文件进行处理
+            }
+        }
+    }
+}
+```
+至于 `optimization` 这个对象的配置，小伙伴们可以 [点击这里](https://webpack.js.org/plugins/split-chunks-plugin/) 查看完整配置说明
+
+至此，我们在打包一次看看效果：
+
+![image](https://note.youdao.com/favicon.ico)
+
+很明显，已经成功分离出了第三方代码
+
