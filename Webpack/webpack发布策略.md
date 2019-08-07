@@ -25,7 +25,7 @@
 
 项目基本配置完成，接下来我们先打包一次看看效果：
 
-![image](https://note.youdao.com/favicon.ico)
+![image](https://raw.githubusercontent.com/Roamen/web-document/master/images/w-01.jpg)
 
 如果先前配置没有问题，基本就是上图的样子
 
@@ -67,7 +67,7 @@ optimization:{
 
 至此，我们在打包一次看看效果：
 
-![image](https://note.youdao.com/favicon.ico)
+![image](https://raw.githubusercontent.com/Roamen/web-document/master/images/w-02.jpg)
 
 很明显，已经成功分离出了第三方代码
 
