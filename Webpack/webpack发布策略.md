@@ -25,7 +25,7 @@
 
 项目基本配置完成，接下来我们先打包一次看看效果：
 
-![image](https://raw.githubusercontent.com/Roamen/web-document/master/images/w-01.jpg)
+![image](https://raw.githubusercontent.com/Roamen/webpack/master/images/w-01.jpg)
 
 如果先前配置没有问题，基本就是上图的样子
 
@@ -67,7 +67,58 @@ optimization:{
 
 至此，我们在打包一次看看效果：
 
-![image](https://raw.githubusercontent.com/Roamen/web-document/master/images/w-02.jpg)
+![image](https://raw.githubusercontent.com/Roamen/webpack/master/images/w-02.jpg)
 
 很明显，已经成功分离出了第三方代码
+
+### 图片字体的处理
+
+现在，我们已经成功分离出了 `js` 文件，再来看我们打包出来的 `dist` 目录。可以看到，我们所打包出来的文件中还有很多字体文件，图片是看不到的
+
+由于我们使用 `url-loader` 对图片进行了处理，所以在默认情况下，所有的图片都会转化为 `base64` 的格式保存在我们的 `bundle.js` 文件当中
+
+`url-loader` 与 `file-loader` 所实现的功能基本是相同的，可以说 `url-loader` 是 `file-loader` 的一个拓展，我们可以在 `url-loader` 的配置选项当中设置文件大小，从而使图片按照大小转换成 `base64` 的格式或者直接以路径引用
+
+所以，我们可以在 url-laoder 中添加一个这样的限制
+
+```js
+{ test: /\.(jpg|png|gif|jpeg|bmp)$/, use: [{
+    loader: 'url-loader',
+    options: {
+        // 限制图片大小 10240 表示10kb
+        limit: 10240
+        }
+    }]
+},
+```
+
+这样设置之后，所有小于 `10kb` 的图片还是会以 `base64` 的格式添加，大于 `10kb` 的则会以路径的形式引用
+
+再来看我们的 dist 文件夹里面的内容，里面的内容分布不是很明显。所以接下来，我们将它们分类到不同的文件夹当中去
+
+```js
+{ test: /\.(jpg|png|gif|jpeg|bmp)$/, use: [{
+    loader: 'url-loader',
+    options: {
+        // 限制图片大小 10240 表示10kb
+        limit: 10240,
+        name: 'images/img-[hash:5].[ext]'
+    }
+}]},
+{ test: /\.(svg|eot|ttf|woff|woff2)$/, use: [{
+    loader: 'file-loader',
+    options: {
+        name: 'font/[hash:7].[ext]'
+    }
+}]}
+```
+
+添加到文件夹中的方式都是一样，还是在 `options` 选项中添加 `name` 属性，其中 `ext` 表示以文件之前的格式后缀命名
+
+接下来，我们重新打包一次：
+
+![image](https://raw.githubusercontent.com/Roamen/webpack/master/images/w-03.jpg)
+
+是不是美观了很多
+
 
