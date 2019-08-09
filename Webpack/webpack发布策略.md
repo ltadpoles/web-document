@@ -121,4 +121,35 @@ optimization:{
 
 是不是美观了很多
 
+### 分离样式文件 
+
+在 `Webpack4.x` 之前，我们都是使用 `extract-text-webpack-plugin` 这个插件来分离样式文件
+
+自从 `webpack4` 之后，官方推荐的分离插件就是 `mini-css-extract-plugin`
+
+首先，我们需要下载这个插件
+
+```npm 
+npm install --save-dev mini-css-extract-plugin
+```
+
+在webpack的配置文件中是这样的
+
+```js
+// 第一步：引入插件，在plugins中使用
+
+new MiniCssExtractPlugin({
+    filename: 'css/[name].css', // 打包文件名称
+    ignoreOrder: false // 移除警告
+})
+
+// 第二步：修改style-loader 为 MiniCssExtractPlugin.loader
+
+{ test: /\.css$/, use: [ MiniCssExtractPlugin.loader, 'css-loader'] },
+{ test: /\.(sass|scss)$/, use: [MiniCssExtractPlugin.loader,'css-loader', 'sass-loader'] },
+
+```
+
+这样，我们就已经成功分离出了样式文件
+
 
