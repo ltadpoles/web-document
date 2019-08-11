@@ -94,7 +94,7 @@ optimization:{
 
 这样设置之后，所有小于 `10kb` 的图片还是会以 `base64` 的格式添加，大于 `10kb` 的则会以路径的形式引用
 
-再来看我们的 dist 文件夹里面的内容，里面的内容分布不是很明显。所以接下来，我们将它们分类到不同的文件夹当中去
+再来看我们的 `dist` 文件夹里面的内容，里面的内容分布不是很明显。所以接下来，我们将它们分类到不同的文件夹当中去
 
 ```js
 { test: /\.(jpg|png|gif|jpeg|bmp)$/, use: [{
@@ -167,12 +167,47 @@ new MiniCssExtractPlugin({
 
 由于这样的一些内置规则，也就是为什么我们在前面的项目打包过程中会出现 `2.js`、`3.js` 这样的文件
 
-拿我们现在这个 Demo 来说，对于这样的文件名称，很明显不是那么友好。所以，我们可以自定义一下这些文件名称，最简单的方式：
+拿我们现在这个 `Demo` 来说，对于这样的文件名称，很明显不是那么友好。所以，我们可以自定义一下这些文件名称，最简单的方式：
 
 在 `router` 定义文件中：
 
-![image](https://note.youdao.com/favicon.ico)
+![image](https://raw.githubusercontent.com/Roamen/webpack/master/images/w-04.jpg)
 
 使用 `webpackChunkName` 关键字直接定义名称就可以了,这样，当我们重新打包就可以看到定义的名称已经显示在 `dist` 文件夹当中了
 
+### 其他
 
+现在我们已经完成了 `webapck` 打包发布的基本功能，可是我们可能会发现这样一个问题：就是我们每次在打包之前都要手动删除掉 `dist` 文件夹。很明显，不友好
+
+我们可以使用 `clean-webpack-plugin` 来删除它
+
+插件的使用方式也是很简单：
+
+- 下载 `clean-webpack-plugin` 插件 
+- 在配置文件中引入
+```js
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+```
+这里有一个小小的坑，插件版本的不同，在`3.0` 版本我们需要这样引入 这个插件
+- 在插件中直接使用
+```js
+new cleanWebpackPlugin()
+```
+
+这样在我们每次打包之前，它都会先去删除 `dist` 文件，然后再打包，再也不用我们手动去操作它了
+
+### 后记
+
+到这里，这篇文章也就基本结束了
+
+完整 `Demo`，请 [点击这里](https://github.com/Roamen/webpack/tree/master/demo2) 查看
+
+当然，关于 `webpack` 我们需要深入研究的还有很多很多，比如 `mode` 模式、`resolve` 解析、按需加载自定义模式、各种优化等等东西。`webpack` 里面的配置很复杂，但是当我们熟悉了里面的各种配置，再来构建一个项目就很简单了
+
+我一直认为，模仿也是一种很有效的进步方式，有兴趣的小伙伴可以看一看 `vue` 或者 `react` 中的 `webpack` 配置，相信一定会对你有所启发
+
+想要了解更多前端内容，有兴趣的小伙伴可以 [点击这里](https://github.com/Roamen/web-document) 欢迎关注 `star `
+
+### 参考
+
+[Webpack 官网](https://www.webpackjs.com/concepts/)
