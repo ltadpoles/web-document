@@ -122,7 +122,7 @@
 
 在 `React` 中，我们可以使用 `style` 行内样式和 `class` 的方式来完成
 
-![image](https://raw.githubusercontent.com/Roamen/react/master/images/c-11.png)
+![image](https://raw.githubusercontent.com/Roamen/react/master/images/c-11.jpg)
 
 这里需要注意的就是 `class` 引入的关键字是 `className`
 
