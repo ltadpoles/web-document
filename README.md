@@ -50,6 +50,8 @@
 
 [Webpack基本配置](https://github.com/Roamen/web-document/issues/18)
 
+[Webpack发布策略](https://github.com/Roamen/web-document/issues/20)
+
 ### | 代码规范
 
 [代码校验规则](https://github.com/Roamen/web-document/tree/master/Other/eslint)
