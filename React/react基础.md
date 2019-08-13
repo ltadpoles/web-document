@@ -112,6 +112,22 @@
 ![image](https://raw.githubusercontent.com/Roamen/react/master/images/c-10.png)
 
 
+### Round 7
+
+看着我们所完成的 `React` 项目，是不是还缺少点什么呢
+
+对的，你没有看错，它至今是没有样式的
+
+下面，我们尝试着给它添加一些样式：
+
+在 `React` 中，我们可以使用 `style` 行内样式和 `class` 的方式来完成
+
+![image](https://raw.githubusercontent.com/Roamen/react/master/images/c-10.png)
+
+这里需要注意的就是 `class` 引入的关键字是 `className`
+
+最后，别忘了下载引入 `style-loader` 和 `css-loader`
+
 ### 后记
 
 以上就是 `React` 运行的基本配置以及它当中的一些基础概念，有兴趣的小伙伴可以 [点击这里](https://github.com/Roamen/react/tree/master/hello-react)查看完整实例 `DEMO`
