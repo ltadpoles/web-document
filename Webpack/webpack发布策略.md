@@ -25,7 +25,7 @@
 
 项目基本配置完成，接下来我们先打包一次看看效果：
 
-![image](https://raw.githubusercontent.com/Roamen/webpack/master/images/w-01.jpg)
+![image](https://raw.githubusercontent.com/Roamen/example/master/Webpack/images/w-01.jpg)
 
 如果先前配置没有问题，基本就是上图的样子
 
@@ -67,7 +67,7 @@ optimization:{
 
 至此，我们在打包一次看看效果：
 
-![image](https://raw.githubusercontent.com/Roamen/webpack/master/images/w-02.jpg)
+![image](https://raw.githubusercontent.com/Roamen/example/master/Webpack/images/w-02.jpg)
 
 很明显，已经成功分离出了第三方代码
 
@@ -117,7 +117,7 @@ optimization:{
 
 接下来，我们重新打包一次：
 
-![image](https://raw.githubusercontent.com/Roamen/webpack/master/images/w-03.jpg)
+![image](https://raw.githubusercontent.com/Roamen/example/master/Webpack/images/w-03.jpg)
 
 是不是美观了很多
 
@@ -171,7 +171,7 @@ new MiniCssExtractPlugin({
 
 在 `router` 定义文件中：
 
-![image](https://raw.githubusercontent.com/Roamen/webpack/master/images/w-04.jpg)
+![image](https://raw.githubusercontent.com/Roamen/example/master/Webpack/images/w-04.jpg)
 
 使用 `webpackChunkName` 关键字直接定义名称就可以了,这样，当我们重新打包就可以看到定义的名称已经显示在 `dist` 文件夹当中了
 
