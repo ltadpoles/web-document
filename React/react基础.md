@@ -130,7 +130,7 @@
 
 ### 后记
 
-以上就是 `React` 运行的基本配置以及它当中的一些基础概念，有兴趣的小伙伴可以 [点击这里](https://github.com/Roamen/react/tree/master/hello-react)查看完整实例 `DEMO`
+以上就是 `React` 运行的基本配置以及它当中的一些基础概念，有兴趣的小伙伴可以 [点击这里](https://github.com/Roamen/example/tree/master/React/hello-react)查看完整实例 `DEMO`
 
 关于 `React` 的内容还有很多很多，感兴趣的小伙伴可以关注一波。当然，如果你想了解更多前端问题，也可以[点击这里](https://github.com/Roamen/web-document)，欢迎 `star` 关注
 

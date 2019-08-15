@@ -126,7 +126,7 @@ webpack 入口 -o 出口
 
 ### 后记
 
-以上就是关于 `webpack` 的一些基本配置，点击这里可以查看 [完整DEMO](https://github.com/Roamen/webpack/tree/master/demo1)
+以上就是关于 `webpack` 的一些基本配置，点击这里可以查看 [完整DEMO](https://github.com/Roamen/example/tree/master/Webpack/demo1)
 
 当然 `webapck` 还有很多很多的配置，比如说代码压缩、模块化分类、按需加载等等一些列功能，我们慢慢分享
 

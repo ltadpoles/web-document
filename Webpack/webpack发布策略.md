@@ -18,7 +18,7 @@
 - `babel-loader` 升级到 `8.x` 版本之后可能需要简单的配合，为了便捷，所以 `demo` 中直接使用的7.x版本
 - `vue-loader` 在升级到 `5.x` 之后 必须引入 `vue-loader/lib/plugin` 插件，否则会报错
 
-具体 `DOME` 请 [点击这里](https://github.com/Roamen/webpack/tree/master/demo2)，查看配置
+具体 `DOME` 请 [点击这里](https://github.com/Roamen/example/tree/master/Webpack/demo2)，查看配置
 
 
 ### 分离第三方包
@@ -200,7 +200,7 @@ new cleanWebpackPlugin()
 
 到这里，这篇文章也就基本结束了
 
-完整 `Demo`，请 [点击这里](https://github.com/Roamen/webpack/tree/master/demo2) 查看
+完整 `Demo`，请 [点击这里](https://github.com/Roamen/example/tree/master/Webpack/demo2) 查看
 
 当然，关于 `webpack` 我们需要深入研究的还有很多很多，比如 `mode` 模式、`resolve` 解析、按需加载自定义模式、各种优化等等东西。`webpack` 里面的配置很复杂，但是当我们熟悉了里面的各种配置，再来构建一个项目就很简单了
 
