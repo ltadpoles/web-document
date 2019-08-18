@@ -70,7 +70,7 @@ webpack 入口 -o 出口
 
 执行成功大概是这个样子的
 
-![image](https://raw.githubusercontent.com/Roamen/webpack/master/images/01.png)
+![image](https://raw.githubusercontent.com/Roamen/example/master/Webpack/images/01.png)
 
 更所命令行的操作，有兴趣的小伙伴可以看 [这里](https://webpack.docschina.org/api/cli/#src/components/Sidebar/Sidebar.jsx)
 
@@ -95,9 +95,9 @@ webpack 入口 -o 出口
 
 下面，就让我们具体看看怎么去做这些配置吧
 
-![image](https://raw.githubusercontent.com/Roamen/webpack/master/images/02.jpg)
+![image](https://raw.githubusercontent.com/Roamen/example/master/Webpack/images/02.jpg)
 
-![image](https://raw.githubusercontent.com/Roamen/webpack/master/images/03.jpg)
+![image](https://raw.githubusercontent.com/Roamen/example/master/Webpack/images/03.jpg)
 
 启用上面这些配置，已经可以简单地构建我们的项目了。
 
@@ -126,7 +126,7 @@ webpack 入口 -o 出口
 
 ### 后记
 
-以上就是关于 `webpack` 的一些基本配置，点击这里可以查看 [完整DEMO](https://github.com/Roamen/webpack/tree/master/demo1)
+以上就是关于 `webpack` 的一些基本配置，点击这里可以查看 [完整DEMO](https://github.com/Roamen/example/tree/master/Webpack/demo1)
 
 当然 `webapck` 还有很多很多的配置，比如说代码压缩、模块化分类、按需加载等等一些列功能，我们慢慢分享
 
