@@ -51,7 +51,7 @@ this.setState({age: 18})
 
 通过一个点击事件再来感受一下 `setState()`
 
-![image](https://note.youdao.com/favicon.ico)
+![image](https://raw.githubusercontent.com/Roamen/example/master/React/images/two-01.jpg)
 
 细心地小伙伴可能发现了 这么一行代码：
 
@@ -65,14 +65,12 @@ this.addAge = this.addAge.bind(this)
 
 >  `public class fields` 语法
 
-![image](https://note.youdao.com/favicon.ico)
+![image](https://raw.githubusercontent.com/Roamen/example/master/React/images/two-02.jpg)
 
 这里需要注意的一点，如果我们要使用这个语法，那么你的 `babel`  版本必须是 `7.x` 以上，相应的 `babel-loader` 必须是 `8.x` 以上版本，否则会报错 具体配置可以 [参考这里](https://github.com/Roamen/example/tree/master/React/react-two)
 
 > 使用箭头函数
 
-![image](https://note.youdao.com/favicon.ico)
+![image](https://raw.githubusercontent.com/Roamen/example/master/React/images/two-03.jpg)
 
 箭头函数默认绑定定义时的 `this`
-
-
