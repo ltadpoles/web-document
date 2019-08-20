@@ -1,6 +1,6 @@
 ### 前言
 
-前一篇 [React基础(一)](https://github.com/Roamen/web-document/issues/19) 简单地了解了 `React` 的一些基本知识点，怎么搭建一个简单的 `React` 项目、怎么创建 `React` 元素、组件以及怎么给项目添加样式这些基础功能。下面，在通过一些示例来了解 `React` 中的事件处理、生命周期、条件渲染等功能
+前一篇 [React基础(一)](https://github.com/Roamen/web-document/issues/19) 简单地了解了 `React` 的一些基本知识点，怎么搭建一个简单的 `React` 项目、怎么创建 `React` 元素、组件以及怎么给项目添加样式这些基础功能。下面，在通过一些示例来了解 `React` 中的事件处理、条件渲染、列表处理等功能
 
 如果文章中有出现纰漏、错误之处，还请看到的小伙伴多多指教，先行谢过
 
@@ -137,3 +137,50 @@ if(isLogin) {
 ```
 
 具体 `Demo` 可以 [参考这里](https://github.com/Roamen/example/tree/master/React/react-two) `main-3.js`
+
+### Round 4 循环处理
+
+在实际的开发中，我们不可避免地会碰到列表这类数据的渲染。该怎么去处理这类数据，我相信你们脑海中浮现的第一种方式肯定就是循环
+
+在 `React` 中处理数组转化为元素列表的方式基本就是这样
+
+我们做一个 `li` 元素的遍历效果
+
+```
+const numbers = [1, 2, 3, 4, 5]
+
+function NumberList(props) {
+    let numbers = props.numbers
+    let numberLists = numbers.map(res => <li>{ res }</li>)
+    return ( <ul>{ numberLists }</ul> )
+}
+ReactDom.render(<NumberList numbers={ numbers } />, document.getElementById('app'))
+```
+
+使用 `map` 方法遍历数组，生成 `li` 元素，插入到 `ul` 元素中，最后在页面渲染.可以看到元素已经成功渲染到了页面
+
+完全按照上面的方式创建 `ul li` 元素，毫无悬念我们会收获一个警告，大概长这样
+
+![image](https://raw.githubusercontent.com/Roamen/example/master/React/images/two-04.jpg)
+
+很明显，我们缺少一个 `key` 元素
+
+> `key` 帮助 `React` 识别哪些元素改变了，比如被添加或删除。因此你应当给数组中的每一个元素赋予一个确定的标识
+
+简单修改一下应该是这样的
+
+```js
+let numberLists = numbers.map(res => <li key={res.toString()}>{ res }</li>)
+```
+
+`key` 元素的存在提高了组件变化、比对的效率，合理使用 `key` 需要注意以下几点：
+
+- 一个元素的 `key` 最好是这个元素在列表中拥有的一个独一无二的字符串,比如 `id`
+- 元素的 `key` 只有放在就近的数组上下文中才有意义(简单来说，哪里循环在哪里定义 `key` )
+- `key` 只是在兄弟节点之间必须唯一,它们不需要是全局唯一的。当我们生成两个不同的数组时，我们可以使用相同的 `key` 值
+
+### 后记
+
+以上就是 `React` 中一部分基础概念，有兴趣的小伙伴可以 [点击这里](https://github.com/Roamen/example/tree/master/React/react-two) 查看完整示例 `Demo`
+
+感兴趣的小伙伴可以 [点击这里](https://github.com/Roamen/web-document) 了解更多前端片段，欢迎关注 `star`
