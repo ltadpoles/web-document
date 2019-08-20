@@ -6,7 +6,7 @@
 
 以下↓
 
-### Round 1
+### Round 1 事件处理
 
 首先，我们看一下怎么给元素绑定事件
 
@@ -34,7 +34,7 @@
 
 `return false` 也是没有效果的
 
-### Round 2
+### Round 2 setState
 
 在之前一篇文章中，我们大概知道了可以通过 `state` 去管理组件内部的数据，那么应该怎么正确地使用它呢、或者说我们怎么通过 `state` 去修改组件内部的数据
 
@@ -74,3 +74,66 @@ this.addAge = this.addAge.bind(this)
 ![image](https://raw.githubusercontent.com/Roamen/example/master/React/images/two-03.jpg)
 
 箭头函数默认绑定定义时的 `this`
+
+### Round 3 条件渲染
+
+很多时候，用户可能会有多种操作需求，这个时候就需要我们对不同的操作选择不同的执行逻辑
+
+> 在 `React` 中，你可以创建不同的组件来封装各种你需要的行为
+
+> `React` 中的条件渲染和 `JavaScript` 中的一样，使用 `JavaScript` 运算符 `if` 或者条件运算符去创建元素来表现当前的状态，然后让 `React` 根据它们来更新 `UI`
+
+比如，我们创建一个十分简单的登陆注册切换
+
+首先，创建两个组件来展示登陆或者注册
+
+```js
+function Login(props) {
+    return (
+        <button onClick={props.onClick}>去登陆</button>
+    )
+}
+
+function Registered(props) {
+    return (
+        <button onClick={props.onClick}>去注册</button>
+    )
+}
+```
+
+接着，创建一个有状态的组件 `LoginControl`，在 `state` 中维护一个中间变量控制渲染哪一个组件，创建两个方法去改变这个中间变量的值
+
+```js
+this.state = {isLogin: false}
+
+handelLogin() {
+    this.setState({isLogin: true})
+}
+
+handelReginstered() {
+    this.setState({isLogin: false})
+}
+```
+
+最终，在 `render` 函数中，我们通过 `if` 判断中间变量 `isLogin` 的值去决定渲染哪个组件
+
+```js
+const isLogin = this.state.isLogin
+let button 
+
+if(isLogin) {
+    button = <Login onClick={this.handelReginstered}></Login>
+} else {
+    button = <Registered onClick={this.handelLogin}></Registered>
+}
+```
+
+这样通过将中间变量的值传递给组件的方式就实现了按照不同条件渲染不同组件的需求
+
+当然，我们也可以使用更为简单的一种方式，比如 三目运算符。通过中间变量的值，来选择需要显示的 `placeholder`
+
+```js
+<input placeholder={isLogin ? '注册用户名': '登陆用户名'}></input>
+```
+
+具体 `Demo` 可以 参考这里 `main-3.js`
