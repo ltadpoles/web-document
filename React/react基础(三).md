@@ -101,6 +101,6 @@ static getDerivedStateFromProps(props, state) {
 
 让我们通过一个实例来整体感受以下挂载阶段 [Dome地址](https://github.com/Roamen/example/tree/master/React/react-three)
 
-![image](https://note.youdao.com/favicon.ico)
+![image](https://raw.githubusercontent.com/Roamen/example/master/React/images/three-01.jpg)
 
 这里，我们可以更加直观的感受到生命周期中钩子函数的调用顺序以及触发的次数
