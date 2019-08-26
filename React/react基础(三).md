@@ -178,3 +178,23 @@ static getDerivedStateFromProps(props, state) {
 还是让我们通过一个实例来整体感受一下挂载更新阶段 [Dome地址](https://github.com/Roamen/example/tree/master/React/react-three)
 
 ![image](https://raw.githubusercontent.com/Roamen/example/master/React/images/three-02.jpg)
+
+#### 卸载阶段
+
+React 在卸载阶段只会执行一个生命周期函数
+
+##### componentWillUnmount()
+
+> componentWillUnmount() 会在组件卸载及销毁之前直接调用
+
+使用该函数的注意点：
+
+- 可以在该函数中执行必要的清理工作，比如 定时器
+- `componentWillUnmount()` 中不应调用 `setState()`，因为该组件将永远不会重新渲染
+
+通过点击事件，控制子组件的挂载与卸载，演示 `Demo` 可以 [参见这里](https://github.com/Roamen/example/tree/master/React/react-three)
+
+下面就是一个基本完整的 `React` 组件从挂载到 子组件卸载的完整过程
+
+![image](https://raw.githubusercontent.com/Roamen/example/master/React/images/three-02.jpg)
+
