@@ -205,3 +205,27 @@ static getDerivedStateFromProps(props, state) {
 
 ![image](https://raw.githubusercontent.com/Roamen/example/master/React/images/three-03.jpg)
 
+### 总结
+
+一个组件从开始挂载到最终卸载生命周期(主要)
+
+生命周期 | 调用次数 | 是否可以使用 setState
+---|---|---|---
+`constructor()` | 1 | 否 
+`render()` | >= 1 | 否 | 
+`componentDidMount()` | 1 | 是
+`componentDidUpdate()` | >=1 | 是(必须被包裹在一个条件语件里) 
+`componentWillUnmount()` | 1 | 否
+
+- `React` 中必须实现的生命周期只有 `render`
+- 在 `constructor` 中进行 `state` 的初始化与事件绑定
+- 在 `componentDidMount` 与 `componentDidUpdate` 中进行一些 `DOM` 操作和数据交互，使用 `setState`
+- 在 `componentWillUnmount` 中处理一些清理工作
+
+### 后记
+
+以上就是 `React` 中生命周期的一些基本用法，这篇文章大部分都是参考官网而来，其中夹杂了一些个人的实践
+
+[点击这里](https://github.com/Roamen/example/tree/master/React/react-three) 查看完整 `Demo`
+
+感兴趣的小伙伴也可以 [点击这里](https://github.com/Roamen/web-document) 查看更多前端小片段，欢迎关注 `star`
