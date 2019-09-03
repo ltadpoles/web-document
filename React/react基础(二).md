@@ -12,10 +12,8 @@
 
 > `React` 事件的命名采用小驼峰式
 
-```js
-
+```html
 <button onClick={ function() { console.log('事件触发了')} }>点我这里</button>
-
 ```
 
 
@@ -25,7 +23,7 @@
 
 > 在 `React` 中另一个不同点是你不能通过返回 `false` 的方式阻止默认行为。你必须显式的使用 `preventDefault`
 
-```js
+```html
 <a href="#" onClick={function(e){e.preventDefault();console.log('事件触发了')}}>
   Click me
 </a>
@@ -132,7 +130,7 @@ if(isLogin) {
 
 当然，我们也可以使用更为简单的一种方式，比如 三目运算符。通过中间变量的值，来选择需要显示的 `placeholder`
 
-```js
+```html
 <input placeholder={isLogin ? '注册用户名': '登陆用户名'}></input>
 ```
 
@@ -178,6 +176,34 @@ let numberLists = numbers.map(res => <li key={res.toString()}>{ res }</li>)
 - 一个元素的 `key` 最好是这个元素在列表中拥有的一个独一无二的字符串,比如 `id`
 - 元素的 `key` 只有放在就近的数组上下文中才有意义(简单来说，哪里循环在哪里定义 `key` )
 - `key` 只是在兄弟节点之间必须唯一,它们不需要是全局唯一的。当我们生成两个不同的数组时，我们可以使用相同的 `key` 值
+
+### Round 5 受控组件
+
+在 `React` 中，可变的状态一般都保存在 `state` 中，如果我们想要去改变这个状态，就要通过 `setState` 的方式进行更新。但是，用户可输入的表单元素会维持自身状态，根据用户输入进行更新，这样 就引出了 **受控组件** 的概念
+
+受控组件的特点：
+
+- 表单元素
+- 由 `React` 渲染出来
+- 由 `React` 控制值的改变，也就是说想要改变元素的值，只能通过 `React` 提供的方法来修改
+
+```html
+<!-- 只读: 只能读取的input框 只展示 -->
+<input value={this.state.data} readOnly></input>
+
+<!--change事件-->
+<input value={this.state.data} onChange={this.inputChange}></input>
+
+<!-- defaultValue 非受控组件 -->
+<input defaultValue={this.state.data}></input>
+```
+
+`React`提供了三种方式来处理表单元素
+
+- 可以添加 `readOnly` 设置为只读
+- 添加 `change` 事件，通过 `setState` 处理表单状态
+- 设置 `value` 为 `defaultValue` 只执行第一次渲染，非受控组件方式
+
 
 ### 后记
 
