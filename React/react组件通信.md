@@ -143,3 +143,92 @@ class LastComponent extends React.Component {
 - 可以在任何生命周期中访问到，包括 `render` 函数中
 
 更多参考 [Context API](https://zh-hans.reactjs.org/docs/context.html#api)
+
+### 非嵌套组件通信
+
+非嵌套组件通信的思路一般有以下几种：
+
+- 找到组件共同的父组件 
+
+可以参考这个 [评论组件](https://github.com/Roamen/example/blob/master/React/react-communication/src/main-4.js)
+既有父子组件通信也有兄弟组件通信
+
+- 利用 `Context API` 进行通信，创建一个 `全局` 可访问的值
+- 利用 `events` 创建自定义事件
+
+一般情况下，第一种方式找到共同的父组件可能存在很多级的情况，不是很友好，第二种方式对于后期维护或者说对于组件的可复用性不是很友好，所以，我们试一下自定义事件这种方式
+
+[实例 Demo](https://github.com/Roamen/example/blob/master/React/react-communication/src/main.js)
+
+首先，我们需要一个 `events` 这个包
+
+```npm 
+npm install events -S
+```
+通过注册、触发事件来实现组件通信
+```js
+import { EventEmitter } from 'events'
+
+const emitter = new EventEmitter()
+
+// 组件A
+class ComponentA extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {msg: ''}
+    }
+    componentDidMount() {
+        // 组件挂载完毕的时候注册事件
+        this.eventEmitter = emitter.addListener('outputValue', msg => {
+            this.setState({msg})
+        })
+    }
+    componentWillUnMount() {
+        // 组件销毁之前移除事件
+        emitter.removeListener(this.eventEmitter)
+    }
+    render() {
+        return (
+            <div>
+                这是组件A
+                <div>组件B传递过来的数据：{ this.state.msg }</div>
+            </div>
+        )
+    }
+}
+
+// 组件B
+class ComponentB extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {value: ''}
+    }
+    valueChange = data => {
+        this.setState({
+            value: data.target.value
+        })
+    }
+    btnClick = () => {
+        // 触发自定义事件
+        emitter.emit('outputValue', this.state.value)
+    }
+    render() {
+        return (
+            <div>
+                这是组件B
+                <input value={this.state.value} onChange={this.valueChange}></input>
+                <button onClick={this.btnClick}>点击我传递信息</button>
+            </div>
+            
+        )
+    }
+}
+```
+
+### 后记
+
+以上就是 `React` 组件之间通信的常用方式，其实在我们实践的过程中肯定也发现了有些方式可以用于多种组件关系的通信，关键在于**使用最合适的方式**
+
+当然，对于一些比较复杂的组件通信来说，我们也可以选择使用状态管理工具，比如 `flux` 、`redux` 等，使我们的组件通信更加容易、更好管理
+
+最后，感兴趣的小伙伴可以 [点击这里](https://github.com/Roamen/web-document) 了解更多前端片段，欢迎关注 `star`
