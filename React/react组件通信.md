@@ -90,3 +90,56 @@ class Child extends React.Component {
     }
 }
 ```
+
+### 跨级组件通信
+
+- 一层一层传递 `props`
+- `Context`
+
+`React` 中遵循数据单向流动（自上而下）的规则，其实我们完全可以通过每级组件传递 `props` 的方式来实现跨级通信的目的。但是，在这个过程中，有些组件是不需要使用上级传递过来的 `props` 的，这种操作无疑是显得多余的，这个时候就引入了 `Context`
+
+> `Context` 提供了一个无需为每层组件手动添加 `props`，就能在组件树间进行数据传递的方法，它设计目的就是为了共享那些对于一个组件树而言是“全局”的数据
+
+[实例 Demo](https://github.com/Roamen/example/blob/master/React/react-communication/src/main-3.js)
+
+```js
+// 创建一个Context对象
+const InitContext = React.createContext()
+
+class App extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    render() {
+        return (
+            // 使用一个 Provider 来将当前的 context 传递给以下的组件树
+            <InitContext.Provider value='tadpole'>
+                <Child />
+            </InitContext.Provider>
+        )
+    }
+}
+
+function Child(props) {
+    return (
+            <LastComponent />
+        )
+}
+
+class LastComponent extends React.Component {
+    // 指定 contextType 读取当前的  context
+    static contextType = InitContext
+    render() {
+        return (
+            <div>name: {this.context}</div>
+        )
+    }
+}
+```
+使用 `Context` 的注意点：
+- 每个 `Context` 对象都会返回一个 `Provider React` 组件
+- 只有当组件所处的树中没有匹配到 `Provider` 时，其 `defaultValue` 参数才会生效,默认值为 `undefined`
+- 多个 `Provider` 也可以嵌套使用，里层的会覆盖外层的数据 `Provider` 接收一个 `value` 属性，传递给消费组件(`React` 会往上找到最近的 `Provider`，然后使用它的值)
+- 可以在任何生命周期中访问到，包括 `render` 函数中
+
+更多参考 [Context API](https://zh-hans.reactjs.org/docs/context.html#api)
