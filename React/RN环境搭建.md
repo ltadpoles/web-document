@@ -1,4 +1,4 @@
-### 前言
+# 前言
 
 从零开始撸 `React-native`
 
@@ -12,7 +12,7 @@
 
 以下↓
 
-### 开始
+## 开始
 
 首先，我们需要知道都需要哪些东西
 
@@ -35,7 +35,7 @@
 注意点 `x` 的我们需要将它更改为第一个选项，这样我们就不需要后期手动去将它添加到环境变量了
 
 
-### Java JDK 
+## Java JDK 
 
 [下载地址](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
@@ -55,13 +55,13 @@
 4. 点击 `环境变量` 最下面的 `确定` 选项
 5. 打开命令窗口，输入 `java` 或者 `java -version`，成功输出，则表示配置成功
 
-### Android 开发环境
+## Android 开发环境
 
 关于 `Android` 开发环境的配置，这一部分在 `RN` 官网上面有详细的介绍，可以关注 [这里](https://reactnative.cn/docs/getting-started/)
 
 需要关注的可能就是，需要翻墙环境。当然，有需要的小伙伴也可以点击 [这里](https://pan.baidu.com/s/1MuSDC5iHOtyOGP8YV1DlDw) 下载软件，提取码 `xg76`
 
-### 创建新项目
+## 创建新项目
 
 接下来，我们就可以创建一个 `RN` 项目了
 
@@ -94,7 +94,7 @@ react-native init HelloRN
 
 这样，我们的一个 `RN` 项目就创建完成了，现在就需要进行真机或者模拟器的调试了。不要慌，官网也给了我们详细的教程，[传送门](https://reactnative.cn/docs/getting-started/)
 
-### 运行
+## 运行
 
 一切前期工作准备妥当，这个时候，我们只需要在命令行输入下面命令，就可以看到我们的项目了，美滋滋
 
@@ -102,7 +102,7 @@ react-native init HelloRN
 react-native run-android
 ```
 
-### 后记
+## 后记
 
 很幸运的是，通过之前的一系列配置，项目第一次就成功运行起来了，并没有出现问题。当然许多常见的问题，我们都可以在文档中找到它的解决方法
 

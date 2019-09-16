@@ -4,8 +4,7 @@
     "description": "记录前端学习历程，分享那些有趣的东西",
     "language": "zh-hans",
     "links": {
-        "sidebar": {
-        }
+        "sidebar": {}
     },
     "styles": {
         "website": "Other/GitBook/style/website.css"

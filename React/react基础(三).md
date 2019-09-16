@@ -1,4 +1,4 @@
-### 前言
+# 前言
 
 前面两篇文章简单地介绍了 `React` 中的 `JSX` 语法、状态组件、绑定事件、设置 `state` 等基本操作，这篇文章将继续通过一些实例介绍 `React` 中的基础知识点生命周期
 
@@ -10,7 +10,7 @@
 
 以下↓
 
-### 概念
+## 概念
 
 什么是声明周期
 
@@ -26,7 +26,7 @@
 
 不同的阶段将对应不同的钩子函数来处理组件的状态
 
-### 挂载阶段
+## 挂载阶段
 
 首先是挂载阶段，当组件实例被创建并插入 `DOM` 中时,将依次调用以下生命周期函数
 
@@ -35,7 +35,7 @@
 - `render`
 - `componentDidMount`
 
-#### constructor(props)
+### constructor(props)
 
 > 在 `React` 组件挂载之前，会调用它的构造函数，在这个函数中我们可以拿到组件传递的 `props`
 
@@ -50,7 +50,7 @@
 - 在 `constructor()` 函数中不要调用 `setState()` 方法
 - 避免将 `props` 的值复制给 `state`
 
-#### static getDerivedStateFromProps(props, state)
+### static getDerivedStateFromProps(props, state)
 
 > `getDerivedStateFromProps` 会在调用 `render` 方法之前调用，并且在初始挂载及后续更新时都会被调用。它应返回一个对象来更新 `state`，如果返回 `null` 则不更新任何内容
 
@@ -75,7 +75,7 @@ static getDerivedStateFromProps(props, state) {
 - 该函数会在 `render` 方法之前调用，会调用**多次**
 - 必须有返回值，返回一个对象来更新 `state` 或者返回 `null` 不更新 `state`
 
-#### render()
+### render()
 
 > `render()` 方法是 `class` 组件中唯一必须实现的方法
 
@@ -86,7 +86,7 @@ static getDerivedStateFromProps(props, state) {
 - 不能在函数中调用 `this.setState()` 方法
 - 该函数会调用多次
 
-#### componentDidMount()
+### componentDidMount()
 
 > `componentDidMount()` 会在组件挂载后（插入 `DOM` 树中）立即调用。依赖于 `DOM` 节点的初始化应该放在这里。如需通过网络请求获取数据，此处是实例化请求的好地方
 
@@ -96,7 +96,7 @@ static getDerivedStateFromProps(props, state) {
 - 进行 `ajax` 操作来完成数据的交互
 - 使用 `setState()` 来修改 `state`
 
-#### UNSAFE_componentWillMount() `弃`
+### UNSAFE_componentWillMount() `弃`
 
 > 此生命周期之前名为 `componentWillMount`。该名称将继续使用至 `React 17`
 
@@ -112,7 +112,7 @@ static getDerivedStateFromProps(props, state) {
 
 这里，我们可以更加直观的感受到生命周期中钩子函数的调用顺序以及触发的次数
 
-### 更新阶段
+## 更新阶段
 
 > 当组件的 `props` 或 `state` 发生变化时会触发更新
 
@@ -126,7 +126,7 @@ static getDerivedStateFromProps(props, state) {
 
 在生命周期函数执行阶段，有一些钩子函数是多次触发，比如更新阶段的 `static getDerivedStateFromProps()` 与 `render()` 函数也会在挂载阶段触发
 
-#### shouldComponentUpdate(nextProps, nextState)
+### shouldComponentUpdate(nextProps, nextState)
 
 > 当 `props` 或 `state` 发生变化时，`shouldComponentUpdate()` 会在渲染执行之前被调用。根据 `shouldComponentUpdate()` 的返回值，判断 `React` 组件的输出是否受当前 `state` 或 `props` 更改的影响。默认行为是 `state` 每次发生变化组件都会重新渲染
 
@@ -137,7 +137,7 @@ static getDerivedStateFromProps(props, state) {
 - 该函数必须提供一个返回值，`true` 或者 `false`。 默认返回 `true`
 - 最好不要企图依靠此方法来阻止渲染 ( 返回 `false` )
 
-#### getSnapshotBeforeUpdate(prevProps, prevState)
+### getSnapshotBeforeUpdate(prevProps, prevState)
 
 > `getSnapshotBeforeUpdate()` 在最近一次渲染输出（提交到 `DOM` 节点）之前调用 
 
@@ -147,7 +147,7 @@ static getDerivedStateFromProps(props, state) {
 - 必须与 `componentDidUpdate()` 一起使用
 - 必须提供返回值 `snapshot` 的值( 在`componentDidUpdate()`中接收 )或 `null`
 
-#### componentDidUpdate(prevProps, prevState, snapshot)
+### componentDidUpdate(prevProps, prevState, snapshot)
 
 > `componentDidUpdate()` 会在更新后会被立即调用。首次渲染不会执行此方法
 
@@ -159,7 +159,7 @@ static getDerivedStateFromProps(props, state) {
 - 如果 `shouldComponentUpdate()` 返回值为 `false`，则不会调用 `componentDidUpdate()`
 - 在该函数中可以拿到 更新之前的 `state` 与 `props` 值，也可以拿到 `getSnapshotBeforeUpdate()` 传递过来的值,如果并没有传递值，则第三个参数的值为 `undefined`
 
-#### UNSAFE_componentWillUpdate(nextProps, nextState) `弃`
+### UNSAFE_componentWillUpdate(nextProps, nextState) `弃`
 
 > 此生命周期之前名为 `componentWillUpdate`。该名称将继续使用至 `React 17`
 
@@ -170,7 +170,7 @@ static getDerivedStateFromProps(props, state) {
 - 如果 `shouldComponentUpdate()` 返回 `false`，则不会调用 `UNSAFE_componentWillUpdate()`
 - 不要与新的生命周期一起使用(会出现警告)
 
-#### UNSAFE_componentWillReceiveProps(nextProps) `弃`
+### UNSAFE_componentWillReceiveProps(nextProps) `弃`
 
 > 此生命周期之前名为 `componentWillReceiveProps`。该名称将继续使用至 `React 17`
 
@@ -186,11 +186,11 @@ static getDerivedStateFromProps(props, state) {
 
 ![image](https://raw.githubusercontent.com/Roamen/example/master/React/images/three-02.jpg)
 
-### 卸载阶段
+## 卸载阶段
 
 `React` 在卸载阶段只有一个生命周期函数
 
-##### componentWillUnmount()
+### componentWillUnmount()
 
 > componentWillUnmount() 会在组件卸载及销毁之前直接调用
 
@@ -205,7 +205,7 @@ static getDerivedStateFromProps(props, state) {
 
 ![image](https://raw.githubusercontent.com/Roamen/example/master/React/images/three-03.jpg)
 
-### 总结
+## 总结
 
 一个组件从开始挂载到最终卸载生命周期(主要)
 
@@ -222,7 +222,7 @@ static getDerivedStateFromProps(props, state) {
 - 在 `componentDidMount` 与 `componentDidUpdate` 中进行一些 `DOM` 操作和数据交互，使用 `setState`
 - 在 `componentWillUnmount` 中处理一些清理工作
 
-### 后记
+## 后记
 
 以上就是 `React` 中生命周期的一些基本用法，这篇文章大部分都是参考官网而来，其中夹杂了一些个人的实践
 

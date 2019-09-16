@@ -1,26 +1,4 @@
-[前言](#前言)
-
-[原始值](#原始值)
-
-- [String类型](#string类型)
-
-- [Boolean类型](#boolean类型)
-
-- [Number类型](#number类型)
-
-- [Undefined类型](#undefined类型)
-
-- [Null类型](#null类型)
-
-- [Symbol类型](#symbol类型)
-
-[引用类型](#引用类型)
-
-[基本包装类型](#基本包装类型)
-
-[后记](#后记)
-
-## 前言
+# 前言
 
 > `ECMAScript` 迄今为止标准定义了 `7` 种数据类型：`6` 种原始类型-- `String`、`Number`、 `Boolean`、 `Undefined`、`Null` 和 `Symbol`；`1` 种引用类型-- `Object`
 
@@ -233,17 +211,14 @@ typeof str // String
 str instanceof String // false
 ```
 
-这里的结果为 `false` 的原因就是 `str` 本质上是一个原始值，并不存在 `prototype` 属性
+这里的结果为 `false` 的原因就是 `str` 本质上是一个原始值，并不存在 `prototype` 属性的指向对象
 
 当然，这里也涉及到了数据类型的判断，有兴趣的小伙伴可以 [点击这里](https://segmentfault.com/a/1190000018536392#articleHeader2) 查看如何判断 `JavaScript` 中的数据类型
 
 ## 后记
 
-不断总结温习前端方面的知识点以及有趣的东西，感兴趣的小伙伴可以 [点击这里](https://github.com/Roamen/web-document)，查看完整版前端总结知识点，欢迎 `star` 关注
+不断总结温习前端方面的知识点以及有趣的东西，感兴趣的小伙伴可以 [点击这里](https://github.com/ltadpoles/web-document)，查看完整版前端总结知识点，欢迎 `star` 关注
 
 期待同行
 
 以上
-
-
-

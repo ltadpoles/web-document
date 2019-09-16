@@ -1,4 +1,4 @@
-### 前言
+# 前言
 
 前一篇 [React基础(一)](https://github.com/Roamen/web-document/issues/19) 简单地了解了 `React` 的一些基本知识点，怎么搭建一个简单的 `React` 项目、怎么创建 `React` 元素、组件以及怎么给项目添加样式这些基础功能。下面，在通过一些示例来了解 `React` 中的事件处理、条件渲染、列表处理等功能
 
@@ -6,7 +6,7 @@
 
 以下↓
 
-### Round 1 事件处理
+## Round 1 事件处理
 
 首先，我们看一下怎么给元素绑定事件
 
@@ -32,7 +32,7 @@
 
 `return false` 也是没有效果的
 
-### Round 2 setState
+## Round 2 setState
 
 在之前一篇文章中，我们大概知道了可以通过 `state` 去管理组件内部的数据，那么应该怎么正确地使用它呢、或者说我们怎么通过 `state` 去修改组件内部的数据
 
@@ -73,7 +73,7 @@ this.addAge = this.addAge.bind(this)
 
 箭头函数默认绑定定义时的 `this`
 
-### Round 3 条件渲染
+## Round 3 条件渲染
 
 很多时候，用户可能会有多种操作需求，这个时候就需要我们对不同的操作选择不同的执行逻辑
 
@@ -136,7 +136,7 @@ if(isLogin) {
 
 具体 `Demo` 可以 [参考这里](https://github.com/Roamen/example/tree/master/React/react-two) `main-3.js`
 
-### Round 4 循环处理
+## Round 4 循环处理
 
 在实际的开发中，我们不可避免地会碰到列表这类数据的渲染。该怎么去处理这类数据，我相信你们脑海中浮现的第一种方式肯定就是循环
 
@@ -177,12 +177,11 @@ let numberLists = numbers.map(res => <li key={res.toString()}>{ res }</li>)
 - 元素的 `key` 只有放在就近的数组上下文中才有意义(简单来说，哪里循环在哪里定义 `key` )
 - `key` 只是在兄弟节点之间必须唯一,它们不需要是全局唯一的。当我们生成两个不同的数组时，我们可以使用相同的 `key` 值
 
-### Round 5 受控组件
+## Round 5 受控组件
 
 在 `React` 中，可变的状态一般都保存在 `state` 中，如果我们想要去改变这个状态，就要通过 `setState` 的方式进行更新。但是，用户可输入的表单元素会维持自身状态，根据用户输入进行更新，这样 就引出了 **受控组件** 的概念
 
 受控组件的特点：
-
 - 表单元素
 - 由 `React` 渲染出来
 - 由 `React` 控制值的改变，也就是说想要改变元素的值，只能通过 `React` 提供的方法来修改
@@ -199,13 +198,12 @@ let numberLists = numbers.map(res => <li key={res.toString()}>{ res }</li>)
 ```
 
 `React`提供了三种方式来处理表单元素
-
 - 可以添加 `readOnly` 设置为只读
 - 添加 `change` 事件，通过 `setState` 处理表单状态
-- 设置 `value` 为 `defaultValue` 只执行第一次渲染，非受控组件方式
+- 设置 `value` 为 `defaultValue` 只执行第一次渲染
 
 
-### 后记
+## 后记
 
 以上就是 `React` 中一部分基础概念，有兴趣的小伙伴可以 [点击这里](https://github.com/Roamen/example/tree/master/React/react-two) 查看完整示例 `Demo`
 

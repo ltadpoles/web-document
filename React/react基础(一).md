@@ -1,4 +1,4 @@
-### 前言
+# 前言
 
 作为前端现行主流 `JS` 库之一，`React` 受到越来越多的开发者以及项目团队的青睐。我们可以使用它很高效地开发出一系列前端项目，或者使用 `React-native` 开发原生应用
 
@@ -8,7 +8,7 @@
 
 以下↓
 
-### 初识
+## 初识
 
 接触一种新的技术，在我的学习认知中，首先有这么三个东西需要先去了解：
 - 它是什么
@@ -32,7 +32,7 @@
 
 下面，就让我们一起通过一些具体的实例，去了解 `React` 中的一些概念吧
 
-### 准备工作
+## 准备工作
 
 首先，我们需要创建一个简单的项目结构，大概是长这个样子的
 
@@ -63,7 +63,7 @@
 
 ![image](https://raw.githubusercontent.com/Roamen/example/master/React/images/c-04.png)
 
-### Round 1
+## Round 1 
 
 首先，我们不使用 `JSX` 的方式来创建一个简单的 `react` 页面
 
@@ -73,7 +73,7 @@
 
 运行项目，应该可以看到成功的效果了
 
-### Round 2
+## Round 2 JSX
 
 想象一下，如果我们直接使用前面原生的方式去生成 `react` 元素，对于简单的嵌套元素来说，前一种方式完全可以满足我们的需求。但是，当我们的项目元素嵌套比较复杂的时候，虽然也可以通过前一种方式去实现，可以这样很不直观，对于我们之后的开发或者维护无疑增加了难度
 
@@ -87,32 +87,32 @@
 
 ![image](https://raw.githubusercontent.com/Roamen/example/master/React/images/c-06.png)
 
-### Round 3
+## Round 3 普通组件
 
 我们也可以通过普通函数去创建 `react` 元素
 
 ![image](https://raw.githubusercontent.com/Roamen/example/master/React/images/c-07.png)
 
-### Round 4
-
+## Round 4 props
+ 
 使用普通函数创建 `JSX` 元素，那么，如果我们需要进行组件传递数据应该怎么操作呢
 
 ![image](https://raw.githubusercontent.com/Roamen/example/master/React/images/c-08.png)
 
-### Round 5
+## Round 5 有状态组件
 
 我们也可以使用 `class` 去创建一个有状态的组件,在 `class` 中的 `render` 函数中直接使用 `this.props` 的方式获取组件传递的数据
 
 ![image](https://raw.githubusercontent.com/Roamen/example/master/React/images/c-09.png)
 
-### Round 6
+## Round 6 state
 
 之所以说普通函数创建的组件是无状态组件，而通过 `class` 创建的组件是有状态组件，就是因为在 `class` 中 `state` 的存在
 
 ![image](https://raw.githubusercontent.com/Roamen/example/master/React/images/c-10.png)
 
 
-### Round 7
+## Round 7 设置样式
 
 看着我们所完成的 `React` 项目，是不是还缺少点什么呢
 
@@ -128,7 +128,7 @@
 
 最后，别忘了下载引入 `style-loader` 和 `css-loader`
 
-### 后记
+## 后记
 
 以上就是 `React` 运行的基本配置以及它当中的一些基础概念，有兴趣的小伙伴可以 [点击这里](https://github.com/Roamen/example/tree/master/React/hello-react)查看完整实例 `DEMO`
 

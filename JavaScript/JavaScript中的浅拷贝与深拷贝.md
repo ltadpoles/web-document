@@ -1,17 +1,4 @@
-
-[前言](#start)
-
-[数据类型](#type)
-
-[浅拷贝](#shallowCopy)
-
-[深拷贝](#deepCopy)
-
-[实现拷贝的其他方式](#other)
-
-[后记](#end)
-
-<h2 id='start'>前言</h2>
+# 前言
 
 文章开始之前，让我们先思考一下这几个问题：
 
@@ -25,7 +12,7 @@
 
 以下↓
 
-<h3 id='type'>数据类型</h3>
+## 数据类型
 
 在开始了解 `浅拷贝` 与 `深拷贝` 之前，让我们先来回顾一下 `JavaScript` 的数据类型（可以参考这里 [JavaScript中的数据类型](https://segmentfault.com/a/1190000018764693)）
 
@@ -54,7 +41,7 @@ c == d // false 两个不同的对象
 
 一般来说，我们所涉及的拷贝对象，也都是针对引用类型的。由于引用类型属性层级可能也会有多层，这样也就引出了我们所要去了解的 `浅拷贝` 与 `深拷贝`
 
-<h3 id='shallowCopy'>浅拷贝</h3>
+## 浅拷贝
 
 顾名思义，所谓浅拷贝就是对对象进行浅层次的复制，只复制一层对象的属性，并不包括对象里面的引用类型数据
 
@@ -121,7 +108,7 @@ p1.friends // ["oo", "cc", "yy", "tt"]
 赋值 | 是 | 改变会使原数据一同改变 | 改变会使原数据一同改变 
 浅拷贝 | 否 | 改变不会使原数据一同改变 | 改变会使原数据一同改变
 
-<h3 id='deepCopy'>深拷贝</h3>
+## 深拷贝
 
 了解完浅拷贝，相信小伙伴们对于深拷贝也应该了然于胸了
 
@@ -139,7 +126,7 @@ function deepCopy(source){
       if(source.hasOwnProperty(keys)){
          if(source[keys] && typeof source[keys] === 'object'){
            targetObj[keys] = source[keys].constructor === Array ? [] : {};
-           targetObj[keys] = deepCopy(source[keys]);
+           targetObj[keys] = deepClone(source[keys]);
          }else{
            targetObj[keys] = source[keys];
          }
@@ -189,20 +176,21 @@ var o2 = deepCopy(o1);
 console.log(o2); // => {arr: [1,2,3], obj: {key: 'value'}}
 ```
 
-<h3 id='other'>实现拷贝的其他方式</h3>
+## 实现拷贝的其他方式
 
-#### 浅拷贝
+### 浅拷贝
 
 - `Array.prototype.slice()`
 - `Array.prototype.concat()`
 - `Object.assign`
 - 拓展操作符`...`
 - ...
-#### 深拷贝
+
+### 深拷贝
 
 很多框架或者库都提供了深拷贝的方式，比如 `jQuery` 、 `lodash` 函数库等等，基本实现方式也就和我们前面介绍的大同小异
 
-<h2 id='end'>后记</h2>
+## 后记
 
 根据需求的不同，比如有时候我们需要一个全新的对象，在修改它的时候不去影响到源对象，那么这个时候我们就可能需要深拷贝；反之，浅拷贝就能实现我们的需求
 
@@ -210,4 +198,4 @@ console.log(o2); // => {arr: [1,2,3], obj: {key: 'value'}}
 
 相信在不断使用的过程中，你一定会对它越来越熟悉
 
-最后，推荐一波前端学习历程，不定期分享一些前端问题和有意思的东西欢迎 `star` 关注 [传送门](https://github.com/Roamen/web-document)
+最后，推荐一波前端学习历程，不定期分享一些前端问题和有意思的东西欢迎 `star` 关注 [传送门](https://github.com/ltadpoles/web-document)

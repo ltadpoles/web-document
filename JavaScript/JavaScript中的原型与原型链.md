@@ -1,22 +1,4 @@
-[前言](#start)
-
-[原型](#prototype)
-
-[原型特点](#aboutPro)
-
-[原型链](#prototypeList)
-
-[class类](#class)
-
-[关系判断](#and)
-
-[原型链的问题](#question)
-
-[后记](#end)
-
-[参考文档](#reference)
-
-<h3 id='start'>前言</h3>
+# 前言
 
 作为前端高频面试题之一，相信很多小伙伴都有遇到过这个问题。那么你是否清楚完整的了解它呢？ 
 
@@ -32,7 +14,7 @@
 
 以下↓
 
-<h3 id='prototype'>原型</h3>
+## 原型
 
 > `JavaScript` 是基于原型的
 
@@ -41,7 +23,7 @@
 简单来说，就是当我们创建一个函数的时候，系统就会自动分配一个 `prototype`属性，可以用来存储可以让所有实例共享的属性和方法
 
 用一张图来表示就更加清晰了：
-![原型](https://raw.githubusercontent.com/Roamen/web-document/master/images/%E5%8E%9F%E5%9E%8B%E5%9B%BE%E7%A4%BA.jpg)
+![原型](https://raw.githubusercontent.com/ltadpoles/web-document/master/images/%E5%8E%9F%E5%9E%8B%E5%9B%BE%E7%A4%BA.jpg)
 
 图解：
 - 每一个构造函数都拥有一个 `prototype` 属性，这个属性指向一个对象，也就是原型对象
@@ -60,7 +42,7 @@ Person.prototype.constructor === Person // true
 
 那么，原型对象都有哪些特点呢
 
-<h3 id='aboutPro'>原型特点</h3>
+## 原型特点
 
 ```js
 function Person(){}
@@ -113,7 +95,7 @@ p.name // undefined
 
 一图胜过千言万语
 
-![重写原型链](https://raw.githubusercontent.com/Roamen/web-document/master/images/%E9%87%8D%E5%86%99%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1.jpg)
+![重写原型链](https://raw.githubusercontent.com/ltadpoles/web-document/master/images/%E9%87%8D%E5%86%99%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1.jpg)
 
 - 在已经创建了实例的情况下重写原型，会切断现有实例与新原型之间的联系
 - 重写原型对象，会导致原型对象的 `constructor` 属性指向 `Object` ，导致原型链关系混乱，所以我们应该在重写原型对象的时候指定 `constructor`( `instanceof` 仍然会返回正确的值)
@@ -127,19 +109,19 @@ Person.prototype = {
 
 既然现在我们知道了什么是 `prototype(原型)`以及它的特点，那么原型链又是什么呢？
 
-<h3 id='prototypeList'>原型链</h3>
+## 原型链
 
 > `JavaScript` 中所有的对象都是由它的原型对象继承而来。而原型对象自身也是一个对象，它也有自己的原型对象，这样层层上溯，就形成了一个类似链表的结构，这就是原型链
 
 同样的，我们使用一张图来描述
-![原型链](https://raw.githubusercontent.com/Roamen/web-document/master/images/%E5%8E%9F%E5%9E%8B%E9%93%BE.png)
+![原型链](https://raw.githubusercontent.com/ltadpoles/web-document/master/images/%E5%8E%9F%E5%9E%8B%E9%93%BE.png)
 
 - 所有原型链的终点都是 `Object` 函数的 `prototype` 属性
 - `Objec.prototype` 指向的原型对象同样拥有原型，不过它的原型是 `null` ，而 `null` 则没有原型
 
 清楚了原型链的概念，我们就能更清楚地知道属性的查找规则，比如前面的 `p` 实例属性.如果自身和原型链上都不存在这个属性，那么属性最终的值就是 `undefined` ，如果是方法就会抛出错误
 
-<h3 id='class'>class类</h3>
+## class类
 
 > `ES6` 提供了 `Class(类)` 这个概念，作为对象的模板，通过 `class` 关键字，可以定义类
 
@@ -175,7 +157,7 @@ Point.prototype.toString = function () {
  
  更多 `class` 问题，参考[这里](https://es6.ruanyifeng.com/#docs/class)
 
-<h3 id='and'>关系判断</h3>
+## 关系判断
 
 > instanceof
 
@@ -204,7 +186,7 @@ p.hasOwnProperty('age') // true
 p.hasOwnProperty('name') // false
 ```
 
-<h3 id='question'>原型链的问题</h3>
+## 原型链的问题
 
 由于原型链的存在，我们可以让很多实例去共享原型上面的方法和属性，方便了我们的很多操作。但是原型链并非是十分完美的
 
@@ -222,7 +204,7 @@ person2.arr // [1, 2, 3, 4, 5]
 
 另一个问题就是我们在创建子类型（比如上面的 `p`）时，没有办法向超类型（ `Person` ）的构造函数中传递参数
 
-<h3 id='end'>后记</h3>
+## 后记
 
 鉴于原型的特点和存在的问题，所以我们在实际开发中一般不会单独使用原型链。一般会使用构造函数和原型相配合的模式，当然这也就牵扯出了 `JavaScript` 中另一个有意思的领域：`继承`
 
@@ -230,9 +212,9 @@ person2.arr // [1, 2, 3, 4, 5]
 
 且听下回分解
 
-最后，推荐一波前端学习历程，不定期分享一些前端问题和有意思的东西欢迎 `star` 关注 [传送门](https://github.com/Roamen/web-document)
+最后，推荐一波前端学习历程，不定期分享一些前端问题和有意思的东西欢迎 `star` 关注 [传送门](https://github.com/ltadpoles/web-document)
 
-<h3 id='start'>参考文档</h3>
+## 参考文档
 
 JavaScript高级程序设计
 

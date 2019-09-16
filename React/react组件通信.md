@@ -1,4 +1,4 @@
-### 前言
+# 前言
 
 前面几篇文章介绍了 `React` 中的基础知识点，这篇文章将还是通过实例的方式记录一下 `React` 中组件之间的通信方式
 
@@ -13,7 +13,7 @@
 - 跨级组件通信
 - 非嵌套组件通信
 
-### 父组件向子组件通信
+## 父组件向子组件通信
 
 `React` 中采用数据单向流动的方式，父组件向子组件传递数据也是很常见的情况，父组件通过 `props` 向子组件传递数据
 
@@ -40,7 +40,7 @@ function Child(props) {
 }
 ```
 
-### 子组件向父组件通信
+## 子组件向父组件通信
 
 利用自定义事件，触发回调
 
@@ -91,7 +91,7 @@ class Child extends React.Component {
 }
 ```
 
-### 跨级组件通信
+## 跨级组件通信
 
 - 一层一层传递 `props`
 - `Context`
@@ -144,7 +144,7 @@ class LastComponent extends React.Component {
 
 更多参考 [Context API](https://zh-hans.reactjs.org/docs/context.html#api)
 
-### 非嵌套组件通信
+## 非嵌套组件通信
 
 非嵌套组件通信的思路一般有以下几种：
 
@@ -222,7 +222,7 @@ class ComponentB extends React.Component {
 }
 ```
 
-### 后记
+## 后记
 
 以上就是 `React` 组件之间通信的常用方式，其实在我们实践的过程中肯定也发现了有些方式可以用于多种组件关系的通信，关键在于**使用最合适的方式**
 

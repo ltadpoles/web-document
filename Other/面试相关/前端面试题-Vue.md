@@ -1,4 +1,4 @@
-<h2>目录</h2>
+<h1>目录</h1>
 
 &emsp;[1. 说一下Vue的双向绑定数据的原理](#k1)
 
@@ -69,7 +69,7 @@ new Router({
 
 > MVC
 
-![image](https://raw.githubusercontent.com/Roamen/web-document/master/images/mvc.png)
+![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/Other/images/mvc.png)
 
 特点：
 1. `View` 传送指令到 `Controller`
@@ -80,7 +80,7 @@ new Router({
 
 > MVVM
 
-![image](https://raw.githubusercontent.com/Roamen/web-document/master/images/mvvm.png)
+![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/Other/images/mvvm.png)
 
 特点： 
 1. 各部分之间的通信，都是双向的
