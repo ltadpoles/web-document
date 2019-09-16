@@ -1,0 +1,51 @@
+{
+    "title": "前端历程",
+    "author": "游荡de蝌蚪",
+    "description": "记录前端学习历程，分享那些有趣的东西",
+    "language": "zh-hans",
+    "links": {
+        "sidebar": {
+        }
+    },
+    "styles": {
+        "website": "Other/GitBook/style/website.css"
+    },
+    "plugins": [
+        "-lunr", 
+        "-search", 
+        "-sharing",
+        "-livereload",
+        "search-plus@^0.0.11",
+        "github-buttons@2.1.0",
+        "tbfed-pagefooter@^0.0.1",
+        "anchors", 
+        "donate@^1.0.2",
+        "expandable-chapters-small@^0.1.7",
+        "anchor-navigation-ex"
+    ],
+    "pluginsConfig": {
+        "github-buttons": {
+            "repo": "Roamen/web-document",
+            "types": [
+                "star"
+            ],
+            "size": "small"
+        },
+        "tbfed-pagefooter": {
+            "copyright": "Copyright &copy 游荡de蝌蚪 2019",
+            "modify_label": "该文件修订时间：",
+            "modify_format": "YYYY-MM-DD HH:mm:ss"
+        },
+        "donate": {
+            "wechat": "",
+            "alipay": "",
+            "title": "",
+            "button": "赏",
+            "alipayText": "支付宝打赏",
+            "wechatText": "微信打赏"
+        },
+        "anchor-navigation-ex": {
+            "showLevel": false
+        }
+    }
+}
