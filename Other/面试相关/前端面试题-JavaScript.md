@@ -268,7 +268,7 @@ Person() // hello
 
 > 每个构造函数(constructor)都有一个原型对象(prototype),原型对象都包含一个指向构造函数的指针,而实例(instance)都包含一个指向原型对象的内部指针.
 
-![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/Other/images/%E5%8E%9F%E5%9E%8B%E5%9B%BE%E7%A4%BA.jpg)
+![image](https://raw.githubusercontent.com/Roamen/web-document/master/JavaScript/images/%E5%8E%9F%E5%9E%8B%E5%9B%BE%E7%A4%BA.jpg)
 
 图解：
 - 每一个构造函数都拥有一个`prototype`属性，这个属性指向一个对象，也就是原型对象
@@ -281,7 +281,7 @@ Person() // hello
 
 > 所有原型链的终点都是`Object`函数的`prototype`属性。`Objec.prototype`指向的原型对象同样拥有原型，不过它的原型是`null`，而`null`则没有原型
 
-![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/Other/images/%E5%8E%9F%E5%9E%8B%E9%93%BE.png)
+![image](https://raw.githubusercontent.com/Roamen/web-document/master/JavaScript/images/%E5%8E%9F%E5%9E%8B%E9%93%BE.png)
 
 <h5 id='j9'>9. JavaScript 如何实现继承</h5>
 

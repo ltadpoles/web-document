@@ -18,7 +18,7 @@
 
 > 继承（inheritance）是面向对象软件技术当中的一个概念。如果一个类别 `B` `继承自` 另一个类别 `A` ，就把这个 `B` 称为 `A的子类` ，而把 `A` 称为 `B的父类别` 也可以称 `A是B的超类` 。继承可以使得子类具有父类别的各种属性和方法，而不需要再次编写相同的代码 ...[更多](https://zh.wikipedia.org/wiki/%E7%BB%A7%E6%89%BF_(%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6))
 
-![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/images/%E7%BB%A7%E6%89%BF%E6%A6%82%E5%BF%B5.jpg)
+![image](https://raw.githubusercontent.com/Roamen/web-document/master/JavaScript/images/%E7%BB%A7%E6%89%BF%E6%A6%82%E5%BF%B5.jpg)
 
 通过这些概念和图示我们不难知道继承可以在我们的开发中带来的便捷，那么在 `JavaScript` 中如何去实现继承呢？
 
