@@ -35,11 +35,11 @@
 
 [官方文档](https://www.webpackjs.com/concepts/)
 
-> 本质上，webpack 是一个现代 JavaScript 应用程序的静态模块打包器(module bundler)，将项目当作一个整体，通过一个给定的的主文件，webpack将从这个文件开始找到你的项目的所有依赖文件，使用loaders处理它们，最后打包成一个或多个浏览器可识别的js文件
+> 本质上，`webpack` 是一个现代 `JavaScript` 应用程序的静态模块打包器`module bundler`，将项目当作一个整体，通过一个给定的的主文件，`webpack`将从这个文件开始找到你的项目的所有依赖文件，使用 `loaders` 处理它们，最后打包成一个或多个浏览器可识别的 `js` 文件
 
 核心概念：
 
-- 入口(entry)
+- 入口 `entry`
 
 入口起点`(entry point)`指示 `webpack` 应该使用哪个模块，来作为构建其内部依赖图的开始
 
@@ -50,15 +50,15 @@ module.exports = {
   entry: './path/to/my/entry/file.js'
 };
 ```
-- 输出(output)
+- 输出 `output`
 
 `output` 属性告诉 `webpack` 在哪里输出它所创建的 `bundles `，以及如何命名这些文件，默认值为 `./dist`
 
-- loader
+- `loader`
 
 `loader` 让 `webpack` 能够去处理那些非 `JavaScript` 文件（`webpack` 自身只理解 `JavaScript`）
 
-- 插件(plugins)
+- 插件 `plugins`
 
 `loader` 被用于转换某些类型的模块，而插件则可以用于执行范围更广的任务。插件的范围包括，从打包优化和压缩，一直到重新定义环境中的变量
 
@@ -120,8 +120,8 @@ module.exports = {
 
 <h5 id='w3'>3. webpack本地开发怎么解决跨域的</h5>
 
-- 下载 webpack-dev-server 插件
-- 配置 webpack.config.js 文件
+- 下载 `webpack-dev-server` 插件
+- 配置 `webpack.config.js` 文件
 
 ```js
 // webpack.config.js
@@ -162,7 +162,7 @@ entry: {
 
 > 三者都是前端构建工具
 
-> `grunt` 和 `gulp` 是基于任务和流的。找到一个（或一类）文件，对其做一系列链式操作，更新流上的数据， 整条链式操作构成了一个任务，多个任务就构成了整个web的构建流程
+> `grunt` 和 `gulp` 是基于任务和流的。找到一个（或一类）文件，对其做一系列链式操作，更新流上的数据， 整条链式操作构成了一个任务，多个任务就构成了整个 `web` 的构建流程
 
 > `webpack` 是基于入口的。`webpack` 会自动地递归解析入口所需要加载的所有资源文件，然后用不同的` Loader` 来处理不同的文件，用 `Plugin` 来扩展 `webpack` 功能
 
@@ -186,13 +186,13 @@ entry: {
 
 <h5 id='w8'>8. Loader和Plugin的不同</h5>
 
-- loader 加载器
+- `loader` 加载器
 
 > `Webpack` 将一切文件视为模块，但是 `webpack` 原生是只能解析 `js` 文件. `Loader` 的作用是让 `webpack` 拥有了加载和解析非 `JavaScript` 文件的能力
 
 > 在 `module.rules` 中配置，也就是说他作为模块的解析规则而存在，类型为数组
 
-- Plugin 插件
+- `Plugin` 插件
 
 > 扩展 `webpack` 的功能，让 `webpack` 具有更多的灵活性
 

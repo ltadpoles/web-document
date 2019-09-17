@@ -52,12 +52,12 @@
 <h5 id='j1'>1. JavaScript 有哪些数据类型</h5>
 
 6种原始数据类型：
-- Boolean: 布尔表示一个逻辑实体，可以有两个值：`true` 和 `false`
-- Number: 用于表示数字类型
-- String: 用于表示文本数据
-- Null: `Null` 类型只有一个值： `null`,特指对象的值未设置
-- Undefined: 一个没有被赋值的变量会有个默认值 `undefined`
-- Symbol: 符号(Symbols)是ECMAScript第6版新定义的。符号类型是唯一的并且是不可修改的
+- `Boolean`: 布尔表示一个逻辑实体，可以有两个值：`true` 和 `false`
+- `Number`: 用于表示数字类型
+- `String`: 用于表示文本数据
+- `Null`: `Null` 类型只有一个值： `null`,特指对象的值未设置
+- `Undefined`: 一个没有被赋值的变量会有个默认值 `undefined`
+- `Symbol`: 符号`(Symbols)`是`ECMAScript`第6版新定义的。符号类型是唯一的并且是不可修改的
 
 引用类型：`Object`
 
@@ -71,18 +71,18 @@
 
 > `null` 返回 `Object`
 
-- instanceof: 用来判断A 是否是 B的实例，表达式为 `A instanceof B`，返回一个`Boolean`类型的值
+- `instanceof`: 用来判断 `A` 是否是 `B` 的实例，表达式为 `A instanceof B`，返回一个`Boolean`类型的值
 
-> `instanceof` **检测的是原型,只能用来判断两个对象是否属于实例关系， 而不能判断一个对象实例具体属于哪种类型**
+> `instanceof` 检测的是**原型**,只能用来判断两个对象是否属于实例关系， 而不能判断一个对象实例具体属于哪种类型
 
 ```js
 let a = [];
 a instanceof Array  // true
 a instanceof Object // true
 ```
-> 变量a 的 `__proto__`  直接指向`Array.prototype`，间接指向 `Object.prototype`，所以按照 `instanceof` 的判断规则，a 就是`Object`的实例.针对数组的这个问题，ES5 提供了 `Array.isArray()` 方法 。该方法用以确认某个对象本身是否为 Array 类型
+> 变量 `a` 的 `__proto__`  直接指向`Array.prototype`，间接指向 `Object.prototype`，所以按照 `instanceof` 的判断规则，`a` 就是`Object`的实例.针对数组的这个问题，`ES5` 提供了 `Array.isArray()` 方法 。该方法用以确认某个对象本身是否为 `Array` 类型
 
-- constructor: 当一个函数被定义时，JS引擎会为其添加`prototype`原型，然后再在 `prototype`上添加一个 `constructor` 属性，并让其指向该函数的引用
+- `constructor`: 当一个函数被定义时，`JS` 引擎会为其添加`prototype`原型，然后再在 `prototype`上添加一个 `constructor` 属性，并让其指向该函数的引用
 
 > `null`和`undefined`是无效的对象，因此是不会有`constructor`存在的，这两种类型的数据需要通过其他方式来判断
 
@@ -97,11 +97,11 @@ F.prototype = {a: 1}
 var f = new F
 f.constructor == F // false 
 ```
-> 在构造函数 `F.prototype` 没有被重写之前，构造函数 `F` 就是新创建的对象 `f` 的数据类型。当 `F.prototype` 被重写之后，原有的 `constructor` 引用丢失, 默认为 Object
+> 在构造函数 `F.prototype` 没有被重写之前，构造函数 `F` 就是新创建的对象 `f` 的数据类型。当 `F.prototype` 被重写之后，原有的 `constructor` 引用丢失, 默认为 `Object`
 
 > 因此，为了规范开发，在重写对象原型时一般都需要重新给 `constructor` 赋值，以保证对象实例的类型不被篡改
 
-- toString: `Object` 的原型方法，调用该方法，默认返回当前对象的 `[[Class]]` 。这是一个内部属性，其格式为 `[object Xxx]` ，其中 `Xxx` 就是对象的类型
+- `toString`: `Object` 的原型方法，调用该方法，默认返回当前对象的 `[[Class]]` 。这是一个内部属性，其格式为 `[object Xxx]` ，其中 `Xxx` 就是对象的类型
 
 ```js
 Object.prototype.toString.call('') ;   // [object String]
@@ -138,45 +138,48 @@ Object.prototype.toString.call([]) ; // [object Array]
 
 > 修改器方法：
 
-- pop(): 删除数组的最后一个元素，并返回这个元素
-- push()：在数组的末尾增加一个或多个元素，并返回数组的新长度
-- reverse(): 颠倒数组中元素的排列顺序
-- shift(): 删除数组的第一个元素，并返回这个元素
-- unshift(): 在数组的开头增加一个或多个元素，并返回数组的新长度
-- sort(): 对数组元素进行排序，并返回当前数组
-- splice(): 在任意的位置给数组添加或删除任意个元素
+- `pop()`: 删除数组的最后一个元素，并返回这个元素
+- `push()`：在数组的末尾增加一个或多个元素，并返回数组的新长度
+- `reverse()`: 颠倒数组中元素的排列顺序
+- `shift()`: 删除数组的第一个元素，并返回这个元素
+- `unshift()`: 在数组的开头增加一个或多个元素，并返回数组的新长度
+- `sort()`: 对数组元素进行排序，并返回当前数组
+- `splice()`: 在任意的位置给数组添加或删除任意个元素
 
 > 访问方法：
 
-- concat(): 返回一个由当前数组和其它若干个数组或者若干个非数组值组合而成的新数组
-- join(): 连接所有数组元素组成一个字符串
-- slice(): 抽取当前数组中的一段元素组合成一个新数组
-- indeOf(): 返回数组中第一个与指定值相等的元素的索引，如果找不到这样的元素，则返回 -1
-- lastIndexOf(): 返回数组中最后一个（从右边数第一个）与指定值相等的元素的索引，如果找不到这样的元素，则返回 -1
+- `concat()`: 返回一个由当前数组和其它若干个数组或者若干个非数组值组合而成的新数组
+- `join()`: 连接所有数组元素组成一个字符串
+- `slice()`: 抽取当前数组中的一段元素组合成一个新数组
+- `indeOf()`: 返回数组中第一个与指定值相等的元素的索引，如果找不到这样的元素，则返回 `-1`
+- `lastIndexOf()`: 返回数组中最后一个（从右边数第一个）与指定值相等的元素的索引，如果找不到这样的元素，则返回 `-1`
 
 > 迭代方法：
 
-- forEach(): 为数组中的每个元素执行一次回调函数,最终返回 `undefined`
-- every(): 如果数组中的每个元素都满足测试函数，则返回 `true`，否则返回 false
-- some(): 如果数组中至少有一个元素满足测试函数，则返回 `true`，否则返回 false
-- filter(): 将所有在过滤函数中返回 `true` 的数组元素放进一个新数组中并返回
-- map(): 返回一个由回调函数的返回值组成的新数组
+- `forEach()`: 为数组中的每个元素执行一次回调函数,最终返回 `undefined`
+- `every()`: 如果数组中的每个元素都满足测试函数，则返回 `true`，否则返回 `false`
+- `some()`: 如果数组中至少有一个元素满足测试函数，则返回 `true`，否则返回 `false`
+- `filter()`: 将所有在过滤函数中返回 `true` 的数组元素放进一个新数组中并返回
+- `map()`: 返回一个由回调函数的返回值组成的新数组
 
-更多方法请参考 MDN [传送门](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array)
+更多方法请参考 `MDN` [传送门](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array)
 
 
 <h5 id='j5'>5. Js 有哪几种创建对象的方式</h5>
 
 > 对象字面量
+
 ```js
 var obj = {}
 ```
 > Object 构造函数
+
 ```js
 var obj = new Object()
 ```
 
 > 工厂模式
+
 ```js
 function Person(name, age) {
     var o = new Object()
@@ -191,6 +194,7 @@ function Person(name, age) {
 缺点： 每次通过`Person`创建对象的时候，所有的`say`方法都是一样的，但是却存储了多次，浪费资源
 
 > 构造函数模式
+
 ```js
 function Person(name, age) {
     this.name = name
@@ -204,6 +208,7 @@ var person = new Person('hello', 18)
 构造函数模式隐试的在最后返回`return this` 所以在缺少`new`的情况下，会将属性和方法添加给全局对象，浏览器端就会添加给`window`对象,可以根据`return this` 的特性调用`call`或者`apply`指定`this`
 
 > 原型模式
+
 ```js
 function Person() {}
 Person.prototype.name = 'hanmeimei';
@@ -216,6 +221,7 @@ var person = new Person();
 实现了方法与属性的共享，可以动态添加对象的属性和方法。但是没有办法创建实例自己的属性和方法，也没有办法传递参数
 
 > 构造函数和原型组合
+
 ```js
 function Person(name, age) {
     this.name = name
@@ -246,6 +252,7 @@ var person = new Person('hello')
 <h5 id='j7'>7. 什么是闭包，为什么要用它</h5>
 
 > 简单来说，闭包就是能够读取其他函数内部变量的函数
+
 ```js
 function Person() {
     var name = 'hello'
@@ -256,7 +263,7 @@ function Person() {
 }
 Person() // hello
 ```
-> 由于 JavaScript 特殊的作用域，函数外部无法直接读取内部的变量，内部可以直接读取外部的变量，从而就产生了闭包的概念
+> 由于 `JavaScript` 特殊的作用域，函数外部无法直接读取内部的变量，内部可以直接读取外部的变量，从而就产生了闭包的概念
 
 用途：
 > 最大用处有两个，一个是前面提到的可以读取函数内部的变量，另一个就是让这些变量的值始终保持在内存中
@@ -268,9 +275,9 @@ Person() // hello
 
 <h5 id='j8'>8. 介绍一下 JavaScript 原型，原型链，它们有何特点</h5>
 
-首先明确一点，**JavaScript是基于原型的**
+首先明确一点，**`JavaScript` 是基于原型的**
 
-> 每个构造函数(constructor)都有一个原型对象(prototype),原型对象都包含一个指向构造函数的指针,而实例(instance)都包含一个指向原型对象的内部指针.
+> 每个构造函数`(constructor)`都有一个原型对象`(prototype)`,原型对象都包含一个指向构造函数的指针,而实例`(instance)`都包含一个指向原型对象的内部指针.
 
 ![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/JavaScript/images/%E5%8E%9F%E5%9E%8B%E5%9B%BE%E7%A4%BA.jpg)
 
@@ -328,7 +335,7 @@ cat.name  // 豆豆
 cat.age // 2
 cat.species // 动物
 ```
-> 使用call或apply方法，将父对象的构造函数绑定在子对象上.
+> 使用 `call` 或 `apply` 方法，将父对象的构造函数绑定在子对象上.
 
 - 组合继承
 
@@ -346,10 +353,10 @@ Cat.prototype = new Animal() // 重写原型
 Cat.prototype.constructor = Cat
 
 ```
-> 如果没有`Cat.prototype = new Animal()`这一行，`Cat.prototype.constructor`是指向`Cat`的；加了这一行以后，`Cat.prototype.constructor`指向`Animal`.这显然会导致继承链的紊乱（cat1明明是用构造函数Cat生成的），因此我们必须手动纠正，将`Cat.prototype`对象的`constructor`值改为`Cat`
+> 如果没有`Cat.prototype = new Animal()`这一行，`Cat.prototype.constructor`是指向`Cat`的；加了这一行以后，`Cat.prototype.constructor`指向`Animal`.这显然会导致继承链的紊乱(`cat1` 明明是用构造函数`Cat`生成的），因此我们必须手动纠正，将`Cat.prototype`对象的`constructor`值改为`Cat`
 
 - `extends` 继承
-ES6新增继承方式，Class 可以通过extends关键字实现继承
+`ES6` 新增继承方式，`Class` 可以通过 `extends` 关键字实现继承
 
 ```js
 class Animal {
@@ -371,9 +378,9 @@ class Cat extends Animal {
 
 <h5 id='j10'>10. new 操作符具体干了什么</h5>
 
-- 创建一个空对象，并且 this 变量引用该对象，同时还继承了该函数的原型
-- 属性和方法被加入到 this 引用的对象中
-- 新创建的对象由 this 所引用，并且最后隐式的返回 this
+- 创建一个空对象，并且 `this` 变量引用该对象，同时还继承了该函数的原型
+- 属性和方法被加入到 `this` 引用的对象中
+- 新创建的对象由 `this` 所引用，并且最后隐式的返回 `this`
 
 <h5 id='j11'>11. 同步和异步的区别，怎么异步加载 JavaScript</h5>
 
@@ -385,7 +392,7 @@ class Cat extends Animal {
 
 异步加载又叫非阻塞，浏览器在下载执行 `js` 同时，还会继续进行后续页面的处理
 
-> 异步加载 JavaScript
+> 异步加载 `JavaScript`
 
 - 动态添加 `script` 标签
 - `defer`
@@ -401,8 +408,8 @@ class Cat extends Animal {
 
 - `jsonp` 跨域：动态创建`script`，再请求一个带参网址实现跨域通信.缺点就是只能实现 `get` 一种请求
 - `document.domain + iframe`跨域：两个页面都通过js强制设置`document.domain`为基础主域，就实现了同域.但是仅限主域相同，子域不同的跨域应用场景
-- 跨域资源共享（CORS）：只服务端设置`Access-Control-Allow-Origin`即可，前端无须设置，若要带`cookie`请求：前后端都需要设置
-- `nginx`反向代理接口跨域：同源策略是浏览器的安全策略，不是`HTTP`协议的一部分。服务器端调用`HTTP`接口只是使用`HTTP`协议，不会执行JS脚本，不需要同源策略，也就不存在跨越问题
+- 跨域资源共享`CORS`：只服务端设置`Access-Control-Allow-Origin`即可，前端无须设置，若要带`cookie`请求：前后端都需要设置
+- `nginx`反向代理接口跨域：同源策略是浏览器的安全策略，不是`HTTP`协议的一部分。服务器端调用`HTTP`接口只是使用`HTTP`协议，不会执行`JS`脚本，不需要同源策略，也就不存在跨越问题
 - `WebSocket`协议跨域
 
 <h5 id='j13'>13. 对 this 的理解</h5>
@@ -432,11 +439,11 @@ foo() // 2
 
 <h5 id='j14'>14. apply()、call()和 bind() 是做什么的，它们有什么区别</h5>
 
-相同点：三者都可以**改变 this 的指向**
+相同点：三者都可以**改变 `this` 的指向**
 
 不同点： 
 
-- apply 方法传入两个参数：一个是作为函数上下文的对象，另外一个是作为函数参数所组成的数组
+- `apply` 方法传入两个参数：一个是作为函数上下文的对象，另外一个是作为函数参数所组成的数组
 
 ```js
 
@@ -518,17 +525,17 @@ func1(1,2) // xixi 1 2
 
 > `AMD`和`CMD`都是为了解决浏览器端模块化问题而产生的，`AMD`规范对应的库函数有 `Require.js`，`CMD`规范是在国内发展起来的，对应的库函数有`Sea.js`
 
-**AMD和CMD最大的区别是对依赖模块的执行时机处理不同**
+**`AMD`和`CMD`最大的区别是对依赖模块的执行时机处理不同**
 
-> 1、AMD推崇依赖前置，在定义模块的时候就要声明其依赖的模块 
+> 1、`AMD`推崇依赖前置，在定义模块的时候就要声明其依赖的模块 
 
-> 2、CMD推崇就近依赖，只有在用到某个模块的时候再去require
+> 2、`CMD`推崇就近依赖，只有在用到某个模块的时候再去`require`
 
 参考：[AMD-中文版](https://github.com/amdjs/amdjs-api/wiki/AMD-%28%E4%B8%AD%E6%96%87%E7%89%88%29)   [CMD-规范](https://github.com/seajs/seajs/issues/242)
 
 <h5 id='j18'>18. 对ES6的了解</h5>
 
-> ECMAScript 6.0 是 JavaScript 语言的下一代标准
+> `ECMAScript 6.0` 是 `JavaScript` 语言的下一代标准
 
 新增的特性：
 
@@ -549,7 +556,7 @@ func1(1,2) // xixi 1 2
 
 <h5 id='j19'>19. 箭头函数有什么特点</h5>
 
-> ES6 允许使用“箭头”（=>）定义函数
+> `ES6` 允许使用箭头`=>` 定义函数
 
 ```js
 var f = v => v;
@@ -568,7 +575,7 @@ var f = function (v) {
 
 <h5 id='j20'>20. Promise 对象的了解</h5>
 
-> Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大.所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果 --ES6入门-阮一峰
+> `Promise` 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大.所谓 `Promise` ，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果 -- `ES6` 入门-阮一峰
 
 > `Promise` 对象代表一个异步操作，有三种状态：`pending`（进行中）、`fulfilled`（已成功）和 `rejected`（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态
 
@@ -590,7 +597,7 @@ const promise = new Promise(function(resolve, reject) {
 })
 ```
 
-> Promise实例生成以后，可以用then方法分别指定resolved状态和rejected状态的回调函数
+> `Promise` 实例生成以后，可以用 `then` 方法分别指定 `resolved `状态和 `rejected` 状态的回调函数
 
 ```js
 promise.then(function(value) {
@@ -602,7 +609,7 @@ promise.then(function(value) {
 
 > `then` 方法返回的是一个新的Promise实例
 
-> `Promise.prototype.catch` 用于指定发生错误时的回调函数,具有“冒泡”性质，会一直向后传递，直到被捕获为止。也就是说，错误总是会被下一个`catch`语句捕获
+> `Promise.prototype.catch` 用于指定发生错误时的回调函数,具有`冒泡`性质，会一直向后传递，直到被捕获为止。也就是说，错误总是会被下一个`catch`语句捕获
 
 ```js
 getJSON('/post/1.json').then(function(post) {
@@ -616,13 +623,13 @@ getJSON('/post/1.json').then(function(post) {
 
 > `catch` 方法返回的还是一个 `Promise` 对象，因此后面还可以接着调用 `then` 方法
 
-出去上述方法，Promise还有其他用法，小伙伴们可以在这里查看大佬写的文章 [ES6入门-阮一峰](http://es6.ruanyifeng.com/#README)
+出去上述方法，`Promise` 还有其他用法，小伙伴们可以在这里查看大佬写的文章 [ES6入门-阮一峰](http://es6.ruanyifeng.com/#README)
 
 <h5 id='j21'>21. async 函数以及 awit 命令</h5>
 
 > `async` 函数是什么？一句话，它就是 `Generator` 函数的语法糖
 
-了解Generator函数的小伙伴，这里 [传送门](http://es6.ruanyifeng.com/#docs/generator)
+了解 `Generator` 函数的小伙伴，这里 [传送门](http://es6.ruanyifeng.com/#docs/generator)
 
 `async` 特点：
 
@@ -730,3 +737,4 @@ new Promise(function(resolve){
 在异步任务中，定时器也属于特殊的存在。有人将其称之为 宏任务、微任务，定时器就属于宏任务的范畴。
 
 参考 [JS引擎的执行机制](https://segmentfault.com/a/1190000012806637)
+
