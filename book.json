@@ -27,7 +27,7 @@
     ],
     "pluginsConfig": {
         "github-buttons": {
-            "repo": "Roamen/web-document",
+            "repo": "ltadpoles/web-document",
             "types": [
                 "star"
             ],
@@ -47,7 +47,7 @@
             "wechatText": "微信打赏"
         },
         "edit-link": {
-            "base": "https://github.com/Roamen/web-document/tree/master",
+            "base": "https://github.com/ltadpoles/web-document/tree/master",
             "label": "在Github上编辑此页"
         }
     }

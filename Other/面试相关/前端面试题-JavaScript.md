@@ -61,7 +61,7 @@
 
 引用类型：`Object`
 
-详见 [JavaScript的数据类型-MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures)
+详见 [JavaScript中的数据类型](https://github.com/ltadpoles/web-document/blob/master/JavaScript/JavaScript中的数据类型.md)
 
 <h5 id='j2'>2. 怎么判断不同的JS数据类型 </h5>
 
@@ -241,6 +241,8 @@ var person = new Person('hello')
 
 - 最常用的方式就是 `JSON.parse(JSON.stringify(目标对象)`，缺点就是只能拷贝符合`JSON`数据标准类型的对象
 
+详见 [传送门](https://github.com/ltadpoles/web-document/blob/master/JavaScript/JavaScript中的浅拷贝与深拷贝.md)
+
 <h5 id='j7'>7. 什么是闭包，为什么要用它</h5>
 
 > 简单来说，闭包就是能够读取其他函数内部变量的函数
@@ -262,13 +264,15 @@ Person() // hello
 注意点：
 > 由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，在IE中可能导致内存泄露
 
+详见 [传送门](https://github.com/ltadpoles/web-document/blob/master/JavaScript/JavaScript中的闭包.md)
+
 <h5 id='j8'>8. 介绍一下 JavaScript 原型，原型链，它们有何特点</h5>
 
 首先明确一点，**JavaScript是基于原型的**
 
 > 每个构造函数(constructor)都有一个原型对象(prototype),原型对象都包含一个指向构造函数的指针,而实例(instance)都包含一个指向原型对象的内部指针.
 
-![image](https://raw.githubusercontent.com/Roamen/web-document/master/JavaScript/images/%E5%8E%9F%E5%9E%8B%E5%9B%BE%E7%A4%BA.jpg)
+![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/JavaScript/images/%E5%8E%9F%E5%9E%8B%E5%9B%BE%E7%A4%BA.jpg)
 
 图解：
 - 每一个构造函数都拥有一个`prototype`属性，这个属性指向一个对象，也就是原型对象
@@ -281,7 +285,9 @@ Person() // hello
 
 > 所有原型链的终点都是`Object`函数的`prototype`属性。`Objec.prototype`指向的原型对象同样拥有原型，不过它的原型是`null`，而`null`则没有原型
 
-![image](https://raw.githubusercontent.com/Roamen/web-document/master/JavaScript/images/%E5%8E%9F%E5%9E%8B%E9%93%BE.png)
+![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/JavaScript/images/%E5%8E%9F%E5%9E%8B%E9%93%BE.png)
+
+详见 [传送门](https://github.com/ltadpoles/web-document/blob/master/JavaScript/JavaScript中的原型与原型链.md)
 
 <h5 id='j9'>9. JavaScript 如何实现继承</h5>
 
@@ -360,6 +366,8 @@ class Cat extends Animal {
 > 使用 `extends` 实现继承，必须添加 `super` 关键字定义子类的 `constructor`，这里的`super()` 就相当于 `Animal.prototype.constructor.call(this)`
 
 当然，还有很多种实现继承的方式，这里就不多说了。然后，再推荐一波 **红宝书**
+
+详见 [传送门](https://github.com/ltadpoles/web-document/blob/master/JavaScript/JavaScript中的继承.md)
 
 <h5 id='j10'>10. new 操作符具体干了什么</h5>
 
@@ -722,4 +730,3 @@ new Promise(function(resolve){
 在异步任务中，定时器也属于特殊的存在。有人将其称之为 宏任务、微任务，定时器就属于宏任务的范畴。
 
 参考 [JS引擎的执行机制](https://segmentfault.com/a/1190000012806637)
-

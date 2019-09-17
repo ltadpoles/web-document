@@ -30,7 +30,7 @@
 
 `Python` 的安装基本可以使用软件给定的设置，一直点下一步就可以了，只有在这个地方
 
-![image](https://raw.githubusercontent.com/Roamen/web-document/master/React/images/Python.png)
+![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/React/images/Python.png)
 
 注意点 `x` 的我们需要将它更改为第一个选项，这样我们就不需要后期手动去将它添加到环境变量了
 
@@ -39,7 +39,7 @@
 
 [下载地址](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
-![image](https://raw.githubusercontent.com/Roamen/web-document/master/React/images/Java-JDK.png)
+![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/React/images/Java-JDK.png)
 
 这个时候我们需要先同意协议，然后下载相应的文件版本，当然下载的时候可能先注册一个 `Oracle` 账号
 
@@ -108,5 +108,5 @@ react-native run-android
 
 关注前端技术，每天进步一点点
 
-有兴趣的小伙伴可以[点击这里](https://github.com/Roamen/web-document)，了解更多前端学习历程，欢迎 `star` 关注
+有兴趣的小伙伴可以[点击这里](https://github.com/ltadpoles/web-document)，了解更多前端学习历程，欢迎 `star` 关注
 
