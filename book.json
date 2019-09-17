@@ -10,17 +10,20 @@
         "website": "Other/GitBook/style/website.css"
     },
     "plugins": [
-        "-lunr", 
-        "-search", 
+        "-lunr",
+        "-search",
         "-sharing",
         "-livereload",
         "search-plus@^0.0.11",
         "github-buttons@2.1.0",
         "tbfed-pagefooter@^0.0.1",
-        "anchors", 
+        "back-to-top-button",
+        "anchors",
         "donate@^1.0.2",
-        "expandable-chapters-small@^0.1.7",
-        "anchor-navigation-ex"
+        "chapter-fold",
+        "code",
+        "advanced-emoji",
+        "edit-link"
     ],
     "pluginsConfig": {
         "github-buttons": {
@@ -36,15 +39,16 @@
             "modify_format": "YYYY-MM-DD HH:mm:ss"
         },
         "donate": {
-            "wechat": "Other/images/weixin.jpg",
-            "alipay": "Other/images/pay.jpg",
+            "wechat": "/Other/images/weixin.jpg",
+            "alipay": "/Other/images/pay.jpg",
             "title": "",
             "button": "赏",
             "alipayText": "支付宝打赏",
             "wechatText": "微信打赏"
         },
-        "anchor-navigation-ex": {
-            "showLevel": false
+        "edit-link": {
+            "base": "https://github.com/Roamen/web-document/tree/master",
+            "label": "在Github上编辑此页"
         }
     }
 }
