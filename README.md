@@ -8,80 +8,44 @@
 
 ### | 社区相关
 
-[segmentFault 博客](https://segmentfault.com/u/youdangde_5c8b208a23f95/articles)
+- [segmentFault 博客](https://segmentfault.com/u/youdangde_5c8b208a23f95/articles)
+- [掘金社区](https://juejin.im/user/5c88d2e36fb9a049d61e6538)
 
-[掘金社区](https://juejin.im/user/5c88d2e36fb9a049d61e6538)
+### JavaScript
 
-### | 面试相关
+- [JavaScript声明变量详解](https://github.com/Roamen/web-document/blob/master/JavaScript/JavaScript声明变量详解.md)
+- [JavaScript中的数据类型](https://github.com/Roamen/web-document/blob/master/JavaScript/JavaScript中的数据类型.md)
+- [JavaScript 中的那些语句](https://github.com/Roamen/web-document/blob/master/JavaScript/JavaScript中的那些语句.md)
+- [JavaScript 中的原型与原型链](https://github.com/Roamen/web-document/blob/master/JavaScript/JavaScript中的原型与原型链.md)
+- [JavaScript 中的继承](https://github.com/Roamen/web-document/blob/master/JavaScript/JavaScript中的继承.md)
+- [JavaScript 中的浅拷贝与深拷贝](https://github.com/Roamen/web-document/blob/master/JavaScript/JavaScript中的浅拷贝与深拷贝.md)
+- [JavaScript 中的闭包](https://github.com/Roamen/web-document/blob/master/JavaScript/JavaScript中的闭包.md)
 
-[前端面试题 -- HTML+CSS](https://github.com/Roamen/web-document/issues/2)
+### React
 
-[前端面试题 -- JavaScript](https://github.com/Roamen/web-document/issues/3)
+- [RN环境搭建](https://github.com/Roamen/web-document/blob/master/React/RN环境搭建.md)
+- [React基础(一)](https://github.com/Roamen/web-document/blob/master/React/react基础（一）.md)
+- [React基础(二)](https://github.com/Roamen/web-document/blob/master/React/react基础（二）.md)
+- [React生命周期](https://github.com/Roamen/web-document/blob/master/React/react生命周期.md)
+- [React组件通信](https://github.com/Roamen/web-document/blob/master/React/react组件通信.md)
 
-[前端面试题 -- 综合](https://github.com/Roamen/web-document/issues/4)
+### 面试相关
+- [前端面试题 -- HTML+CSS](https://github.com/Roamen/web-document/blob/master/Other/面试相关/前端面试题-HTML+CSS.md)
+- [前端面试题 -- JavaScript](https://github.com/Roamen/web-document/blob/master/Other/面试相关/前端面试题-JavaScript.md)
+- [前端面试题 -- 综合](https://github.com/Roamen/web-document/blob/master/Other/面试相关/前端面试题-综合.md)
+- [前端面试题 -- Vue](https://github.com/Roamen/web-document/blob/master/Other/面试相关/前端面试题-Vue.md)
+- [前端面试题 -- 小程序](https://github.com/Roamen/web-document/blob/master/Other/面试相关/前端面试题-小程序.md)
+- [前端面试题 -- Webpack](https://github.com/Roamen/web-document/blob/master/Other/面试相关/前端面试题-Webpack.md)
 
-[前端面试题 -- Vue](https://github.com/Roamen/web-document/issues/5)
+### Webpack
 
-[前端面试题 -- 小程序](https://github.com/Roamen/web-document/issues/6)
+- [Webpack基本配置](https://github.com/Roamen/web-document/blob/master/Webpack/webpack基本配置.md)
+- [Webpack发布策略](https://github.com/Roamen/web-document/blob/master/Webpack/webpack发布策略.md)
 
-[前端面试题 -- webpack](https://github.com/Roamen/web-document/issues/7)
+### 代码规范
 
-### | JavaScript
+- [代码校验规则](https://github.com/Roamen/web-document/blob/master/Other/eslint/README.md)
 
-[JavaScript 声明变量详解](https://github.com/Roamen/web-document/issues/8)
+### 版权
 
-[JavaScript 中的数据类型](https://github.com/Roamen/web-document/issues/9)
-
-[JavaScript 中的那些语句](https://github.com/Roamen/web-document/issues/10)
-
-[JavaScript 中的原型与原型链](https://github.com/Roamen/web-document/issues/11)
-
-[JavaScript 中的继承](https://github.com/Roamen/web-document/issues/12)
-
-[JavaScript 中的浅拷贝与深拷贝](https://github.com/Roamen/web-document/issues/14)
-
-[JavaScript 中的闭包](https://github.com/Roamen/web-document/issues/15)
-
-### | React
-
-[RN环境搭建](https://github.com/Roamen/web-document/issues/16)
-
-[React基础(一)](https://github.com/Roamen/web-document/issues/19)
-
-[React基础(二)](https://github.com/Roamen/web-document/issues/21)
-
-[React基础(三)](https://github.com/Roamen/web-document/issues/23)
-
-[React组件通信](https://github.com/Roamen/web-document/issues/24)
-
-### | Webpack
-
-[Webpack基本配置](https://github.com/Roamen/web-document/issues/18)
-
-[Webpack发布策略](https://github.com/Roamen/web-document/issues/20)
-
-### | 代码规范
-
-[代码校验规则](https://github.com/Roamen/web-document/tree/master/Other/eslint)
-
-
-### | 版权
-
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />本<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" rel="dct:type">作品</span>采用<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>进行许可
-
-<link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css">
-<script src="https://cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js"></script>
-<div id="gitalk-container"></div>
-
-<script>
-var gitalk = new Gitalk({
-  clientID: 'b8e65b4c70537cf35da5', 
-  clientSecret: 'b0df889c76f99bd601fd99f9f45e9504c3def189',
-  repo: 'web-document',  
-  owner: 'Roamen',  
-  admin: ['Roamen'], 
-  id: location.pathname,   
-})
-
-gitalk.render('gitalk-container');
-</script>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
