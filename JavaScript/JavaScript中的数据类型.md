@@ -1,4 +1,4 @@
-# 前言
+### 前言
 
 > `ECMAScript` 迄今为止标准定义了 `7` 种数据类型：`6` 种原始类型-- `String`、`Number`、 `Boolean`、 `Undefined`、`Null` 和 `Symbol`；`1` 种引用类型-- `Object`
 
@@ -8,11 +8,11 @@
 
 以下↓
 
-## 原始值
+### 原始值
 
 > 除 `Object` 以外的所有类型都是不可变的（值本身无法被改变），我们称这些类型的值为 `原始值`
 
-### String类型
+#### String类型
 
 > `JavaScript` 的字符串类型用于表示文本数据.`JavaScript` 字符串是不可更改的。这意味着字符串一旦被创建，就不能被修改。但是，可以基于对原始字符串的操作来创建新的字符串
 
@@ -64,7 +64,7 @@ obj + '' // [object object]
 
 
 
-### Number类型
+#### Number类型
 
 > 根据 `ECMAScript` 标准，`JavaScript` 中只有一种数字类型：基于 `IEEE 754` 标准的双精度 `64` 位二进制格式的值（`-(263 -1)` 到 `263 -1`）
 
@@ -93,7 +93,7 @@ var num3 = 0x38; // 十六进制的56
 
 > 类型转化方式：`Number()`、`parseInt()`、`parseFloat()` 以及操作符隐式转换
 
-#### Boolean类型
+###### Boolean类型
 
 > 表示一个逻辑实体，可以有两个值：`true` 和 `false`
 
@@ -104,7 +104,7 @@ var los = false;
 
 类型转化方式：`Boolean()`以及操作符隐式转换
 
-### Undefined类型
+#### Undefined类型
 
 > `Undefined` 类型只有一个值，即特殊的 `undefined` 。一个  声明但没有被赋值的变量会有个默认值 `undefined`
 
@@ -112,7 +112,7 @@ var los = false;
 var a;  // undefined
 ```
 
-### Null类型
+#### Null类型
 
 > `Null` 类型也只有一个值，即特殊的 `null` 表示一个空对象指针
 
@@ -120,7 +120,7 @@ var a;  // undefined
 var foo = null;
 ```
 
-### Symbol类型
+#### Symbol类型
 
 > 符号 `(Symbols)` 是 `ECMAScript` 第 `6` 版新定义的。符号类型是唯一的并且是不可修改的
 
@@ -131,7 +131,7 @@ var s = Symbol()
 
 > `Symbol` 函数可以接受一个字符串作为参数，表示对 `Symbol` 实例的描述
 
-## 引用类型
+### 引用类型
 
 > 在 `ECMAScript` 中，引用类型是一种数据结构，用于将数据和功能组织在一起
 
@@ -168,7 +168,7 @@ b.name = 'hello'
 a.name // hello
 ```
 
-## 基本包装类型
+### 基本包装类型
 
 > 为了便于操作基本类型值， `ECMAScript` 还提供了 `3` 个特殊的引用类型：`Boolean`、`Number` 和 `String`
 
@@ -215,7 +215,7 @@ str instanceof String // false
 
 当然，这里也涉及到了数据类型的判断，有兴趣的小伙伴可以 [点击这里](https://segmentfault.com/a/1190000018536392#articleHeader2) 查看如何判断 `JavaScript` 中的数据类型
 
-## 后记
+### 后记
 
 不断总结温习前端方面的知识点以及有趣的东西，感兴趣的小伙伴可以 [点击这里](https://github.com/ltadpoles/web-document)，查看完整版前端总结知识点，欢迎 `star` 关注
 

@@ -1,4 +1,4 @@
-# 前言
+### 前言
 
 作为 `JavaScript` 中最重要的内容之一，继承问题一直是我们关注的重点。那么你是否清晰地知道它的原理以及各种实现方式呢
 
@@ -14,7 +14,7 @@
 
 以下↓
 
-## 概念
+### 概念
 
 > 继承（inheritance）是面向对象软件技术当中的一个概念。如果一个类别 `B` `继承自` 另一个类别 `A` ，就把这个 `B` 称为 `A的子类` ，而把 `A` 称为 `B的父类别` 也可以称 `A是B的超类` 。继承可以使得子类具有父类别的各种属性和方法，而不需要再次编写相同的代码 ...[更多](https://zh.wikipedia.org/wiki/%E7%BB%A7%E6%89%BF_(%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6))
 
@@ -22,9 +22,9 @@
 
 通过这些概念和图示我们不难知道继承可以在我们的开发中带来的便捷，那么在 `JavaScript` 中如何去实现继承呢？
 
-## 继承实现方式
+### 继承实现方式
 
-### 原型链继承
+#### 原型链继承
 
 >利用原型让一个引用类型继承另一个引用类型的属性和方法
 
@@ -62,7 +62,7 @@ SubType.prototype.constructor == SuperType // true
 
 - `SubType.prototype` 相当于 `SuperType` 的实例存在的，所以 `SubType.prototype.constructor` 就指向 `SuperType`
 
-### 原型继承的特点
+#### 原型继承的特点
 
 优点：
 
@@ -76,7 +76,7 @@ SubType.prototype.constructor == SuperType // true
 - 来自原型对象的所有属性被所有实例共享(引用类型的值修改会反映在所有实例上面)
 - 创建子类实例时，无法向父类构造函数传参
 
-## 借用构造函数
+### 借用构造函数
 
 > 在子类构造函数的内部调用超类型构造函数，通过 `apply` 和 `call` 实现
 
@@ -101,7 +101,7 @@ instance.colors // ['red', 'orange', 'black', 'green']
 instance1.colors // ['red', 'orange', 'black']
 ```
 
-### 借用构造函数的特点
+#### 借用构造函数的特点
 
 优点：
 
@@ -115,7 +115,7 @@ instance1.colors // ['red', 'orange', 'black']
 - 只能继承父类的实例属性和方法，不能继承原型属性/方法
 - 无法实现函数复用
 
-## 组合继承
+### 组合继承
 
 > 伪经典继承（最常用的继承模式）：将原型链和借用构造函数的技术组合到一起。使用原型链实现对原型属性和方法的继承，通过构造函数来实现对实例属性的继承
 
@@ -146,7 +146,7 @@ instance.colors // ['red', 'orange', 'black', 'green']
 instance1.colors // ['red', 'orange', 'black']
 ```
 
-### 组合继承的特点
+#### 组合继承的特点
 
 优点：
 
@@ -159,7 +159,7 @@ instance1.colors // ['red', 'orange', 'black']
 
 - 调用了两次父类构造函数，生成了两份实例（子类实例将子类原型上的那份屏蔽了）
 
-## 原型式继承
+### 原型式继承
 
 > 借助原型链可以基于已有的对象创建新对象，同时还不必因此创建自定义类型
 
@@ -190,7 +190,7 @@ instance1.colors // ['red', 'green', 'black']
 
 更多 Object.create()语法请点击 [这里](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
 
-### 原型式继承特点
+#### 原型式继承特点
 
 优点：
 
@@ -199,7 +199,7 @@ instance1.colors // ['red', 'green', 'black']
 
 缺点： 和原型链继承基本一致，效率较低，内存占用高（因为要拷贝父类的属性）
 
-## 寄生式继承
+### 寄生式继承
 
 > 创建一个仅用于封装继承过程的函数，在函数内部对这个对象进行改变，最后返回这个对象
 
@@ -232,7 +232,7 @@ instance.friends // ["oo", "aa", "cc", "yy"]
 instance1.friends // ["oo", "aa", "cc", "yy"]
 ```
 
-### 寄生式继承的特点
+#### 寄生式继承的特点
 
 优点： 
 
@@ -244,7 +244,7 @@ instance1.friends // ["oo", "aa", "cc", "yy"]
 - 不能实现复用（与构造函数相似）
 - 实例之间会互相影响
 
-## 寄生组合继承
+### 寄生组合继承
 
 > 借用构造函数来继承属性，通过原型链的混成形式来继承方法。通过寄生方式，砍掉父类的实例属性，这样，在调用两次父类的构造的时候，就不会初始化两次实例方法/属性，避免的组合继承的缺点
 
@@ -279,11 +279,11 @@ instance instanceof SuperType // true
 SubType.prototype.constructor == SubType // true
 ```
 
-### 寄生组合继承的特点
+#### 寄生组合继承的特点
 
 堪称完美，只是实现稍微复杂一点
 
-## 后记
+### 后记
 
 作为 `JavaScript` 最重要的概念之一，对于继承实现的方式方法以及它们之间的差异我们还是很有必要了解的。
 
@@ -295,7 +295,7 @@ SubType.prototype.constructor == SubType // true
 
 最后，推荐一波前端学习历程，不定期分享一些前端问题和有意思的东西欢迎 star 关注 [传送门](https://github.com/ltadpoles/web-document)
 
-## 参考文档
+### 参考文档
 
 JavaScript 高级程序设计
 
