@@ -125,7 +125,7 @@ ReactDom.render(<App />, document.getElementById('app'))
 注意点：
 
 - `Switch` 匹配的规则是同一个组中渲染第一个匹配组件，也就是说如果是包裹在两个不同的 `Switch` 组件中的，会分别渲染匹配到的第一个组件
-- `Switch` 组件中不能嵌套内置标签元素，比如 `div` `span`，但是可以嵌套组件，甚至可以添加 `path` 属性进行匹配， 实际上 `Route` 本身就是组件，但是建议还是只嵌套 `Route` 组件
+- `Switch` 组件中不能嵌套内置标签元素，比如 `div` `span`，但是可以嵌套组件，甚至可以添加 `path` 属性进行匹配， 实际上 `Route` 本身就是组件，但是建议还是只嵌套 `Route` 或者 `Redirect` 组件
 
 #### Link 与 NavLink
 
@@ -151,3 +151,98 @@ ReactDom.render(<App />, document.getElementById('app'))
 
 - 给渲染元素添加属性可以使用 `activeClassName` 或者 `activeStyle` 属性进行添加，简单来说就是使用 `class` 类或者行内样式
 - `NavLink` 有一个 `exact` 属性，如果为 `true`，则仅在位置完全匹配时才应用 `active` 的类/样式
+
+#### Redirect 组件
+
+顾名思义，重定向组件，组件中的 `to` 属性是必须的
+
+属性：
+
+- `to`：`string` 类型或者一个对象（`pathname` 属性是重定向到的 `URL`）
+- `push`：`boolean` 类型，当 `true` 时，重定向会将新地址推入 `history` 中，而不是替换当前地址，就是通过 `history.push` 或者 `history.replace` 实现
+- `from`：重定向 `from` 的路径名，简单说就是将要进入的 `url`
+- `exact`：完全匹配 `from`；相当于 `Route.exact`
+
+这个组件在一些场景中有很好的效果，比如我们登录场景，前面我们介绍过的 `Route` 组件渲染属性使用 `render` 或者 `children` 的时候，就完全可以根据判断条件执行不同的路由跳转
+
+```html
+<!-- 官网示例代码 -->
+<Route exact path='/' render={()=>(
+    loggedIn ? (
+    <Redirect to="/dashboard"/>
+  ) : (
+    <PublicHomePage/>
+  )
+)} />
+
+<!--或者-->
+<Route path='/about' children={({match})=>(
+    match ? (
+        <About />
+    ) : (
+        <User />
+    )
+)} />
+```
+
+前面介绍 `Switch` 组件时，有过它的身影，实际上它可以和 `Switch` 组件很好的配合，比如：
+
+```html
+<Switch>
+    <Redirect from='/user' to='/about' />
+    <Route path='/user' render={()=><div>User页面</div>} />
+</Switch>
+```
+需要注意的地方：
+
+- `from` 属性只能用于在 `Redirect` 内部渲染 `Switch` 时匹配地址
+- `Redirect` 组件中 `from` 匹配的 `Route` 要在前面定义
+
+```html
+<!--错误姿势，这样是没有效果的-->
+<Route path='/user' render={()=><div>User页面</div>} />
+<Redirect from='/user' to='/about' />
+```
+
+#### withRouter
+
+默认情况下，经过路由匹配的组件才拥有路由参数，我们就可以在其中使用 编程式导航，比如：
+
+```js
+this.props.history.push('/about')
+```
+
+然而，不是所有的组件都是与路由相连的，比如直接在浏览器输入地址打开的。这个时候我们访问组件 `props` 的时候，它是一个空对象，就没办法访问 `props` 中的 `history`、`match`、`location` 等对象
+
+所以这个时候 `withRouter` 闪亮登场
+
+`withRouter` 的用法很简单：
+
+```html
+import React, { Component } from 'react';
+<!--引入-->
+import { Route, Link, Switch, withRouter } from 'react-router-dom' 
+
+class App extends Component {
+    render() { 
+    <!-- 没有使用 withRouter 的时候，是一个空对象-->
+        console.log(this.props)
+        return ( 
+            <div>
+                <Link to='/'>Index</Link>
+                <Link to='/about'>About</Link>
+                <Switch>
+                    <Route path='/' exact render={()=> <div>Index页面</div>} />
+                    <Route path='/about' render={()=> <div>About页面</div>} />
+                </Switch>
+            </div>
+         );
+    }
+}
+ 
+<!--执行-->
+export default withRouter(App)
+```
+当然，还有很多种使用方式，比如通过 `withRouter` 监听 `loaction` 对象改变文档标题或者配合 `redux` 使用等等
+
+详见 [示例demo](https://github.com/ltadpoles/example/tree/master/React/router/router-1)
