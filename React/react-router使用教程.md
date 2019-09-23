@@ -214,7 +214,7 @@ this.props.history.push('/about')
 
 然而，不是所有的组件都是与路由相连的，比如直接在浏览器输入地址打开的。这个时候我们访问组件 `props` 的时候，它是一个空对象，就没办法访问 `props` 中的 `history`、`match`、`location` 等对象
 
-所以这个时候 `withRouter` 闪亮登场
+所以 这个时候 `withRouter` 闪亮登场
 
 `withRouter` 的用法很简单：
 
@@ -246,3 +246,85 @@ export default withRouter(App)
 当然，还有很多种使用方式，比如通过 `withRouter` 监听 `loaction` 对象改变文档标题或者配合 `redux` 使用等等
 
 详见 [示例demo](https://github.com/ltadpoles/example/tree/master/React/router/router-1)
+
+### 进一步
+
+了解了 `react-router` 的这些基本知识点，貌似我们已经可以写出来一个用路由搭建的项目了。但是，请暂时停下脚步想一下：在一个项目当中，如果我们遇到嵌套的路由呢、动态参数的路由呢？当然，只用前面了解到的东西，完全可以写出来，但那是在是太 `low` 了
+
+#### match 对象
+
+在解答前面的两个问题之前，我们需要先了解一个 `match` 对象
+
+相信在前面的 `withRouter` 模块，小伙伴们已经知道了 `match` 对象的存在，在动态路由和路由嵌套时，我们会经常和它打交道
+
+> 一个 `match` 对象中包涵了有关如何匹配 `URL` 的信息
+
+它包含以下属性：
+
+- `params`：与动态路径的 `URL` 对应解析，它里面包含了动态路由里面的信息
+- `path`：用于匹配的路径模式
+- `url`：用于匹配部分的 `URL`
+- `isExact` - 如果为 `true` 匹配整个 `URL` （没有结尾字符）
+
+注意点：
+
+- 如果 `Route` 没有 `path`，那么将会一直与他最近的父级匹配。这也同样适用于 `withRouter`
+- `match` 对象中的 `url` 和 `path` ，简单来说 `path` 是匹配的规则， `url` 则是实际匹配到的路径
+
+#### 动态路由
+
+了解了 match 对象，动态路由的定义其实很简单
+
+```html
+<Link to='/video/1'>视频教程1</Link>
+<Link to='/video/2'>视频教程2</Link>
+
+<Route path='/video/:id' component={Video} />
+```
+
+`Route` 组件可以匹配到 `Link` 链接跳转的路径，然后再 `match` 对象的 `params` 属性中就可以拿到动态数据的具体信息
+
+#### 嵌套路由
+
+`React Router 4` 不再提倡中心化路由，取之的是路由存在于布局和 `UI` 之间，`Route` 本身就是一个组件
+
+实现路由嵌套最简单的方式：
+
+```html
+<!--父组件-->
+<Route path='/workplace' component={Workplace} />
+
+<!--子组件-->
+<Route path='/workplace/money' component={Money} />
+```
+当然，使用 `match` 来进行匹配会更加优雅
+
+```html
+<!--父组件-->
+<Route path='/video' component={Video} />
+
+<!--子组件-->
+<Route path={`${this.props.match.url}/react`} component={ReactVideo} />
+```
+
+注意点：
+
+- 使用嵌套路由父级不能使用 `exact`
+
+使用这样的方式来配置路由规则，我们就只需要考虑 `component` 的渲染时机就可以了。但是，同样的也会给我们带来一些问题，比如说路由规则不是很直观，尤其是对于写过 `vue` 的小伙伴来说，要是有一个像配置 `vue-router` 规则的东西就好了。这个时候，我们可以试着去了解一个这个东西了 [react-router-config](https://segmentfault.com/a/1190000015282620?utm_source=channel-hottest)
+
+详见 [示例demo](https://github.com/ltadpoles/example/tree/master/React/router/router-2)
+
+### 后记
+
+突如其来的结束语
+
+关于 `react-router` 的基本用法就是想上面介绍的那样，但是想要探究更多有意思或者更优雅的用法，还需要我们在具体的项目中去磨练，比如说路由的拆分、按需加载等等一系列东西
+
+如果你也对 `React` 中的其他内容感兴趣，想要了解更多前端片段，可以 [点击这里](https://github.com/ltadpoles/web-document) ，欢迎 `star` 关注
+
+### 参考
+
+[官方文档](https://reacttraining.com/react-router/web/guides/quick-start)
+
+[简明React Router v4教程](https://juejin.im/post/5a7e9ee7f265da4e7832949c)
