@@ -49,7 +49,7 @@
         },
         "edit-link": {
             "base": "https://github.com/ltadpoles/web-document/tree/master",
-            "label": "在Github上编辑此页"
+            "label": "编辑此页"
         },
         "3-ba": {
             "token": "b349918d9aba7d20b812f1071d631f6d"
