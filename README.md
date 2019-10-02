@@ -20,8 +20,6 @@
 
 [GitHub](https://github.com/ltadpoles)
 
-[思否-游荡de蝌蚪](https://segmentfault.com/u/youdangde_5c8b208a23f95)
-
 ### 版权
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
