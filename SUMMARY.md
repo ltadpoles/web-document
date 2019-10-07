@@ -10,7 +10,7 @@
     * [声明变量详解](JavaScript/JavaScript声明变量详解.md)
     * [数据类型](JavaScript/JavaScript中的数据类型.md)
     * [语句](JavaScript/JavaScript中的那些语句.md)
-    * [原型与原型连](JavaScript/JavaScript中的原型与原型链.md)
+    * [原型与原型链](JavaScript/JavaScript中的原型与原型链.md)
     * [继承](JavaScript/JavaScript中的继承.md)
     * [浅拷贝与深拷贝](JavaScript/JavaScript中的浅拷贝与深拷贝.md)
     * [闭包](JavaScript/JavaScript中的闭包.md)
@@ -19,7 +19,7 @@
     * [基础](React/react基础.md)
     * [生命周期](React/react生命周期.md)
     * [组件通信](React/react组件通信.md)
-    * [React Router教程](React/react-router使用教程.md)
+    * [React Router基础](React/react-router使用教程.md)
     * [RN环境搭建](React/RN环境搭建.md)
 
 * [Webpack](Webpack/README.md)
