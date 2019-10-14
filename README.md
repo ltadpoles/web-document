@@ -2,7 +2,7 @@
 
 ### 起源
 
-觉得很有必要说一下写这个文档的初衷
+觉得很有必要记录一下这个文档的起源
 
 其实很简单
 
@@ -14,9 +14,12 @@
 
 不定期更新中…
 
-### 项目地址
+### 目录
 
-[GitHub地址](https://github.com/ltadpoles/web-document)（欢迎来 `star`，提 `pr`）
+- [Javascript 相关](https://github.com/ltadpoles/web-document/tree/master/JavaScript)
+- [React 相关](https://github.com/ltadpoles/web-document/tree/master/React)
+- [Webpack 相关](https://github.com/ltadpoles/web-document/tree/master/Webpack)
+- [面试相关](https://github.com/ltadpoles/web-document/tree/master/Other/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3)
 
 ### 作者相关
 
