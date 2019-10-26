@@ -1,0 +1,211 @@
+> [项目预览地址](https://ltadpoles.github.io/)
+
+### 前言
+
+相信很多小伙伴都有可能碰到开发后台管理系统这样的需求，那么我们该如何快速的完成这个需求呢
+
+本文将以 `react` 为切入点，记录打造一个基础管理系统模板的过程，以此加深对 `react` 技术栈以及项目实战的理解，希望对大家开发一个这样的项目有所帮助
+
+如果文章中有出现纰漏、错误之处，还请看到的小伙伴多多指教，先行谢过
+
+以下↓
+
+### 项目简介
+
+[`react-admin`](https://ltadpoles.github.io/) 是由 [`create-react-app`](https://www.html.cn/create-react-app/docs/getting-started/) 脚手架快速构建，基于 [`React`](https://zh-hans.reactjs.org/) 生态系统搭建的后台管理系统模板。实现了登陆/注销、路由懒加载、`axios`封装、简单权限管理等功能，它可以帮助你快速生成管理系统模板，你只需要添加具体业务代码即可
+
+#### 技术栈
+
+此项目涉及的技术栈主要有 [`es6`](http://es6.ruanyifeng.com/)、[`react`](https://zh-hans.reactjs.org/)、[`react-router`](https://reacttraining.com/react-router/web/guides/quick-start)、[`redux`](https://redux.js.org/)、[`react-redux`](https://react-redux.js.org/introduction/quick-start)、[`Create React App`](https://www.html.cn/create-react-app/docs/getting-started/)、[`react-loadable`](https://github.com/jamiebuilds/react-loadable)、[`axios`](https://www.kancloud.cn/yunye/axios/234845)等，所以你可能需要提前了解这些知识，这样会对你了解这个项目有很大的帮助
+
+#### 基本功能
+
+- [x] 路由懒加载
+- [x] 面包屑导航
+- [x] 常用 UI 展示
+- [x] echarts 全屏展示
+- [x] 登陆/注销功能
+- [x] axios 封装
+- [x] 简单权限管理
+
+#### 项目结构
+
+```
+├── public                   # 不参与编译的资源文件
+├── src                      # 主程序目录
+│   ├── api                     # axios 封装
+│   ├── assets                  # 资源文件
+│   │   ├── font                    # 字体文件
+│   │   └── images                  # 图片资源
+│   ├── components              # 全局公共组件
+│   │   ├── CustomBreadcrumb        # 面包屑导航
+│   │   └── CustomMenu              # menu 菜单
+│   ├── contatiners             # 页面结构组件
+│   ├── routes                  # 路由目录
+│   ├── store                   # redux 配置
+│   ├── style                   # 样式目录
+│   ├── utils                   # 工具类
+│   ├── views                   # UI 页面
+│   ├── APP.js                  # App.js
+│   └── index.js                # index.js
+├── .prettierrc.js           # 代码规范
+├── config-overrides.js      # antd 样式按需加载
+```
+
+### 整体思路
+
+打造一个任何一个项目，除去前期需要考虑的受众群体(其实就是兼容…)之外，再加上技术选型，之后就到了页面架构层。在这个项目中，前期不在我们的考虑范围之内(已经确定了有木有)，所以就从页面架构开始
+
+一个后台管理项目，无论它是否具有权限校验功能，但是有一些公共的部分是应该有的。比如登陆页面、公共的头部、侧边栏导航、底部以及错误页面等。这些共有的部分以及权限`特有`的部分共同组成了这个系统
+
+划分出这样的模块之后，一个项目基本的页面架构也就完成了，因为这一部分关系到我们之后对于页面路由的定义，所以我认为是很重要的一部分
+
+### 路由
+
+> 基于 `react-router@5.1.1`
+
+路由功能可以说是一个 `React` 项目的关键，通过前面对于页面架构的划分，我们就可以很流畅的进行路由的注册
+
+#### 基本
+
+在 `react-admin` 这个项目中，所使用的是 `<HashRouter>`
+
+首先，我们需要区分公共页面和可能的特有页面
+
+```html
+<Router>
+    <Switch>
+        <!--精确匹配是不是在首页-->
+        <Route path='/' exact render={() => <Redirect to='/index' />} /> 
+        <!-- 错误页面 -->
+        <Route path='/500' component={View500} />
+        <Route path='/login' component={Login} />
+        <Route path='/404' component={View404} />
+        <!-- UI页面 -->
+        <Route path='/' component={DefaultLayout} />
+    </Switch>
+</Router>
+```
+
+接下来就可以去注册路由表，再将它循环遍历到我们的视口页面上。大家可能也发现了`循环遍历`这个词，操作数组就意味着我们可以对它进行一系列的筛选，从而实现 路由权限 的控制(这个我们后面再说)
+
+#### 懒加载
+
+作为一个 `SPA` 级应用，有很多优势（响应速度更快、良好的前后端分离等等），但是也存在很多缺陷，首次加载耗时就是我们不得不面对的问题
+
+其实从 `webpack4.0` 开始，它已经可以进行一些简单的按需加载组件，但是也有它的一些规则（比如文件大小），所以我们还是需要对页面的首次加载进行一些处理，而路由就是一个很好的切入点
+
+本项目使用的是 [`react-loadable`](https://github.com/jamiebuilds/react-loadable)，它可以用很简单的方式实现路由的懒加载，设置延迟时间、加载动画、服务端渲染等功能
+
+```js
+import Loadable from 'react-loadable';
+import Loading from './my-loading-component'; // 这里可以放置你的 loading
+
+const LoadableComponent = Loadable({
+  loader: () => import('./my-component'),
+  loading: Loading,
+});
+
+export default class App extends React.Component {
+  render() {
+    return <LoadableComponent/>;
+  }
+}
+```
+
+当然，你也可以使用 `React.lazy` 和 `Suspense` 技术（[传送门](https://zh-hans.reactjs.org/docs/code-splitting.html)），不过，它不支持服务端渲染
+
+### 登录
+
+登录的逻辑也很简单：
+
+我们的项目首页一般情况下是 `index` 页面，这个时候我们就需要先去判断一个用户加载进来的时候是不是在登录状态，如果是那么就正常显示，如果不是就应该跳转到登录页面
+
+本项目使用的是将用户的登录信息存储在 `localStorage`中，注销的时候清除 `localStorage`
+
+关于 `token` 可以直接存在本地，后台设定一个过期时间就可以了
+
+### axios 封装
+
+项目使用 `axios` 与后台进行交互，封装的部分有添加请求拦截器、响应拦截器、设置响应时间以及将 `token` 添加到请求头等功能
+
+```js
+import axios from 'axios'
+
+// 这里取决于登录的时候将 token 存储在哪里
+const token = localStorage.getItem('token')
+
+const instance = axios.create({
+    timeout: 5000
+})
+
+// 设置post请求头
+instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+
+// 添加请求拦截器
+instance.interceptors.request.use(
+    config => {
+        // 将 token 添加到请求头
+        token && (config.headers.Authorization = token)
+        return config
+    },
+    error => {
+        return Promise.reject(error)
+    }
+)
+
+// 添加响应拦截器
+instance.interceptors.response.use(
+    response => {
+        if (response.status === 200) {
+            return Promise.resolve(response)
+        } else {
+            return Promise.reject(response)
+        }
+    },
+    error => {
+        // 相应错误处理
+        // 比如： token 过期， 无权限访问， 路径不存在， 服务器问题等
+        switch (error.response.status) {
+            case 401:
+                break
+            case 403:
+                break
+            case 404:
+                break
+            case 500:
+                break
+            default:
+                console.log('其他错误信息')
+        }
+        return Promise.reject(error)
+    }
+)
+
+export default instance
+
+```
+
+这里并没有对 `baseUrl` 进行设置，主要是考虑到项目中可能存在不止一个 `url`，比如图片这些资源可能存在七牛云或者阿里云这样的服务器上面，而后台接口又是另外一个`url` 了。所以添加了一个 `config` 文件，导出各个 `url`
+
+```js
+// 考虑到网站可能有好几个域名，所以单独提出来
+
+export const API = 'http://rap2api.taobao.org/app/mock/234047'
+
+export const URLAPI = ''
+
+```
+
+调用接口的时候就可以直接这样
+
+```js
+import {API} from './api/config'
+import axios from './api'
+
+axios.get({
+    url: API + '/login'
+})
+```
+
+当然，如果你并没有这样的需求，你完全可以取消 `config` 这个文件，将 `baseUrl` 一并封装进去
