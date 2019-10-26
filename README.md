@@ -2,19 +2,24 @@
 
 ### 起源
 
-还是觉得很有必要说一下写这个文档的初衷
+觉得很有必要记录一下这个文档的起源
 
 其实很简单
 
-参加了一些面试，发现很多前端基础性的东西掌握程度并不是那么透彻，所以想把它们都记录下来，留给自己温习也分享给有需要的小伙伴。在这段历程中，很多基础知识得到了巩固，更让我感到充实和满足的是分享所带来的那份成就感…
+参加了一些面试，发现很多前端基础性的东西掌握程度并不是那么透彻，所以想把它们都记录下来，留给自己温习也分享给有需要的朋友。在这段历程中，很多基础知识得到了巩固，也学习了许多新东西，更让我感到充实和满足的是分享所带来的那份成就感…
 
-不知道能写多久，努力打造自己的学习体系，一直在路上…
+不知道能写多久…
+
+努力打造自己的学习体系，一直在路上…
 
 不定期更新中…
 
-### 项目地址
+### 目录
 
-[GitHub地址](https://github.com/ltadpoles/web-document)（欢迎来 `star`，提 `pr`）
+- [Javascript 相关](https://github.com/ltadpoles/web-document/tree/master/JavaScript)
+- [React 相关](https://github.com/ltadpoles/web-document/tree/master/React)
+- [Webpack 相关](https://github.com/ltadpoles/web-document/tree/master/Webpack)
+- [面试相关](https://github.com/ltadpoles/web-document/tree/master/Other/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3)
 
 ### 作者相关
 
