@@ -14,6 +14,10 @@
 
 [`react-admin`](https://ltadpoles.github.io/) 是由 [`create-react-app`](https://www.html.cn/create-react-app/docs/getting-started/) 脚手架快速构建，基于 [`React`](https://zh-hans.reactjs.org/) 生态系统搭建的后台管理系统模板。实现了登陆/注销、路由懒加载、`axios`封装、简单权限管理等功能，它可以帮助你快速生成管理系统模板，你只需要添加具体业务代码即可
 
+> 线上预览地址 [预览地址](https://ltadpoles.github.io/)
+
+> `GitHub` 代码 [代码地址](https://github.com/ltadpoles/react-admin)
+
 #### 技术栈
 
 此项目涉及的技术栈主要有 [`es6`](http://es6.ruanyifeng.com/)、[`react`](https://zh-hans.reactjs.org/)、[`react-router`](https://reacttraining.com/react-router/web/guides/quick-start)、[`redux`](https://redux.js.org/)、[`react-redux`](https://react-redux.js.org/introduction/quick-start)、[`Create React App`](https://www.html.cn/create-react-app/docs/getting-started/)、[`react-loadable`](https://github.com/jamiebuilds/react-loadable)、[`axios`](https://www.kancloud.cn/yunye/axios/234845)等，所以你可能需要提前了解这些知识，这样会对你了解这个项目有很大的帮助
@@ -22,10 +26,10 @@
 
 - [x] 路由懒加载
 - [x] 面包屑导航
-- [x] 常用 UI 展示
-- [x] echarts 全屏展示
+- [x] 常用 `UI` 展示
+- [x] `echarts` 全屏展示
 - [x] 登陆/注销功能
-- [x] axios 封装
+- [x] `axios` 封装
 - [x] 简单权限管理
 
 #### 项目结构
@@ -91,9 +95,9 @@
 
 #### 懒加载
 
-作为一个 `SPA` 级应用，有很多优势（响应速度更快、良好的前后端分离等等），但是也存在很多缺陷，首次加载耗时就是我们不得不面对的问题
+作为一个 `SPA` 级应用，有很多优势（响应速度更快、良好的前后端分离等等），但是也存在很多缺陷，首次加载耗时过长就是我们不得不面对的问题
 
-其实从 `webpack4.0` 开始，它已经可以进行一些简单的按需加载组件，但是也有它的一些规则（比如文件大小），所以我们还是需要对页面的首次加载进行一些处理，而路由就是一个很好的切入点
+其实从 `webpack4.0` 开始，它本身已经实现了按需加载组件，但是也有它自己的一些规则（比如文件大小），所以我们还是需要对页面的首次加载进行一些处理，而路由就是一个很好的切入点
 
 本项目使用的是 [`react-loadable`](https://github.com/jamiebuilds/react-loadable)，它可以用很简单的方式实现路由的懒加载，设置延迟时间、加载动画、服务端渲染等功能
 
@@ -219,6 +223,8 @@ axios.get({
 
 当然，如果你并没有这样的需求，你完全可以取消 `config` 这个文件，将 `baseUrl` 一并封装进去
 
+同样的，也并没有对常用的请求比如 `get` 、`post` 等进行封装，因为使用这些方式的时候可能会对数据做一些特定的操作，比如序列化等等，所以个人感觉意义并不是很大
+
 #### 跨域
 
 这里顺便记录一下跨域问题的解决方式：
@@ -292,7 +298,7 @@ getMenu = menu => {
 
 这里也简单说一下后台控制权限的案例，对于前端来说要简单很多
 
-- 用户登录，拿到需要展示的 `menu` 数组，直接渲染到页面
+- 用户登录，拿到需要展示的 `menu` 数组，直接渲染到页面（对菜单的筛选由后台完成）
 - 通过权限标识，判断用户有没有某个按钮的操作权限
 
 至于用户在地址栏直接输入地址去访问，这里有两种情况：
@@ -301,3 +307,135 @@ getMenu = menu => {
 - 我就是访问了一个没有请求的页面（这个页面还不给没权限的人看），那我们就采用过滤权限数组的方式对其操作进行阻止
 
 当然，这里的第二种情况很少见…
+
+### 其它
+
+项目中还集成了平时可能会遇到的一些功能需求
+
+#### 动画
+
+动画使用的是 [`Animate.css`](https://github.com/daneden/animate.css) 动画库，使用方式
+
+```js
+// 下载
+yarn add animate.css
+
+// link标签引入
+<link rel="stylesheet" href="animate.min.css">
+
+// 或者 import 引入
+import 'animate.css'
+```
+然后在需要的盒子上面添加相应的类名即可，可以设置入场、离场动画，也可以设置动画时间、延时等
+
+#### 富文本
+
+富文本编辑器使用的是 `Antd` 官方推荐的 [`braft-editor`](https://github.com/margox/braft-editor)
+
+> 一个基于`draft-js`的`Web`富文本编辑器，适用于`React`框架，兼容主流现代浏览器
+
+使用方式：
+
+```js
+// 引入
+import BraftEditor from 'braft-editor'
+
+// 可以使用 BraftEditor.createEditorState 方法来将 raw 或者 html 格式的数据转换成 editorState 数据
+editorState: BraftEditor.createEditorState('你好,<b>可爱的人! 很幸运在这里与你相遇!</b>')
+```
+更多具体的组件属性及实例方法，大家可以参考其文档 [传送门](https://www.yuque.com/braft-editor/be/gz44tn)
+
+#### echarts
+
+`echarts` 相信大家不会陌生，百度的文档也很清晰，这里单独提出来主要记录开发过程中遇到的一个问题
+
+在页面窗口变化的情况下我们可以使用 
+
+```js
+window.addEventListener('resize', function() {
+    myChart.resize()
+})
+```
+这种方式保证 `echarts` 的正常自适应
+
+可是当我们在点击菜单收缩展开按钮的时候并不会触发 `window.resize` 方法，其实页面盒子的宽度已经发生了变化，只是 `echarts` 的 `resize` 事件已经触发结束了，这个时候我们只需要在 `componentDidUpdate` 这个生命周期中注册一个定时器延时触发 `resize` 事件就解决了，只是别忘了在 `componentWillUnmount` 生命周期中清除掉这个定时器
+
+#### 加载进度条
+
+加载进度条使用的是 [`nprogress`](https://github.com/rstacruz/nprogress) ，使用方式也很简单
+
+```js
+// 下载
+yarn add nprogress
+
+// 引入
+import NProgress from 'nprogress'
+
+// 开始加载
+NProgress.start();
+
+// 加载结束
+NProgress.done();
+
+// 移除进度条
+NProgress.remove();
+```
+
+#### 全屏插件
+
+全屏功能使用的是 [`screenfull`](https://github.com/sindresorhus/screenfull.js/) 插件
+
+使用方式
+
+```js
+// 下载
+yarn add screenfull
+
+if (screenfull.isEnabled) {
+	screenfull.request(); // 全屏
+}
+
+.exit() // 退出
+.toggle() // 可切换
+```
+
+也可以给它 注册 `change` 事件
+
+```js
+if (screenfull.isEnabled) {
+	screenfull.on('change', () => {
+		console.log('Am I fullscreen?', screenfull.isFullscreen ? 'Yes' : 'No');
+	});
+}
+```
+
+但是别忘了移除掉这个事件
+
+```js
+screenfull.off('change', callback);
+```
+
+#### 代码格式统一
+
+`Create React App` 提供了一组最常见的错误规则，在代码运行的时候会有错误信息提示，所以 `Eslint` 规则在这里并不是必须的，如果你也想在代码书写的时候就提示错误可以进行下面这个步骤：
+
+> 下载 `eslint`
+```
+yarn add eslint
+```
+
+> 添加一个 `.eslintrc.js` 文件或者在 `package.json` 文件中的 `eslintConfig` 对象中直接添加你需要使用的规则
+
+更多规则可以[参考这里](https://note.youdao.com/)
+
+项目中并没有使用 `eslint`，只是添加了 `pretter` 为项目统一了编码风格
+
+至于如何在项目中集成 `pretter` ，具体的使用方式可以参考 [官方文档](https://www.html.cn/create-react-app/docs/setting-up-your-editor/)，这里就不在叙述了
+
+### 最后
+
+这个项目都是本人闲暇时间开发，主要是为了熟悉 `react` 开发流程以及其周边生态的使用，项目还是比较简陋，后期会进行迭代开发，将其打造成一个更加实用的后台管理模板
+
+如果觉得不错或者对你有些许的帮助，欢迎 `star`，或者你有更好的实现方式、有趣的 `idea`，也欢迎留言交流
+
+最后，推荐一下本人的前端学习历程文档，里面分享了许多前端知识的小片段 [点击这里](https://github.com/ltadpoles/web-document) 进行查看， 欢迎 `star` 关注
