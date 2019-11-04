@@ -432,6 +432,49 @@ yarn add eslint
 
 至于如何在项目中集成 `pretter` ，具体的使用方式可以参考 [官方文档](https://www.html.cn/create-react-app/docs/setting-up-your-editor/)，这里就不在叙述了
 
+#### webpack拓展
+
+相信大家在开发这样的项目的时候，肯定或多或少会有一些定制化的东西需要修改 `webpck` 的配置
+
+当我们使用 `create react app` 创建项目的时候，`webpack` 的配置默认是不暴露出来的，如果我们想修改它的配置，可以使用 `yarn eject` 或者 `npm run eject` 命令将其暴露出来再去修改
+
+但是，如果我们并不想暴露 `webpack` 的配置，还想去配置它该怎么办呢
+
+> `antd` 的样式按需加载就是通过这种方式实现的
+
+> `react-app-rewired` 是 `react` 社区开源的一个修改 `CRA` 配置的工具，例如扩展 `Create React` `App` 的 `Webpack` 配置，而 `customize-cra` 提供了一组用于自定义利用 `react-app-rewired` 核心功能的 `Create React App` 配置, 可以通过 `config-overrides.js` 文件来对 `webpack` 配置进行扩展
+
+简单点： 使用 `react-app-rewired` 和 `customize-cra` 可以实现我们的需求
+
+使用方式：
+
+- 首先肯定是先下载这两个包了
+- 然后在我们的项目根目录创建一个 `config-overrides.js` 文件
+ ```js
+ // 文件里面这么写，比如说我们设置一个绝对路径
+ 
+const { override, addWebpackAlias } = require('customize-cra')
+const path = require('path')
+
+ module.exports = override(    
+    addWebpackAlias({        
+        ['@']: path.resolve(__dirname, 'src')   
+    })
+)
+```
+- 最后修改 `package.json` 文件中的 `scripts` 
+```js
+"scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+}
+```
+结束，这样我们就可以在项目中愉快地使用这个 `@` 了
+
+当然，`customize-cra` 这个包为我们还提供了很多封装好的 `API`，详情请 [参见这里](https://github.com/arackaf/customize-cra/blob/master/api.md)
+
 ### 最后
 
 这个项目都是本人闲暇时间开发，主要是为了熟悉 `react` 开发流程以及其周边生态的使用，项目还是比较简陋，后期会进行迭代开发，将其打造成一个更加实用的后台管理模板
