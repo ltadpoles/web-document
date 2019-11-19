@@ -207,21 +207,6 @@ box-sizing: content-box|border-box|inherit:
 
 <h5 id='c3'>3. 如何让一个不定宽高的盒子水平垂直居中</h5>
 
-> 定位的方式
-
-```css 
-.father {
-    position: relative;
-}
-.son {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-}
-```
 > `css3`属性
 
 ```css
