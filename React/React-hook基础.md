@@ -201,8 +201,8 @@ const value = useContext(MyContext)
 - 当前的 `context` 值由上层组件中距离当前组件最近的 `<MyContext.Provider>` 的 `value prop` 决定
 - 调用了 `useContext` 的组件总会在 `context` 值变化时重新渲染
 
-```js
-// 官方文档的案例，省去中间组件
+```
+ // 官方文档的案例，省去中间组件
 const themes = {
   light: {
     foreground: "#000000",
@@ -225,18 +225,141 @@ function ThemedButton() {
     </button>
   )
 }
+
+```
+
+### 其他 Hook
+
+#### useReducer
+
+`useState` 的替代方案，如果熟悉 `Redux` ，那么理解 `Reducer` 就很容易了
+
+- 接收一个形如 `(state, action) => newState` 的 `reducer`，并返回当前的 `state` 以及与其配套的 `dispatch` 方法
+
+```
+const initialState = {count: 0};
+
+// action 用来表示触发的行为
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return {count: state.count + 1};
+    case 'decrement':
+      return {count: state.count - 1};
+    default:
+      throw new Error();
+  }
+}
+
+function Counter() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+    <>
+      Count: {state.count}
+      <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+      <button onClick={() => dispatch({type: 'increment'})}>+</button>
+    </>
+  );
+}
+```
+- `reducer` 本质是一个纯函数，每次只返回一个值，那个值可以是数字，字符串，对象，数组或者对象，但是它总是一个值
+- `React` 会确保 `dispatch` 函数的标识是稳定的，并且不会在组件重新渲染时改变
+- `useReducer` 还能给那些会触发深更新的组件做性能优化，因为可以向子组件传递 `dispatch` 而不是回调函数 
+- `reducer` 更适合去处理比较复杂的 `state`，来维护组件的状态
+
+上面示例是一种基础初始化 `state` 的方式，我们也可以选择 `惰性初始化` 的方式
+
+```
+// init 是一个函数，返回值就是 state
+const [state, dispatch] = useReducer(reducer, initialArg, init)
+```
+
+如果使用这种方式初始化，`state` 的值就是 `init(initialArg)`
+
+#### useRef
+
+```
+const refContainer = useRef(initialValue)
+```
+
+- `useRef` 返回一个可变的 `ref` 对象，其 `.current` 属性被初始化为传入的参数（`initialValue`）。
+- 返回的 `ref` 对象在组件的整个生命周期内保持不变，可以很方便地保存任何可变值
+- 变更 `.current` 属性不会引发组件重新渲染
+- `useRef()` 创建的是一个普通的 `Javascript` 对象，并且每次渲染返回的都是同一个对象
+
+##### 注意点
+
+在理解 `useRef` 之前，我们一定要清楚的是对于函数组件而言，每一次状态的改变都是会重新触发 `render`。也就是说，我们在组件状态变化的时候拿到的值已经是一个全新的数据，只是 `react` 帮我们记住了之前的数据
+
+利用 `ref` 对象的这个特性，我们可以实现：
+
+- 比如之前说过的 只在更新时运行 `effect`
+- 获取上一轮的 `props` 或 `state`
+- 访问子组件变得很容易
+
+#### useCallback
+
+```
+const memoizedCallback = useCallback(
+  () => {
+    doSomething(a, b);
+  },
+  [a, b],
+)
+```
+函数组件的每一次调用都会执行内部的所有逻辑，带来较大的性能损耗，所以 `useCallback` 出现了，它的作用就是解决性能问题。需要使用到缓存函数的地方，都是 `useCallback` 的应用场景
+
+最常见的场景就是父组件传递给子组件的函数，`props` 中的某个依赖项不发生变化的情况下，使用 `useCallback` 使子组件不必执行更新
+
+将内联函数和依赖项数组作为参数传入 `useCallback`，该回调函数仅在某个依赖项改变时才会更新，从而实现性能优化
+
+- 会在组件第一次渲染和依赖项更新的时候执行
+- 返回一个缓存的函数
+- 不要在这个函数内部执行与渲染无关的操作，诸如副作用这类的操作
+- 如果没有提供依赖项数组，`useCallback` 在每次渲染是都会执行；如果是一个空数组，那么就只会在首次渲染的时候计算一次
+
+#### useMemo
+
+```
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b])
+```
+
+与 `useCallback` 一样，作为性能优化的方式存在。与 `useCallback` 不同的是：**`useMemo` 返回的是一个缓存的值**
+
+- 会在组件第一次渲染和依赖项更新的时候去重新计算缓存的值
+- 返回一个缓存的值
+- 不要在这个函数内部执行与渲染无关的操作，诸如副作用这类的操作
+- 如果没有提供依赖项数组，`useMemo` 在每次渲染时都会计算新的值，如果是一个空数组，那么就只会在首次渲染的时候计算一次
+
+### 自定义 Hook
+
+> 通过自定义 Hook，可以将组件逻辑提取到可重用的函数中
+
+在 `hook` 之前，我们一般会使用 `render props` 和 高阶函数来共享组件之间的状态逻辑
+
+现在，我们可以使用自定义 `Hook` 的方式来实现同样的功能，而且可以使逻辑条理更加清晰
+
+- 自定义 `Hook` 是一个函数，其名称以 `use` 开头，函数内部可以调用其他的 `Hook`
+- 不需要具有特殊的标识。我们可以自由的决定它的参数是什么，以及它应该返回什么
+- 自定义 `Hook` 是一种重用状态逻辑的机制，并不会共享数据
+
+```js
+function useFriendStatus(friendID) {
+  const [isOnline, setIsOnline] = useState(null);
+
+  // ...
+
+  return isOnline;
+}
 ```
 
 ### 后记
 
-突如其来的结尾
-
-以上主要介绍了 `Hook` 的一些重要特性以及部分简单示例，文章大部分内容以及示例都来自官网，然后就是自己整理总结的一点东西，知识点的整合。
-
-当然，关于 `Hook` 的内容还有很多，下期将主要介绍一些额外的 `Hook`，比如 `useReducer`、`useCallback`等
+以上主要介绍了 `Hook` 的一些重要特性以及经常会使用到的 `Hook`，文章大部分内容以及示例都来自官网，然后就是自己整理总结的一点东西，知识点的整合
 
 本文所有的示例，都可以在 [这里](https://github.com/ltadpoles/example/tree/master/React/hooks) 找到
 
-感兴趣的小伙伴可以扫描下方二维码关注我的微信公众号，查看更多前端小片段，欢迎关注
+感兴趣的小伙伴可以 [点击这里](https://github.com/ltadpoles/web-document) ，也可以扫描下方二维码关注我的微信公众号，查看更多前端小片段，欢迎 `star` 关注
+
 
 ![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/Other/images/weChat.jpg)
