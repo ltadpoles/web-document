@@ -287,7 +287,7 @@ const refContainer = useRef(initialValue)
 - 变更 `.current` 属性不会引发组件重新渲染
 - `useRef()` 创建的是一个普通的 `Javascript` 对象，并且每次渲染返回的都是同一个对象
 
-##### 注意点
+注意点：
 
 在理解 `useRef` 之前，我们一定要清楚的是对于函数组件而言，每一次状态的改变都是会重新触发 `render`。也就是说，我们在组件状态变化的时候拿到的值已经是一个全新的数据，只是 `react` 帮我们记住了之前的数据
 
@@ -358,8 +358,3 @@ function useFriendStatus(friendID) {
 以上主要介绍了 `Hook` 的一些重要特性以及经常会使用到的 `Hook`，文章大部分内容以及示例都来自官网，然后就是自己整理总结的一点东西，知识点的整合
 
 本文所有的示例，都可以在 [这里](https://github.com/ltadpoles/example/tree/master/React/hooks) 找到
-
-感兴趣的小伙伴可以 [点击这里](https://github.com/ltadpoles/web-document) ，也可以扫描下方二维码关注我的微信公众号，查看更多前端小片段，欢迎 `star` 关注
-
-
-![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/Other/images/weChat.jpg)
