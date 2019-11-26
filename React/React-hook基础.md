@@ -58,3 +58,185 @@ function Example() {
 了解 `Hook` 的这些特性，对于我们熟悉并使用 `Hook` 会有很大的帮助
 
 推荐阅读 [为什么 顺序调用对 React Hook 很重要](https://overreacted.io/zh-hans/why-do-hooks-rely-on-call-order/)
+
+### 基础 Hook
+
+#### useState
+
+```js
+const [state, setState] = useState(initialState)
+```
+
+特性： 
+
+- `useState` 是一个函数，返回值是一个数组(当前 `state` 以及更新 `state` 的函数), 唯一的参数就是初始 `state`
+- 初始渲染期间，返回的状态 (`state`) 与传入的第一个参数值相同
+- `setState` 函数用于更新 `state`。它接收一个新的 `state` 值并将组件的一次重新渲染加入队列
+- `initialState` 只会在初识渲染中起作用，后续会被忽略，如果传入一个函数就只会在初始渲染时被调用,如果为空，变量的值就是 `undefined`
+```js
+const [name, setName] = useState()
+
+name // undefined
+
+// 这个函数只会执行一次
+const [count, setCount] =useState(()=> {
+    const initialState = someExpensiveComputation(props);
+    return initialState;
+})
+```
+- 更新 `state` 变量总是替换它而不是合并它，`this.setstate()`会自动合并
+```js
+// 比如我们修改 state 中的某一个属性
+
+const [state, setState] = useState({
+    name: '游荡de蝌蚪',
+    age: 18,
+    hobby: 'play game'
+})
+
+// 使用 class
+this.setstate({
+    age: 17
+})
+
+// 使用 Hook
+setState(prevState => {
+    return {...prevState, age: 17}
+})
+```
+- 可以多次声明
+
+另外，在使用 `useState` 声明变量的时候，我们可以单独声明每一个变量，也可以直接使用一个对象或数组
+
+```js
+// 单独声明
+const [height, setHeight] = useState(10)
+const [width, setWidth] = useState(20)
+const [left, setLeft] = useState(10)
+const [top, setTop] = useState(10)
+
+// 也可以直接使用一个对象
+const [state, setState] = useState({
+    height: 10,
+    width: 20,
+    left: 10,
+    top: 10
+})
+```
+在实际的使用中，按照逻辑将 `state` 分组是最佳实践，避免了 `state` 对象过于臃肿也很好地将有关联的 `state` 进行了分组维护。比如，上面声明的几个变量我们可以这样进行分类
+
+```js
+const [box, setBox] = useState({
+    height: 10,
+    width: 20
+})
+
+const [position, setPosition] = useState({
+    left: 10,
+    top: 10
+})
+```
+
+#### useEffect
+
+```js
+useEffect(() => {
+    effect
+    return () => {
+        cleanup
+    };
+}, [input])
+```
+
+特性：
+- 默认情况下，它在第一次渲染之后和每次更新之后都会执行
+- 可以把 `useEffect Hook` 看做 `componentDidMount`，`componentDidUpdate` 和 `componentWillUnmount` 这三个函数的组合
+```js
+// 这个函数会在首次加载、state更新以及组件卸载的时候执行
+useEffect(() => {
+    console.log('方法执行了')
+    return () => {
+        console.log('解绑了')
+    }
+})
+```
+- 与 `componentDidMount` 或 `componentDidUpdate` 不同，使用 `useEffect` 调度的 `effect` 不会阻塞浏览器更新屏幕,也就是说它是异步的
+- 可以使用多个 `effect` 用来分离不同的逻辑（比如按照不同的用途），也就是说我们可以添加多个 `effect`
+- 可以配置 effect 的第二个参数来设置依赖项，当这个依赖项改变的时候再去执行这个函数，从而实现性能优化，如果我们只想让这个函数在首次加载和卸载的时候执行，那么可以传一个空数组
+```js
+// 只有在 count 变化的时候，函数才会执行
+useEffect(() => {
+    console.log('方法执行了')
+    return () => {
+        console.log('解绑了')
+    }
+}, [count]) 
+
+// 只在首次加载和卸载的时候执行
+useEffect(() => {
+    console.log('方法执行了')
+    return () => {
+        console.log('解绑了')
+    }
+}, []) 
+```
+- 必须在依赖中包含所有 `effect` 中用到的组件内的值
+- 清除函数会在组件卸载前执行。如果组件多次渲染（通常如此），则在执行下一个 effect 之前，上一个 effect 就已被清除
+- 如果只想在更新的时候运行 `effect` ，那么可以使用一个可变的 `ref` 手动存储一个 `boolean` 值来判断
+- `effect` 拿到的总是定义它的那次渲染中的 `props` 和 `state`
+
+推荐阅读 [useEffect 完整指南](https://overreacted.io/zh-hans/a-complete-guide-to-useeffect/) 以及 [如何在Effect中发送请求](https://www.robinwieruch.de/react-hooks-fetch-data)
+
+#### useContext
+
+```js
+const value = useContext(MyContext)
+```
+
+如果对于 `context` 并不是十分熟悉，可以先点击 [这里](https://zh-hans.reactjs.org/docs/context.html)，了解 `context` 的内容
+
+特性：
+- 接收一个 `context` 对象（`React.createContext` 的返回值）并返回该 `context` 的当前值
+- `useContext` 的参数必须是 `context` 对象本身
+- 当前的 `context` 值由上层组件中距离当前组件最近的 `<MyContext.Provider>` 的 `value prop` 决定
+- 调用了 `useContext` 的组件总会在 `context` 值变化时重新渲染
+
+```js
+// 官方文档的案例，省去中间组件
+const themes = {
+  light: {
+    foreground: "#000000",
+    background: "#eeeeee"
+  },
+  dark: {
+    foreground: "#ffffff",
+    background: "#222222"
+  }
+}
+
+const ThemeContext = React.createContext(themes.light);
+
+function ThemedButton() {
+  const theme = useContext(ThemeContext);
+
+  return (
+    <button style={{ background: theme.background, color: theme.foreground }}>
+      I am styled by theme context!
+    </button>
+  )
+}
+```
+
+### 后记
+
+突如其来的结尾
+
+以上主要介绍了 `Hook` 的一些重要特性以及部分简单示例，文章大部分内容以及示例都来自官网，然后就是自己整理总结的一点东西，知识点的整合。
+
+当然，关于 `Hook` 的内容还有很多，下期将主要介绍一些额外的 `Hook`，比如 `useReducer`、`useCallback`等
+
+本文所有的示例，都可以在 [这里](https://github.com/ltadpoles/example/tree/master/React/hooks) 找到
+
+感兴趣的小伙伴可以扫描下方二维码关注我的微信公众号，查看更多前端小片段，欢迎关注
+
+![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/Other/images/weChat.jpg)
