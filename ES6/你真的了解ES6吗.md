@@ -299,9 +299,25 @@ Array.from(arr, v=> v * 2) // [2, 4, 6]
 
 ---
 
-11. `for...in` 与 `for...of` 有什么区别
-12. 如何实现数组扁平化
-13. `super` 关键字的了解
+11. `super` 关键字的了解
+
+> `super`: 指向当前对象的原型对象
+
+```js
+const proto = {
+  foo: 'hello'
+};
+
+const obj = {
+  foo: 'world',
+  find() {
+    return super.foo;
+  }
+};
+
+Object.setPrototypeOf(obj, proto); // 指定原型对象
+obj.find() // "hello"
+```
 14. 对 `Object.assign()` 的了解
 15. 什么是尾调用及其优化
 
