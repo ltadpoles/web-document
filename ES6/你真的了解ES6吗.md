@@ -13,7 +13,7 @@ bar();
 
 报错 
 
-`y` 在没赋值之前使用，隐藏的 `暂时性死区`
+`y` 在没赋值之前使用，隐藏的 **暂时性死区**
 
 暂时性死区的本质：只要一进入当前作用域，所要使用的变量就已经存在了，但是不可获取，只有等到声明变量的那一行代码出现，才可以获取和使用该变量
 
@@ -273,7 +273,7 @@ Number.isNaN('abc') // false
 
 两者都可以将某些数据结构转换为数组
 
-`扩展运算符` 背后调用的是遍历器接口（`Symbol.iterator`），如果一个对象没有部署这个接口，就无法转换
+扩展运算符 背后调用的是遍历器接口（`Symbol.iterator`），如果一个对象没有部署这个接口，就无法转换
 > 它的主要使用场景包括函数调用、复制、合并数组以及结合解构赋值生成新的数组等
 
 `Array.from` 方法还支持类似数组的对象(任何有 `length` 属性的对象，都可以通过 `Array.from` 方法转为数组，而此时扩展运算符就无法转换)
@@ -301,7 +301,13 @@ Array.from(arr, v=> v * 2) // [2, 4, 6]
 
 11. `super` 关键字的了解
 
-> `super`: 指向当前对象的原型对象
+<details>
+
+<summary>答案</summary>
+
+`super` 有两种使用方式
+
+> 作为对象时：在普通方法中，指向父类的原型对象。表示原型对象时，只能用在对象的方法之中，用在其他地方都会报错
 
 ```js
 const proto = {
@@ -318,8 +324,72 @@ const obj = {
 Object.setPrototypeOf(obj, proto); // 指定原型对象
 obj.find() // "hello"
 ```
-14. 对 `Object.assign()` 的了解
-15. 什么是尾调用及其优化
 
+> 作为函数调用时：代表父类的构造函数，只能用在子类的构造函数之中，用在其他地方就会报错
 
+在 `class` 继承时，我们需要手动指定子类的 `constructor` ，这时候 `super` 就派上了用场
 
+```js
+class A {}
+
+class B extends A {
+  constructor() {
+    super();
+  }
+}
+```
+
+`ES6` 规定，子类的构造函数必须执行一次 `super` 函数
+
+`super` 代表了父类 `A` 的构造函数，返回的是子类 `B` 的实例，即 `super` 内部的 `this` 指的是 `B` 的实例，因此 `super()` 在这里相当于 `A.prototype.constructor.call(this)`
+
+</details>
+
+---
+
+12. 对 `Object.assign()` 的了解
+
+<details>
+
+<summary>答案</summary>
+
+> `Object.assign` 方法用于**对象的合并**，将源对象(`scource`)的所有**可枚举属性**，复制到目标对象(`target`)
+
+```js
+Object.assign(target, source1, source2)
+```
+
+特点：
+
+- 浅拷贝
+- 拷贝源对象的自身属性（不拷贝继承属性），也不拷贝不可枚举的属性
+- 只能进行值的复制，如果要复制的值是一个取值函数，那么将求值后再复制
+```js
+const source = {
+  get foo() { return 1 }
+};
+const target = {};
+
+Object.assign(target, source) // { foo: 1 }
+```
+- 如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性
+```js
+let obj = {a: 1, b: 2}
+let obj1 = {a: 10}
+
+Object.assign(obj, obj1) // {a: 10, b: 2}
+```
+- 如果只有一个参数，`Object.assign` 会直接返回该参数
+- 如果该参数不是对象，则会先转成对象，然后返回
+- `undefined` 和 `null` 无法转成对象，所以如果它们作为参数，就会报错.但是如果 `undefined` 和 `null` 不在首参数，就不会报错
+```js
+Object.assign(undefined) // 报错
+Object.assign(null) // 报错
+
+Object.assign({}, undefined) // {}
+Object.assign({}, null) // {}
+```
+
+更多用法，可参考阮大大的作品 [ECMAScript 6 入门](http://es6.ruanyifeng.com/#docs/object-methods#Object-assign)
+
+</details>
