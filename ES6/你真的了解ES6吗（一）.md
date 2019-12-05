@@ -1,3 +1,17 @@
+### 前言
+
+无论是我们日常开发还是面试跳坑， `ES6` 已经越来越成为我们绕不过的一关，那么你是否对它足够熟悉呢
+
+`ES6` 将会是专栏接下来的一个系列，从最基础的概念或者有趣的问题开始逐渐深入，探究 `ES6` 常用的特性以及实际开发中遇到的问题。有些问题可能会比较奇葩，工作中根本不会写出这样的代码，但正是这些问题可以看出你的了解程度
+
+本文的 `答案` 不一定是最优解释，如果你有更好的想法或更优雅的写法，欢迎留言讨论
+
+如果文章中有出现纰漏、错误之处，还请看到的小伙伴多多指教，先行谢过
+
+以下↓
+
+### 正文
+
 1. 下面代码会打印什么
 ```js
 function bar(x = y, y = 2) {
@@ -393,3 +407,18 @@ Object.assign({}, null) // {}
 更多用法，可参考阮大大的作品 [ECMAScript 6 入门](http://es6.ruanyifeng.com/#docs/object-methods#Object-assign)
 
 </details>
+
+### 参考
+
+[ECMAScript 6 入门 ](http://es6.ruanyifeng.com/)
+
+[MDN](https://developer.mozilla.org/zh-CN/)
+
+### 后记
+
+以上就是本期 `ES6` 相关的全部内容，其实都是一些很简单的问题，考验的就是你的了解程度以及细心程度，希望对小伙伴们更好的掌握这方面的知识点有些许帮助
+
+感兴趣的小伙伴可以 [点击这里](https://github.com/ltadpoles/web-document) ，也可以扫描下方二维码关注我的微信公众号，查看更多前端小片段，欢迎 `star` 关注
+
+
+![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/Other/images/weChat.jpg)
