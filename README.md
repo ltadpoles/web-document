@@ -12,10 +12,11 @@
 
 ### 目录
 
-- [Javascript 相关](https://github.com/ltadpoles/web-document/tree/master/JavaScript)
-- [React 相关](https://github.com/ltadpoles/web-document/tree/master/React)
-- [Webpack 相关](https://github.com/ltadpoles/web-document/tree/master/Webpack)
-- [面试相关](https://github.com/ltadpoles/web-document/tree/master/Other/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3)
+- [Javascript 系列](https://github.com/ltadpoles/web-document/tree/master/JavaScript)
+- [ES6 系列](https://github.com/ltadpoles/web-document/tree/master/ES6)
+- [React 系列](https://github.com/ltadpoles/web-document/tree/master/React)
+- [Webpack 系列](https://github.com/ltadpoles/web-document/tree/master/Webpack)
+- [面试系列](https://github.com/ltadpoles/web-document/tree/master/Other/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3)
 
 ### 作者相关
 
