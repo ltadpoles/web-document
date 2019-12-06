@@ -235,14 +235,14 @@ const cat = {
         console.log(this)
     }
 }
-cat.jump() 
+cat.jumps() 
 ```
 
 <details>
 
 <summary>答案</summary>
 
-报错 
+`this` 指向全局
 
 - 箭头函数没有 `this`
 - 对象不能构成单独的作用域
