@@ -58,7 +58,7 @@ SubType.prototype.constructor == SuperType // true
 
 用一张图表示：
 
-![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/images/%E5%8E%9F%E5%9E%8B%E7%BB%A7%E6%89%BF.jpg)
+![image](https://user-gold-cdn.xitu.io/2019/5/5/16a87671d24971de?w=662&h=450&f=jpeg&s=49781)
 
 - `SubType.prototype` 相当于 `SuperType` 的实例存在的，所以 `SubType.prototype.constructor` 就指向 `SuperType`
 
