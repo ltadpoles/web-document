@@ -44,6 +44,8 @@ promise
 
 </details>
 
+---
+
 **下面代码输出什么**
 ```js
 const first = () => (new Promise((resolve,reject)=>{
@@ -83,6 +85,8 @@ console.log(7);
 
 </details>
 
+---
+
 **下面的代码输出什么**
 ```js
 Promise.resolve(1)
@@ -101,13 +105,15 @@ Promise.resolve(1)
 
 </details>
 
+---
+
 **为什么建议在 promise 最后调用 catch 方法**
 
 <details>
 
 <summary>答案</summary>
 
-首先，来看一下下面的例子
+首先，来看一个例子
 
 ```js
 Promise.resolve().then(res => {
@@ -126,6 +132,8 @@ Promise.resolve().then(res => {
 只是我们需要注意的是 `catch` 方法也会返回一个新的 `Promise` 对象，可以继续使用 `Promise` 的方法，同样也意味着 `catch` 方法中也可能产生错误
 
 </details>
+
+---
 
 **实现 mergePromise 函数，把传进去的数组按顺序先后执行，并且把返回的数据先后放到数组 data 中**
 
@@ -200,3 +208,239 @@ const mergePromise = ajaxArray => {
 
 </details>
 
+---
+
+**下面的代码输出什么**
+
+```js
+function* foo(x) {
+  var y = 2 * (yield (x + 1));
+  var z = yield (y / 3);
+  return (x + y + z);
+}
+
+let b = foo(5);
+b.next()
+b.next(15)
+b.return('tadpole')
+b.next(12)
+```
+
+<details>
+
+<summary>答案</summary>
+
+```js
+// {value: 6, done: false}
+// {value: 10, done: false}
+// {value: 'tadpole', done: true}
+// {value: undefined, done: true}
+```
+
+- `next` 的参数是上一次表达式的值
+- `return` 方法，可以返回给定的值，并且终结遍历 `Generator` 函数
+
+</details>
+
+---
+
+**下面的代码输出什么**
+
+```js
+async function async1() {
+    console.log("async1 start");
+    await async2();
+    console.log("async1 end");
+    return 'async return';
+}
+
+async function async2() {
+    console.log("async2");
+}
+
+console.log("script start");
+
+setTimeout(function() {
+    console.log("setTimeout");
+}, 0);
+
+async1().then(function (message) { console.log(message) });
+
+new Promise(function(resolve) {
+    console.log("promise1");
+    resolve();
+}).then(function() {
+    console.log("promise2");
+});
+
+console.log("script end")
+```
+
+<details>
+
+<summary>答案</summary>
+
+```js
+// 执行同步代码，遇到 setTimeout 将其加入到宏任务队列
+script start
+// 执行 async1()
+async1 start
+// 遇到await 执行右侧表达式后让出线程，阻塞后面代码
+async2
+// 执行 Promise 中的同步代码 将 .then 推入到微任务队列
+promise1
+// 执行同步代码
+script end
+// 继续执行 await 后面的代码
+// 这里需要注意 async 函数返回的是 Promise 对象
+// 将 async1后面的 .then 加入到微任务队列
+async1 end
+// 执行前一轮添加到微任务队列的代码
+promise2
+// 后一轮微任务队列的代码
+async return
+// 开始下一轮evenloop，执行宏任务队列中的任务
+setTimeout
+```
+
+</details>
+
+---
+
+**使用不同的方式实现下面的需求**
+
+```js
+// 红灯三秒亮一次，绿灯两秒亮一次，黄灯一秒亮一次；如何让三个灯不断交替重复亮灯
+// 使用 Callback/Promise/Genertor/async 分别实现
+// 亮灯函数如下
+
+function red(){
+    console.log('red');
+}
+
+function green(){
+    console.log('green');
+}
+
+function yellow(){
+    console.log('yellow');
+}
+```
+
+<details>
+
+<summary>答案</summary>
+
+```js
+// callback
+function loop() {
+    setTimeout(() => {
+        red()
+        setTimeout(() => {
+            green()
+            setTimeout(() => {
+                yellow()
+                loop()
+            }, 1000)
+        }, 2000)
+    }, 3000)
+}
+loop()
+
+// Promise
+function fn(timer, cb) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            cb()
+            resolve()
+        }, timer);
+    })
+}
+
+let promise = Promise.resolve()
+
+function loop() {
+    promise.then(res => {
+        return fn(3000, red)
+    }).then(res => {
+        return fn(2000, green)
+    }).then(res => {
+        return fn(1000, yellow)
+    }).then(res => {
+        loop()
+    })
+}
+
+// Generator
+function fn(timer, cb) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            cb()
+            resolve()
+        }, timer)
+    })
+}
+
+function* gen() {
+    yield fn(3000, red)
+    yield fn(2000, green)
+    yield fn(1000, yellow)
+}
+
+function loop(iterator, gen) {
+    // 执行 Generator 函数
+    let result = iterator.next()
+
+    if (result.done) {
+        // 这里需要重新开始执行
+        loop(gen(), gen)
+    } else {
+        result.value.then(res => {
+            loop(iterator, gen)
+        })
+    }
+}
+
+loop(gen(), gen)
+
+// Async
+function fn(timer, cb) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            cb()
+            resolve()
+        }, timer)
+    })
+}
+
+async function loop() {
+    while (true) {
+        await fn(3000, red)
+        await fn(2000, green)
+        await fn(1000, yellow)
+    }
+}
+
+loop()
+```
+
+</details>
+
+### 后记
+
+以上就是本期 `ES6` 相关的所有内容，主要涉及的是 `Promise` `Generator` 以及 `Async` 函数相关的内容，通过几个常见的面试题以及需求考察对 `ES6` 相关知识的了解程度
+
+留一个笔记，也希望对看到的小伙伴能有些许帮助
+
+感兴趣的小伙伴可以 [点击这里](https://github.com/ltadpoles/web-document) ，也可以扫描下方二维码关注我的微信公众号，查看往期更多内容，欢迎 `star` 关注
+
+
+![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/Other/images/weChat.jpg)
+
+### 参考
+
+[ECMAScript 6 入门](https://es6.ruanyifeng.com/)
+
+[MDN](https://developer.mozilla.org/zh-CN/)
+
+[一道JavaScript面试题, 考察多种回调写法](https://www.jianshu.com/p/288b9f1807dd)
