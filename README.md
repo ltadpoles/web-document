@@ -2,13 +2,11 @@
 
 ### 起源
 
-觉得很有必要记录一下这个文档的起源
+参加了一些面试，发现对很多基础性的东西掌握并不是那么透彻，所以想把它们都记录下来，留给自己温习也分享给有需要的朋友
 
-其实很简单
+在这段历程中，很多基础知识得到了巩固，也学习了很多新东西，更让我感到充实和满足的是分享所带来的那份成就感
 
-参加了一些面试，发现很多前端基础性的东西掌握程度并不是那么透彻，所以想把它们都记录下来，留给自己温习也分享给有需要的朋友。在这段历程中，很多基础知识得到了巩固，也学习了许多新东西，更让我感到充实和满足的是分享所带来的那份成就感...
-
-努力打造自己的学习体系，一直在路上…
+努力打造自己的学习体系，一直在路上...
 
 ### 目录
 
@@ -22,11 +20,11 @@
 
 [GitHub](https://github.com/ltadpoles)
 
-[掘金社区](https://juejin.im/user/5c88d2e36fb9a049d61e6538)
-
 [segmentfault](https://segmentfault.com/u/youdangde_5c8b208a23f95)
 
-![image](https://raw.githubusercontent.com/ltadpoles/web-document/master/Other/images/weChat.jpg)
+[掘金社区](https://juejin.im/user/5c88d2e36fb9a049d61e6538)
+
+![公众号](https://raw.githubusercontent.com/ltadpoles/web-document/master/Other/images/weChat.jpg)
 
 ### 版权
 
