@@ -169,3 +169,68 @@ class Person {
     static name = 18
 }
 ```
+
+### 私有属性
+
+所谓私有，一般需要具备以下特征：
+- 只能在 `class` 内部访问，不能在外部使用
+- 不能被子类继承
+
+`ES6` 并没有提供 `class` 的私有属性及方法的实现方式，但是我们可以通过以下几种方式来约定
+
+- 命名上面添加标识：方法名前面添加 `_` ，但是这种方式不是很保险，因为在类的外部还是可以访问到这个方法
+```js
+class Person {
+    // 公有方法
+    fn(age) {
+        this.age = age
+    }
+    // 私有方法
+    _foo(age){
+        return this.age = age
+    }
+}
+```
+- 将私有的方法移出模块，利用 `this` 创造出一个相对封闭的空间
+```js
+class Person{
+    foo(age) {
+        bar.call(this, age)
+    }
+}
+function bar(age) {
+    return this.age = age
+}
+```
+
+[提案](https://github.com/tc39/proposal-private-methods) 提供了一种实现 `class` 私有属性的方式：使用 `#` 关键字
+
+```js
+class Person {
+    #age = 18
+}
+```
+如果我们在外部使用这个属性就会报错
+```js
+let p = new Person()
+Person.#age
+p.#age
+// Uncaught SyntaxError: 
+// Private field '#age' must be declared in an enclosing class
+```
+
+另外，私有属性也支持 `getter` 和 `setter` 的方式以及静态 `static` 的方式
+```js
+class Person {
+    #age = 18
+    get #x() {
+        return #age
+    }
+    set #x(value) {
+        this.#age = value
+    }
+    static #say() {
+        console.log(#age)
+    }
+}
+```
