@@ -1,4 +1,4 @@
-> [项目预览地址](https://react.ltadpole.top)
+> [项目预览地址](https://ltadpole.top)
 
 ### 前言
 
@@ -14,7 +14,7 @@
 
 [`react-admin`](https://ltadpoles.github.io/) 是由 [`create-react-app`](https://www.html.cn/create-react-app/docs/getting-started/) 脚手架快速构建，基于 [`React`](https://zh-hans.reactjs.org/) 生态系统搭建的后台管理系统模板。实现了登陆/注销、路由懒加载、`axios`封装、简单权限管理等功能，它可以帮助你快速生成管理系统模板，你只需要添加具体业务代码即可
 
-> 线上预览地址 [预览地址](https://react.ltadpole.top)
+> 线上预览地址 [预览地址](https://ltadpole.top)
 
 > `GitHub` 代码 [代码地址](https://github.com/ltadpoles/react-admin)
 
