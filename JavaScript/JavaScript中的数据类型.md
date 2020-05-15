@@ -1,6 +1,6 @@
 ### 前言
 
-> `ECMAScript` 迄今为止标准定义了 `7` 种数据类型：`6` 种原始类型-- `String`、`Number`、 `Boolean`、 `Undefined`、`Null` 和 `Symbol`；`1` 种引用类型-- `Object`
+> `ECMAScript` 迄今为止标准定义了 `7` 种数据类型：`6` 种原始类型-- `String`、`Number`、 `Boolean`、 `Undefined`、`Null` 和 `[Symbol](https://www.jianshu.com/p/f40a77bbd74e)`；`1` 种引用类型-- `Object`
 
 看到这里，你是否已经对它们了如指掌呢。如果你还对它们之间的定义、转换、检测等方面并不是那么清楚，或者已经有些模糊。那么，下面就让我们一起去重新探索、温习一遍吧
 
@@ -120,7 +120,7 @@ var a;  // undefined
 var foo = null;
 ```
 
-#### Symbol类型
+#### [Symbol类型](https://www.jianshu.com/p/f40a77bbd74e)
 
 > 符号 `(Symbols)` 是 `ECMAScript` 第 `6` 版新定义的。符号类型是唯一的并且是不可修改的
 
