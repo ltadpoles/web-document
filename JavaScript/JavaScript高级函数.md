@@ -134,10 +134,21 @@ let adder = curry(add)(1, 2)
 通过 `curry` 函数的这种模式，我们就能实现 `bind`
 ```js
 Function.prototype.mybind = function(fn) {
-    let args = Array.prototype.slice.call(arguments, 1)
     let _this = this
     return function() {
-        return _this.apply(fn, args)
+        return _this.apply(fn, arguments)
+    }
+}
+```
+或者考虑到两边都需要传参数的情况(典型的通用封装的 `curry`)
+```js
+Function.prototype.mybind = function(fn) {
+    let args = Array.prototype.slice(arguments, 1)
+    let _this = this
+    return function() {
+        let _args = Array.prototype.slice(arguments)
+        let final = args.concat(_args)
+        return _this.apply(fn, final)
     }
 }
 ```
