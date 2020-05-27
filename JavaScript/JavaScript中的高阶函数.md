@@ -123,9 +123,9 @@ function createXHR() {
     var xhr
     if(typeof XMLHttpRequest !== 'undefined') {
         xhr = new XMLHttpRequest()
-    }
-    createXHR = function() {
-        return new XMLHttpRequest()
+        createXHR = function() {
+            return new XMLHttpRequest()
+        }
     } else {
         try {
             xhr = new ActiveXObject('Msxml2.XMLHTTP')
